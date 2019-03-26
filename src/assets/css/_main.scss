@@ -1,0 +1,95 @@
+$orange: #fe8701;
+$blue: #2b8aaa;
+$darkblue: #3d4351;
+
+.btn{
+  border-radius:25px;
+  padding:0.5em 1em;
+}
+
+.btn.btn-primary{
+  background-color: $orange;
+  border-color: $orange;
+}
+
+// Header
+
+nav.navbar.navbar-dark.bg-dark{
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  min-height:20vh;
+  background-color: transparent !important;
+}
+
+//HomePage
+
+section{
+  min-height:100vh;
+}
+
+#banner{
+  background: $blue;
+  position: relative;
+
+  .banner-grid{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+
+    .banner-text{
+      color:#fff;
+      text-align:justify;
+
+      h2{
+        font-weight: 600;
+      }
+
+      .banner-buttons{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap:1em;
+      }
+    }
+    
+  }
+}
+
+// Footer
+
+footer{
+  min-height: 50vh;
+  background: $darkblue;
+  
+  #footer{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height:100%;
+  }
+}
+
+@media screen and ( max-width:768px){
+  nav.navbar.navbar-dark.bg-dark{
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    min-height:10vh;
+    background-color: $blue !important;
+    box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.2)
+  }
+
+  #banner {
+    .banner-grid{
+      grid-template-columns: 1fr;
+
+      .banner-img{
+        display: none;
+      }
+    }
+
+  }
+}
