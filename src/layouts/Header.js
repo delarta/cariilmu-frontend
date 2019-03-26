@@ -17,7 +17,8 @@ class Header extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      scroll: 0
     };
   }
   toggle() {
