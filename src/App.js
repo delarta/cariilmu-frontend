@@ -5,11 +5,7 @@ import Header from './layouts/Header';
 import Footer from './layouts/Footer';
 
 import Home from './pages/Home';
-import SignInPage from './pages/SignInPage';
-import SignUpPage from './pages/SignUpPage';
-import ClassListPage from './pages/ClassListPage';
-import CategoryPage from './pages/CategoryPage';
-import SchedulePage from './pages/SchedulePage';
+import SignInPage from './pages/student/SignInPage';
 
 class App extends Component {
   render() {
