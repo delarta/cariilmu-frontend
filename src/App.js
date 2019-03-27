@@ -11,8 +11,8 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
           <Header />
+            {console.log(this.props)}
           <Route exact to="/" render={props => (
             <Home />
           )} />
@@ -20,7 +20,7 @@ class App extends Component {
             <SignInPage />
           )}/>
           <Footer />
-        </div>
+        
       </Router>
     );
   }
