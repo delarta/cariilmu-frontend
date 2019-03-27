@@ -10,6 +10,7 @@ import SignUpPage from './pages/SignUpPage';
 import ClassListPage from './pages/ClassListPage';
 import CategoryPage from './pages/CategoryPage';
 import SchedulePage from './pages/SchedulePage';
+import ConfirmationPage from './pages/ConfirmationPage';
 
 class App extends Component {
   render() {
@@ -18,7 +19,7 @@ class App extends Component {
         <div className="App">
           <Header />
           <Route exact to="/" render={props => (
-            <Home />
+            <ConfirmationPage />
           )} />
           <Route exact to="/signin" render={props => (
             <SignInPage />
