@@ -30,7 +30,7 @@ class Header extends React.Component {
   render() {
     window.onscroll = () => {
       if (window.innerWidth > 768) {
-        if (window.pageYOffset >= 100) {
+        if (window.pageYOffset >= 60) {
           document.querySelector(
             ".navbar.navbar-expand-md.navbar-dark"
           ).style.minHeight = "10vh";
