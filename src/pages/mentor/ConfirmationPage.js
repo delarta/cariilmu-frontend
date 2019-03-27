@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Button, CardBody,CardHeader, Card,CardFooter, FormGroup,Label, Col, Input } from 'reactstrap';
-import Foto from '../assets/img/photo.png';
 
-import '../pages/ConfirmationPage.css';
+import '../ConfirmationPage.css';
 
 class ConfirmationPage extends Component {
   render() {
