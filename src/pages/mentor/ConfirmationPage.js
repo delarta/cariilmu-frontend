@@ -8,7 +8,7 @@ class ConfirmationPage extends Component {
     return (
       <div>
           <section className="sec_1"> 
-          <Card className="box1">
+          <Card className="box2">
                   <CardHeader className="Header1">
                   <Label> CONFIRMATION PAYMENT</Label>
                   </CardHeader>

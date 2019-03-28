@@ -6,47 +6,29 @@ import './SchedulePage.css';
 
 class SchedulePage extends Component {
 
-  data =[
-    { name :'testing',
-      fee:'RP.200.000',
-      status : true
-    },
-    {
-      name : 'harun',
-      fee : 'RP.100.000',
-      status : false
-    },
-    {
-      name : 'adi',
-      fee : 'RP.300.000',
-      status :true
-    }
-
-    
-  ]
-
-  
 
 
   render() {
    
-    console.log(this.data);
-     const data = this.data.map ((item, index) => {
-       return (
-          <div key={index} > 
-
-          </div>
-       )
-     });
     return (
       <div>
         <section className='section'>
-            <div className='box'> 
+            <div className='box1'> 
               <div className="class-box">
                   <div className="img1">
                     <img src={Logo} alt={Logo}/>
                   </div>
                   <h2> Code Blok</h2>
+                  <br/>
+                  <h4> Harun </h4>
+                      <p>
+                        <i className="ti-calendar" /> Kamis, 1 November 2019{" "}
+                      </p>
+                      <p>
+                        <i className="ti-alarm-clock" /> 15.00 - 19.00{" "}
+                      </p>
+                      <Button color="success">Paid</Button>{' '}
+
 
               </div>
 
@@ -55,6 +37,15 @@ class SchedulePage extends Component {
                     <img src={Logo} alt={Logo}/>
                   </div>
                   <h2> Music</h2>
+                  <br/>
+                  <h4> Danu </h4>
+                      <p>
+                        <i className="ti-calendar" /> Kamis, 1 November 2019{" "}
+                      </p>
+                      <p>
+                        <i className="ti-alarm-clock" /> 15.00 - 19.00{" "}
+                      </p>
+                      <Button color="danger">Not Yet</Button>{' '}
 
               </div>
                 
@@ -64,6 +55,16 @@ class SchedulePage extends Component {
                     <img src={Logo} alt={Logo}/>
                   </div>
                   <h2> E Sport</h2>
+                  <br/>
+                  <h4> Ade Rahman </h4>
+                    <p>
+                      <i className="ti-calendar" /> Kamis, 1 November 2019{" "}
+                    </p>
+                    <p>
+                      <i className="ti-alarm-clock" /> 15.00 - 19.00{" "}
+                    </p>
+                    <Button color="success">Paid</Button>{' '}
+
               </div>
             </div>
 
