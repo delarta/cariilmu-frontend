@@ -6,6 +6,12 @@ import Footer from './layouts/Footer';
 
 import Home from './pages/Home';
 import SignInPage from './pages/student/SignInPage';
+import SignUpPage from './pages/student/SignUpPage';
+
+import SignInStudent from './pages/student/SignInPage';
+import SignUpMentor from './pages/mentor/SignUpPage';
+
+
 
 class App extends Component {
   render() {
@@ -18,6 +24,9 @@ class App extends Component {
           )} />
           <Route exact to="/signin" render={props => (
             <SignInPage />
+          )}/>
+          <Route exact to="/signin" render={props => (
+            <SignUpPage />
           )}/>
           <Footer />
         </div>
