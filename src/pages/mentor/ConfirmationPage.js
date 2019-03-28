@@ -8,11 +8,11 @@ class ConfirmationPage extends Component {
     return (
       <div>
           <section className="sec_1"> 
-          <Card className="box">
-                  <CardHeader className="Header">
+          <Card className="box1">
+                  <CardHeader className="Header1">
                   <Label> CONFIRMATION PAYMENT</Label>
                   </CardHeader>
-                    <CardBody className="Body">
+                    <CardBody className="Body1">
                      
                        <FormGroup row>
                           <Label for="order" sm={4}>No.Order :</Label>
@@ -59,7 +59,8 @@ class ConfirmationPage extends Component {
                      
                     </CardBody>
                   <CardFooter className="footer">
-                    <Button> Confirm </Button>
+                    <Button color="danger"> Cancel </Button>
+                    <Button color="success"> Confirm </Button>
                   </CardFooter>
           </Card>
 
@@ -70,3 +71,4 @@ class ConfirmationPage extends Component {
 }
 
 export default ConfirmationPage;
+

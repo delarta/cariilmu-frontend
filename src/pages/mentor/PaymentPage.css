@@ -1,27 +1,21 @@
-@import url('https://fonts.googleapis.com/css?family=Lato');
-
-body{
-    font-family: 'Lato', sans-serif;
-    background-color: #f4f4f4;
-  }
-.sec_1{
+.section{
     background-color: #2b8aaa;
-    height: 105vh;
+    height: 120vh;
     padding-top: 12%;
 }
 
-.box1{
-    height: 500px;
-    width: 400px;
+.box{
+    height: 550px;
+    width: 450px;
     margin:auto;
     display: flex;
     justify-content: center;
 }
-.Header1{
+.Header{
     display: flex;
     justify-content: space-between;
     height: 70px;
-    width: 60vh;
+    width: 67vh;
     background-color: #2b8aaa;
     margin:auto;
     font-weight: bold;
@@ -30,12 +24,11 @@ body{
 }
 .footer{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 
 }
-.Body1{
+.Body{
     
     height: 50%;
     margin:auto;
 }
-
