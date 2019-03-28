@@ -19,8 +19,7 @@ class SchedulePage extends Component {
                     <img src={Logo} alt={Logo}/>
                   </div>
                   <h2> Code Blok</h2>
-                  <br/>
-                  <h4> Harun </h4>
+                  <h5> Harun </h5>
                       <p>
                         <i className="ti-calendar" /> Kamis, 1 November 2019{" "}
                       </p>
@@ -28,8 +27,6 @@ class SchedulePage extends Component {
                         <i className="ti-alarm-clock" /> 15.00 - 19.00{" "}
                       </p>
                       <Button color="success">Paid</Button>{' '}
-
-
               </div>
 
               <div className="class-box">
@@ -37,8 +34,7 @@ class SchedulePage extends Component {
                     <img src={Logo} alt={Logo}/>
                   </div>
                   <h2> Music</h2>
-                  <br/>
-                  <h4> Danu </h4>
+                  <h5> Danu </h5>
                       <p>
                         <i className="ti-calendar" /> Kamis, 1 November 2019{" "}
                       </p>
@@ -46,7 +42,6 @@ class SchedulePage extends Component {
                         <i className="ti-alarm-clock" /> 15.00 - 19.00{" "}
                       </p>
                       <Button color="danger">Not Yet</Button>{' '}
-
               </div>
                 
 
@@ -55,8 +50,7 @@ class SchedulePage extends Component {
                     <img src={Logo} alt={Logo}/>
                   </div>
                   <h2> E Sport</h2>
-                  <br/>
-                  <h4> Ade Rahman </h4>
+                  <h5> Ade Rahman </h5>
                     <p>
                       <i className="ti-calendar" /> Kamis, 1 November 2019{" "}
                     </p>
@@ -64,7 +58,6 @@ class SchedulePage extends Component {
                       <i className="ti-alarm-clock" /> 15.00 - 19.00{" "}
                     </p>
                     <Button color="success">Paid</Button>{' '}
-
               </div>
             </div>
 
