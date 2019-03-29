@@ -10,9 +10,9 @@ import Home from "./pages/Home";
 import SignInPage from "./pages/student/SignInPage";
 import ClassList from "./pages/ClassListPage";
 import ClassDetail from "./pages/ClassDetailPage";
-import AdminPage from "./pages/admin/AdminPage";
-
-import { connect } from "react-redux";
+import ConfirmationPage from './pages/mentor/ConfirmationPage'; 
+import SchedulePage from './pages/mentor/SchedulePage';
+import PaymenPage from './pages/mentor/PaymentPage';
 
 class App extends Component {
   render() {
@@ -25,7 +25,10 @@ class App extends Component {
         <Route exact path="/signin" component={SignInPage} />
         <Route exact path="/class" component={ClassList} />
         <Route exact path="/class/:classId" component={ClassDetail} />
-        <Route exact path="/admin" component={AdminPage}/>
+        <Route exact path="/confirmation" component={ConfirmationPage} />
+        <Route exact path="/payment" component={PaymenPage} />
+        <Route exact path="/schedule" component={SchedulePage} />
+        
 
         <Footer />
 
