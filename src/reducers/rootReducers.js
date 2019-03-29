@@ -2,6 +2,9 @@ const initState = {
   todos: [],
   users: [],
   token: false,
+  isAdmin: true,
+  mentors: [],
+  students: [],
   classes: [
     {
       id: 1,
@@ -36,6 +39,24 @@ const initState = {
       mentor: "Andy Setiawan",
       category: "dance",
       fee: 70000,
+      desc:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsam eveniet quae, harum veritatis voluptate reiciendis dignissimos! Voluptates, in. Sunt accusantium quaerat exercitationem tenetur minima id soluta fuga ullam officiis omnis, laboriosam reprehenderit eligendi molestiae sapiente vel optio similique voluptatibus eos, necessitatibus eveniet, quibusdam quisquam magnam amet dolores! Nulla, totam."
+    },
+    {
+      id: 5,
+      name: "Swimming",
+      mentor: "Harun",
+      category: "sport",
+      fee: 700000,
+      desc:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsam eveniet quae, harum veritatis voluptate reiciendis dignissimos! Voluptates, in. Sunt accusantium quaerat exercitationem tenetur minima id soluta fuga ullam officiis omnis, laboriosam reprehenderit eligendi molestiae sapiente vel optio similique voluptatibus eos, necessitatibus eveniet, quibusdam quisquam magnam amet dolores! Nulla, totam."
+    },
+    {
+      id: 6,
+      name: "Abstract Painting",
+      mentor: "Zakarias",
+      category: "art",
+      fee: 90000,
       desc:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsam eveniet quae, harum veritatis voluptate reiciendis dignissimos! Voluptates, in. Sunt accusantium quaerat exercitationem tenetur minima id soluta fuga ullam officiis omnis, laboriosam reprehenderit eligendi molestiae sapiente vel optio similique voluptatibus eos, necessitatibus eveniet, quibusdam quisquam magnam amet dolores! Nulla, totam."
     }
