@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, CardBody,CardHeader, Card,CardFooter, FormGroup,Label, Col, Input, Container } from 'reactstrap';
+import { Button} from 'reactstrap';
 import Logo from '../../assets/img/presentation.svg';
 
 import './SchedulePage.css';
