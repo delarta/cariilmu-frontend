@@ -21,7 +21,6 @@ import HomePage from "./pages/HomePage";
 
 class App extends Component {
   render() {
-    console.log(this.props)
     
     return (
       <Router>

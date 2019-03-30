@@ -27,6 +27,7 @@ h1, h2, h3, h4, p{
 .grid-4{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 1em;
 }
 
 // button style
@@ -123,7 +124,6 @@ nav.navbar.navbar-dark {
       min-width: 400px;
     }
   }
-  
 }
 
 // Home-page
@@ -133,6 +133,10 @@ nav.navbar.navbar-dark {
   z-index: 1;
   min-height: 50vh;
   background-color: #f4f4f4;
+  background-image: url('../img/analysis.svg');
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  // background-size: 30%;
   a{
     text-decoration: none
   }
@@ -149,7 +153,6 @@ nav.navbar.navbar-dark {
     height: 50vh;
     position: relative;
     overflow: hidden;
-
    
     video.hero-video{
       position: absolute;
@@ -184,6 +187,38 @@ nav.navbar.navbar-dark {
     grid-gap: 1em;
   }
 
+}
+
+// Category Item
+
+.category-item{
+  background-color: $light;
+  box-shadow: 0 2px 8px rgba($color: #141414, $alpha: 0.1);
+  transition: 250ms ease-out;
+  i{
+    padding-top: 1rem;
+    font-size: 5em;
+    color: $darkblue;
+  }
+  .card-title{
+    font-size: 1.2em;
+    font-weight: 600;
+    color: $darkblue;
+    text-transform: uppercase;
+  }
+}
+
+.category-item:hover{
+  background-color: $blue;
+  cursor: pointer;
+  i{
+    color: $light;
+  }
+  .card-title{
+    font-weight: 500;
+    color: $light;
+    text-transform: uppercase;
+  }
 }
 
 //Landing-page
@@ -370,7 +405,7 @@ footer {
   border-radius: 5px;
   display: grid;
   grid-template-columns: 1fr;
-
+  background-color: $light;
   padding: 1em;
   box-shadow: 0 2px 8px rgba($color: #141414, $alpha: 0.1);
 
@@ -710,6 +745,9 @@ footer {
       .hero-video{
         display: none;
       }
+    }
+    .home-category{
+      grid-template-columns: 1fr 1fr;
     }
     .home-class-item{
       grid-template-columns: 1fr;

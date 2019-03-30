@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import bannervid from "../assets/vid/banner.mp4";
 import ClassItem from "./ClassItem";
+import CategoryItem from "./CategoryItem";
 
 class HomePage extends Component {
   render() {
@@ -25,9 +26,13 @@ class HomePage extends Component {
           </Container> 
           }
         </div>
-        <div className="vh-50 py-5">
+        <div className="py-5">
           <Container>
             <h2>Categories</h2>
+            <div className="home-category text-center grid-4">
+              <CategoryItem />
+            </div>
+            
           </Container>
         </div>
         <div className="vh-50 py-5">

@@ -5,11 +5,9 @@ import {
   Label,
   Input,
   Button,
-  Container,
   InputGroup,
   InputGroupAddon
 } from "reactstrap";
-import { Link } from "react-router-dom";
 
 export default class SignupUser extends Component {
   render() {

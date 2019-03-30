@@ -9,6 +9,28 @@ const initState = {
   isAdmin: false,
   mentors: [],
   students: [],
+  categories: [
+    {
+      id: 1,
+      name: "Art",
+      image: "ti-palette"
+    },
+    {
+      id: 2,
+      name: "Music",
+      image: "ti-music-alt"
+    },
+    {
+      id: 3,
+      name: "Sport",
+      image: "ti-basketball"
+    },
+    {
+      id: 4,
+      name: "Programming",
+      image: "ti-desktop"
+    },
+  ],
   classes: [
     {
       id: 1,

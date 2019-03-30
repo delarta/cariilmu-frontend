@@ -8,8 +8,7 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem,
-  Container } from 'reactstrap';
+  DropdownItem} from 'reactstrap';
 
 import logo from "../assets/img/logo_light_inline.png";
 import avatar from "../assets/img/thinking.svg";
