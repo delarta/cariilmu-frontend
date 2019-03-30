@@ -13,6 +13,12 @@ import ClassDetail from "./pages/ClassDetailPage";
 import ConfirmationPage from './pages/mentor/ConfirmationPage'; 
 import SchedulePage from './pages/mentor/SchedulePage';
 import PaymenPage from './pages/mentor/PaymentPage';
+import CategoryPage from "./pages/CategoryPage";
+
+import SignUpPage from "./pages/mentor/SignUpPage";
+import SignIn from "./pages/mentor/SignInPage";
+
+
 
 class App extends Component {
   render() {
@@ -28,7 +34,8 @@ class App extends Component {
         <Route exact path="/confirmation" component={ConfirmationPage} />
         <Route exact path="/payment" component={PaymenPage} />
         <Route exact path="/schedule" component={SchedulePage} />
-        
+        <Route exact path="/category" component={CategoryPage} />
+        <Route exact path="/signupmentor" component={SignUpPage} />
 
         <Footer />
       </Router>
