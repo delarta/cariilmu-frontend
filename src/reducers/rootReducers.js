@@ -1,6 +1,10 @@
 const initState = {
   todos: [],
-  users: [],
+  user: [
+    {
+      name: ""
+    }
+  ],
   token: false,
   isAdmin: false,
   mentors: [],
@@ -66,6 +70,11 @@ const initState = {
 const rootReducer = (state = initState, action) => {
   console.log(action.type);
   switch (action.type) {
+    case "SIGN_IN":
+      return {
+        ...state,
+        user: [{name: action.data}]
+      };
     case "FETCH_CLASS":
       return state.classes;
     default:

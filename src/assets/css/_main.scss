@@ -3,6 +3,7 @@ $orange: #f07b3f;
 $blue: #4f9da6;
 $darkblue: #233142;
 $light: #fafafa;
+$red: #ff5959;
 $dimlight: rgba(
   $color: #ffffff,
   $alpha: 0.8
@@ -16,7 +17,9 @@ body {
   font-family: "Lato", sans-serif;
   background-color: #f4f4f4;
 }
-
+a{
+  color: $blue;
+}
 h1, h2, h3, h4, p{
   color: $darkblue;
 }
@@ -81,6 +84,48 @@ nav.navbar.navbar-dark {
   font-size: 0.9em;
 }
 
+// Sign In Page
+.auth-container{
+  position: relative;
+  min-height: 100vh;
+  padding: 20vh 0;
+  background: url('../img/study.svg') no-repeat;
+  background-position: bottom right;
+  background-size: 40%;
+
+  .auth-banner{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 50vh;
+    z-index: -1;
+    background-color: $blue;
+    -webkit-clip-path: ellipse(88% 76% at 50% 23%);
+    clip-path: ellipse(88% 76% at 50% 23%);
+  }
+  
+  .auth-page{
+    width:500px;
+    border-radius: 5px;
+    min-height: 50vh;
+    background-color: $light;
+    position: relative;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba($color: $darkblue, $alpha: 0.2);
+    
+    .auth-page-content{
+      padding:1em 0;
+      min-width: 400px;
+    }
+  }
+  
+}
+
 // Home-page
 .home-page{
   padding: 0;
@@ -126,6 +171,9 @@ nav.navbar.navbar-dark {
         text-transform: uppercase;
         color: $light;
         font-weight: 600;
+      }
+      p{
+        color: $dimlight;
       }
     }
   }
@@ -490,8 +538,6 @@ footer {
 #admin-dashboard{
   display: flex;
   flex-direction: column;
-  // align-self:center;
-  // justify-content:center;
   margin-right: 1em;
   .dashboard-header{
     min-height: 200px;
@@ -600,10 +646,22 @@ footer {
   }
 
   #banner {
+    -webkit-clip-path: none;
+    clip-path: none;
     .banner-grid {
       grid-template-columns: 1fr;
       .banner-img {
         display: none;
+      }
+    }
+  }
+
+  .auth-container{
+    .auth-page{
+      width: 90%;
+
+      .auth-page-content{
+        min-width:100%;
       }
     }
   }

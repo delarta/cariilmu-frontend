@@ -7,8 +7,6 @@ import {
   Button
 } from "reactstrap";
 import ClassItem from './ClassItem';
-import presentation from "../assets/img/presentation.svg";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 class ClassListPage extends Component {

@@ -9,6 +9,8 @@ import { connect } from "react-redux";
 
 import Landing from "./pages/Landing";
 import SignInPage from "./pages/student/SignInPage";
+import SignUpPage from "./pages/student/SignUpPage";
+
 import ClassList from "./pages/ClassListPage";
 import ClassDetail from "./pages/ClassDetailPage";
 import ConfirmationPage from './pages/mentor/ConfirmationPage'; 
@@ -30,6 +32,8 @@ class App extends Component {
         <Route exact path="/home" component={HomePage} />
 
         <Route exact path="/signin" component={SignInPage} />
+        <Route exact path="/signup" component={SignUpPage} />
+
         <Route exact path="/class" component={ClassList} />
         <Route exact path="/class/:classId" component={ClassDetail} />
         <Route exact path="/confirmation" component={ConfirmationPage} />
