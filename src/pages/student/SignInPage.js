@@ -30,7 +30,7 @@ class SignInPage extends Component {
             placeholder="type your password"
           />
         </FormGroup>
-        <Button>Submit</Button>
+        <Button>Sign In.</Button>
       </Form>
       <span>
         <text className="linkSignup">Doesn't have an account? </text>
