@@ -43,13 +43,15 @@ class ClassListAdmin extends Component {
           <h1>Class List</h1>
         </div>
         <DataTable
+          noHeader={true}
+          style={{height:"100%"}}
           striped={true}
           highlightOnHover={true}
           customTheme={tableStyle}
           columns={columns}
+          responsive={true}
           data={data}
           pagination={true}
-          paginationPerPage={10}
         />
       </div>
     );

@@ -38,27 +38,22 @@ class NavbarSignIn extends React.Component {
         if (window.pageYOffset >= 60) {
           document.querySelector(
             ".navbar.navbar-expand-md.navbar-dark"
-          ).style.minHeight = "10vh";
+          ).style.minHeight = "5vh";
           document.querySelector(
             ".navbar.navbar-expand-md.navbar-dark"
-          ).style.backgroundColor = "#3d4351";
+          ).style.backgroundColor = "#233142";
         } else {
           document.querySelector(
             ".navbar.navbar-expand-md.navbar-dark"
-          ).style.minHeight = "20vh";
+          ).style.minHeight = "10vh";
           document.querySelector(
             ".navbar.navbar-expand-md.navbar-dark"
           ).style.backgroundColor = "transparent";
         }
-      } else {
-        document.querySelector(
-          ".navbar.navbar-expand-md.navbar-dark"
-        ).style.minHeight = "10vh";
       }
     };
     return (
       <Navbar dark expand="md">
-        <Container>
           <Link className="navbar-brand" to="/">
             <img style={{ width: "150px" }} src={logo} alt={logo} />
           </Link>
@@ -93,7 +88,6 @@ class NavbarSignIn extends React.Component {
               </NavItem>
             </Nav>
           </Collapse>
-        </Container>
       </Navbar>
     );
   }

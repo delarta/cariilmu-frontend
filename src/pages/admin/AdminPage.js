@@ -8,10 +8,13 @@ import MentorListAdmin from "./MentorListAdmin";
 
 export default class AdminPage extends Component {
   render() {
+    console.log(this.props)
+
     return (
       <Router>
         <div id="admin-page">
           <div className="admin-grid">
+          
           <Sidebar />
           <Route exact path="/admin" component={Dashboard} />
           <Route exact path="/admin/classes" component={ClassListAdmin} />

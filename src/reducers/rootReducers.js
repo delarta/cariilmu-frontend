@@ -2,7 +2,7 @@ const initState = {
   todos: [],
   users: [],
   token: false,
-  isAdmin: true,
+  isAdmin: false,
   mentors: [],
   students: [],
   classes: [
