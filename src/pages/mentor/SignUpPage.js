@@ -7,7 +7,7 @@ export default class SignupMentor extends Component {
         <Container>
         <Form>
         <FormGroup>
-          <Label for="headertext">Create Your Account</Label>
+          <Label for="headertext">Create Your Account as Mentor! </Label>
         </FormGroup>
         <FormGroup>
           <Label for="fullName">Full name :</Label>
@@ -17,16 +17,7 @@ export default class SignupMentor extends Component {
             id="namaMantor"
             placeholder="type your fullname"
           />
-        </FormGroup>
-        <FormGroup>
-          <Label for="mentorName">Username :</Label>
-          <Input
-            type="text"
-            name="mentorName"
-            id="mentorName"
-            placeholder="type your username"
-          />
-        </FormGroup>
+        </FormGroup>s
         <FormGroup>
           <Label for="emailUser">Email :</Label>
           <Input
@@ -67,40 +58,6 @@ export default class SignupMentor extends Component {
             name="passwordMentor"
             id="passwordMentor"
             placeholder="retype your password"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="birthDay">Birth Day :</Label>
-          <Input
-            type="date"
-            name="birthday"
-            id="birthdayMentor"
-            placeholder="birthDay"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="GenderSelect">Gender :</Label>
-          <Input type="select" name="select" id="genderSelect">
-            <option>Male</option>
-            <option>Female</option>
-          </Input>
-        </FormGroup>
-        <FormGroup>
-          <Label for="education">Education :</Label>
-          <Input
-            type="text"
-            name="educationMentor"
-            id="educationMentor"
-            placeholder="your last educational stages"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="institution">Institution :</Label>
-          <Input
-            type="text"
-            name="institutionMentor"
-            id="institutionMentor"
-            placeholder="tuliskan institusi anda"
           />
         </FormGroup>
         <Button color="success" type="submit">Register</Button>
