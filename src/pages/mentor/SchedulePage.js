@@ -6,8 +6,6 @@ import './SchedulePage.css';
 
 class SchedulePage extends Component {
 
-
-
   render() {
    
     return (
