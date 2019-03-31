@@ -66,4 +66,3 @@ export default class SignupMentor extends Component {
     );
   }
 }
-

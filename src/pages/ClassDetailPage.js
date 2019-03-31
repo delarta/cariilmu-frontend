@@ -32,7 +32,7 @@ class ClassDetailPage extends Component {
                 <p>
                   <i className="ti-alarm-clock" /> 15.00 - 19.00{" "}
                 </p>
-                <Link to={`/class/${item.id}`} className="btn btn-primary">
+                <Link to="/schedule" className="btn btn-primary">
                   Enroll Now <i className="ti-angle-double-right" />
                 </Link>
               </div>
