@@ -1,15 +1,9 @@
 import React from "react";
-import {
-  Navbar,
-  Container,
-  NavbarToggler,
-  Collapse,
-  Nav,
-  NavItem
-} from "reactstrap";
+import { Navbar, NavbarToggler, Collapse, Nav, NavItem } from "reactstrap";
 
 import logo from "../assets/img/logo_light_inline.png";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 class NavbarMain extends React.Component {
   constructor(props) {
@@ -33,64 +27,65 @@ class NavbarMain extends React.Component {
         if (window.pageYOffset >= 60) {
           document.querySelector(
             ".navbar.navbar-expand-md.navbar-dark"
-          ).style.minHeight = "10vh";
+          ).style.minHeight = "5vh";
           document.querySelector(
             ".navbar.navbar-expand-md.navbar-dark"
-          ).style.backgroundColor = "#3d4351";
+          ).style.backgroundColor = "#233142";
         } else {
           document.querySelector(
             ".navbar.navbar-expand-md.navbar-dark"
-          ).style.minHeight = "20vh";
+          ).style.minHeight = "10vh";
           document.querySelector(
             ".navbar.navbar-expand-md.navbar-dark"
           ).style.backgroundColor = "transparent";
         }
-      } else {
-        document.querySelector(
-          ".navbar.navbar-expand-md.navbar-dark"
-        ).style.minHeight = "10vh";
       }
     };
+
     return (
       <Navbar dark expand="md">
-        <Container>
-          <Link className="navbar-brand" to="/">
-            <img style={{ width: "150px" }} src={logo} alt={logo} />
-          </Link>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <a className="nav-link" href="#banner">
-                  Home
-                </a>
-              </NavItem>
-              <NavItem>
-                <a className="nav-link" href="#keunggulan">
-                  Feature
-                </a>
-              </NavItem>
-              <NavItem>
-                <a className="nav-link" href="#misi">
-                  Mission
-                </a>
-              </NavItem>
-              <NavItem>
-                <a className="nav-link" href="#download">
-                  Download
-                </a>
-              </NavItem>
-              <NavItem active>
-                <Link to="/signup" className="nav-link">
-                  Sign Up
-                </Link>
-              </NavItem>
-            </Nav>
-          </Collapse>
-        </Container>
+        <Link className="navbar-brand" to="/">
+          <img style={{ width: "150px" }} src={logo} alt={logo} />
+        </Link>
+        <NavbarToggler onClick={this.toggle} />
+        <Collapse isOpen={this.state.isOpen} navbar>
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <a className="nav-link" href="#banner">
+                Home
+              </a>
+            </NavItem>
+            <NavItem>
+              <a className="nav-link" href="#keunggulan">
+                Feature
+              </a>
+            </NavItem>
+            <NavItem>
+              <a className="nav-link" href="#misi">
+                Mission
+              </a>
+            </NavItem>
+            <NavItem>
+              <a className="nav-link" href="#download">
+                Download
+              </a>
+            </NavItem>
+            <NavItem active>
+              <Link to="/signin" className="nav-link">
+                Sign In
+              </Link>
+            </NavItem>
+          </Nav>
+        </Collapse>
       </Navbar>
     );
   }
 }
 
-export default NavbarMain;
+const mapStateToProps = state => {
+  return {
+    user: state.student.user
+  };
+};
+
+export default connect(mapStateToProps)(NavbarMain);

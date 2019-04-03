@@ -1,10 +1,11 @@
 const initState = {
   todos: [],
-  user: [
-    {
-      name: ""
-    }
-  ],
+  user: {
+    name: "Joni",
+    username: "",
+    email: "",
+    role: "student"
+  },
   token: false,
   isAdmin: false,
   mentors: [],
@@ -30,10 +31,31 @@ const initState = {
       name: "Programming",
       image: "ti-desktop"
     },
+    {
+      id: 5,
+      name: "Programming",
+      image: "ti-desktop"
+    },
+    {
+      id: 6,
+      name: "Programming",
+      image: "ti-desktop"
+    },
+    {
+      id: 7,
+      name: "Programming",
+      image: "ti-desktop"
+    },
+    {
+      id: 8,
+      name: "Programming",
+      image: "ti-desktop"
+    }
   ],
   classes: [
     {
       id: 1,
+      image: require('../assets/img/art.jpg'),
       name: "Logo Design",
       mentor: "Delarta Tok Adin",
       category: "design",
@@ -43,6 +65,7 @@ const initState = {
     },
     {
       id: 2,
+      image: require('../assets/img/art.jpg'),
       name: "Face Illustration",
       mentor: "Ade Rahman",
       category: "design",
@@ -52,6 +75,7 @@ const initState = {
     },
     {
       id: 3,
+      image: require('../assets/img/music.jpg'),
       name: "Basic Arpergio",
       mentor: "Septebrina",
       category: "music",
@@ -61,6 +85,7 @@ const initState = {
     },
     {
       id: 4,
+      image: require('../assets/img/art.jpg'),
       name: "Reog Dance",
       mentor: "Andy Setiawan",
       category: "dance",
@@ -70,6 +95,7 @@ const initState = {
     },
     {
       id: 5,
+      image: require('../assets/img/sport.jpg'),
       name: "Swimming",
       mentor: "Harun",
       category: "sport",
@@ -79,6 +105,7 @@ const initState = {
     },
     {
       id: 6,
+      image: require('../assets/img/art.jpg'),
       name: "Abstract Painting",
       mentor: "Zakarias",
       category: "art",
@@ -89,20 +116,35 @@ const initState = {
   ]
 };
 
-const rootReducer = (state = initState, action) => {
-  console.log(action.type);
+const studentReducer = (state = initState, action) => {
   switch (action.type) {
-    case "SIGN_IN":
+    // case "SIGN_IN":
+    //   console.log(action.response.username);
+    //   return {
+    //     ...state,
+    //     user: {
+    //       username: action.response.username,
+    //       name: action.response.name,
+    //       email: action.response.email,
+    //       role: "student"
+    //     }
+    //   };
+    // case "SIGN_UP":
+    //   console.log(action.type);
+    //   return {
+    //     ...state,
+    //     user: { name: action.name, role: "student" }
+    //   };
+    case "LOG_OUT":
       return {
         ...state,
-        user: [{name: action.data}]
+        user: { name: "", email: "", role: "guest" }
       };
     case "FETCH_CLASS":
       return state.classes;
     default:
-      break;
+      return state;
   }
-  return state;
 };
 
-export default rootReducer;
+export default studentReducer;

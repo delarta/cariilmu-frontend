@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import DataTable from "react-data-table-component";
 import { connect } from "react-redux";
-import { delClass } from "../../actions/adminActions"
+import { setFinishedClass, getClass } from "../../actions/mentorActions";
+import ModalAddClass from '../../components/ModalAddClass';
 
 class ClassListAdmin extends Component {
+  componentDidMount() {
+    this.props.getClass();
+  }
   render() {
     const tableStyle = {
       title: {
@@ -24,13 +28,13 @@ class ClassListAdmin extends Component {
         sortable: true
       },
       {
-        name: "Category",
-        selector: "category",
+        name: "Schedule",
+        selector: "schedule",
         sortable: true
       },
       {
-        name: "Mentor",
-        selector: "mentor",
+        name: "Fee",
+        selector: "fee",
         sortable: true
       },
       {
@@ -39,15 +43,10 @@ class ClassListAdmin extends Component {
         sortable: true
       },
       {
-        name: "Date Created",
-        selector: "",
-        sortable: true
-      },
-      {
         name: "Actions",
         sortable: true,
         button: true,
-        cell: row => <button onClick={() => this.props.delClass(row.id) } className="btn btn-danger">Delete</button>,
+        cell: row => row.status === 'finished' ? <button className="btn btn-danger disabled">Finished</button> : <button onClick={() => this.props.setFinishedClass(row._id) } className="btn btn-warning">Set Finished</button>,
         ignoreRowClick: true
       }
     ];
@@ -55,6 +54,9 @@ class ClassListAdmin extends Component {
       <div className="content-admin">
         <div className="content-header">
           <h1>Class List</h1>
+        </div>
+        <div>
+          <ModalAddClass initialModalState={false} />
         </div>
         <DataTable
           noHeader={true}
@@ -74,13 +76,14 @@ class ClassListAdmin extends Component {
 
 const mapStateToProps = state => {
   return {
-    classes: state.admin.classes
+    classes: state.mentor.classes
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    delClass: (id) => dispatch(delClass(id))
+    setFinishedClass: (id) => dispatch(setFinishedClass(id)),
+    getClass: () => dispatch(getClass())
   }
 }
 
