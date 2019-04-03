@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = 'https://cari-ilmu-test.herokuapp.com';
+const url = "https://cari-ilmu-test.herokuapp.com";
 
 export const signIn = (email, password) => {
   return dispatch => {
@@ -68,7 +68,7 @@ export const getMentor = () => {
   };
 };
 
-export const setFinishedClass = (id) => {
+export const setFinishedClass = id => {
   return dispatch => {
     axios({
       method: "put",
@@ -83,8 +83,8 @@ export const setFinishedClass = (id) => {
         });
       })
       .catch(err => console.log(err.response));
-  }
-}
+  };
+};
 
 export const getClass = () => {
   return dispatch => {

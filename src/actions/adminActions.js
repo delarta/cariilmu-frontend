@@ -1,10 +1,10 @@
-import axios from 'axios'
+import axios from "axios";
 export const signIn = (email, password) => {
   return dispatch => {
     axios
       .post("https://cari-ilmu.herokuapp.com/admin/sign-in", {
-        'email':email,
-        'password':password
+        email: email,
+        password: password
       })
       .then(res => {
         console.log(res);
@@ -13,27 +13,27 @@ export const signIn = (email, password) => {
           email,
           password,
           response: res.data
-        })
+        });
       })
       .catch(err => {
         console.log(err.response);
       });
-  }
-}
+  };
+};
 
 export const signUp = (name, username, email, password) => {
   return {
-    type: 'SIGN_UP',
+    type: "SIGN_UP",
     name,
     username,
     email,
     password
-  }
-}
+  };
+};
 
-export const delClass = (id) => {
+export const delClass = id => {
   return {
-    type: 'DELETE_CLASS',
+    type: "DELETE_CLASS",
     id
-  }
-}
+  };
+};
