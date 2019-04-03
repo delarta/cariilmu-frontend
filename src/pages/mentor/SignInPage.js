@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import {Link} from 'react-router-dom'
+import Photo from "../../assets/img/photo.png";
 
 class SignInPage extends Component {
   render() {
@@ -8,7 +9,7 @@ class SignInPage extends Component {
       <div className= "container">
         <div className="signInPage">
           <div className="signInMentor mt-5"> 
-            <img className="imageSignIn"/>
+            <img className="imageSignIn"src={Photo} alt={Photo}/>
           </div>
         </div>
         <Form>
@@ -30,7 +31,7 @@ class SignInPage extends Component {
             placeholder="type your password"
           />
         </FormGroup>
-        <Button>Submit</Button>
+        <Button bgcolor>Submit</Button>
       </Form>
       <span>
         <text className="linkSignup">Doesn't have an account?</text>
