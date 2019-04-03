@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, withRouter} from "react-router-dom";
 import { connect } from 'react-redux';
-import { signIn } from '../../actions/mentorActions';
+import { signIn } from '../../actions/adminActions';
+import axios from 'axios'
 
-class SignInPage extends Component {
+class SignInAdmin extends Component {
   constructor(props) {
     super(props)
   
@@ -18,25 +19,26 @@ class SignInPage extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.signIn(this.state.email, this.state.password);
+    this.props.signIn(this.state.email, this.state.password)
     this.setState({
       email: "",
       password: ""
     });
   }
-  
+
   componentDidUpdate() {
     console.log(this.props.role)
+    this.props.role === 'admin' && this.props.history.push('/admin')
   }
+
   render() {
-    this.props.role === 'mentor' && this.props.history.push('/mentor');
 
     return (
-      <div className="auth-container">
-        <div className="auth-banner mentor" />
+      <div className="auth-container auth-admin">
+        <div className="auth-banner" />
         <div className="container auth-page">
           <div className="auth-page-content">
-            <h1 className="text-center mb-3">Sign In | Mentor</h1>
+            <h1 className="text-center mb-3">Sign In | Admin</h1>
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
                 <Label for="emailStudent">Email</Label>
@@ -66,7 +68,7 @@ class SignInPage extends Component {
                 <Button color="primary">Sign In</Button>
                 <p className="mt-3">
                   Doesn't have an account?{" "}
-                  <Link to="/signup-mentor">
+                  <Link to="/signup">
                     Sign Up
                   </Link>{" "}
                 </p>
@@ -79,7 +81,7 @@ class SignInPage extends Component {
   }
 }
 
-const mapStateProps = state => {
+const mapStateToProps = state => {
   return {
     role: state.auth.role
   }
@@ -88,9 +90,22 @@ const mapStateProps = state => {
 const mapDispatchToProps = dispatch => {
   return{
     signIn: (email, password) => {
-      dispatch(signIn(email, password));
+      axios
+        .post("https://cari-ilmu.herokuapp.com/admin/sign-in", {
+          'email':email,
+          'password':password
+        })
+        .then(res => {
+          console.log(res);
+          dispatch(signIn(email, password, res.data.message));
+          console.log(this.props)
+
+        })
+        .catch(err => {
+          console.log(err.response);
+        });
     }
   }
 }
 
-export default connect(mapStateProps, mapDispatchToProps)(SignInPage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignInAdmin)) ;

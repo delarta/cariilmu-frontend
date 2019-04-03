@@ -6,6 +6,9 @@ import { connect } from "react-redux";
 import { Container } from "reactstrap";
 
 class ClassDetailPage extends Component {
+  componentDidMount() {
+    window.scrollTo(0,0)
+  }
   render() {
     const { classId } = this.props.match.params;
     console.log(typeof classId);
@@ -16,8 +19,8 @@ class ClassDetailPage extends Component {
           <div className="class-detail-banner">
             <Container className="detail-banner-text">
               <h2>{item.name}</h2>
-              <p className="class-fee">Rp {item.fee}</p>
-              <p className="class-mentor">{item.mentor}</p>
+              <p className="class-fee">Price : Rp {item.fee}</p>
+              <p className="class-mentor">By : {item.mentor}</p>
             </Container>
           </div>
           <Container className="class-page-content">
@@ -46,7 +49,7 @@ class ClassDetailPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    classes: state.classes
+    classes: state.student.classes
   };
 };
 

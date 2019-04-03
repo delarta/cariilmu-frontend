@@ -1,0 +1,48 @@
+const initState = {
+  mentor: {},
+  classes: []
+};
+const mentorReducer = (state = initState, action) => {
+  switch (action.type) {
+    case "FETCH_MENTOR":
+      return {
+        ...state,
+        mentor: action.payload
+      };
+    case "ADD_CLASS_MENTOR":
+      return {
+        ...state,
+        classes: [...state.classes, action.payload]
+      };
+    case "EDIT_CLASS_MENTOR":
+      return {
+        ...state,
+        classes: [...state.classes.map(item => {
+          if(item._id === action.payload._id) item.status = action.payload.status
+          return item
+        })]
+      };
+    case "DELETE_CLASS_MENTOR":
+      return {
+        ...state,
+        classes: [...state.classes.filter(item => item._id !== action.id)]
+      };
+    case "FINISH_CLASS_MENTOR":
+      return {
+        ...state,
+        classes: [...state.classes.map(item => {
+          if(item._id === action.payload._id) item.status = action.payload.status
+          return item
+        })]
+      };
+    case "FETCH_CLASS":
+      return {
+        ...state,
+        classes: action.payload
+      };
+    default:
+      return state;
+  }
+};
+
+export default mentorReducer;

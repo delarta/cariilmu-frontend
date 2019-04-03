@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import presentation from "../assets/img/presentation.svg";
 import { Link } from "react-router-dom";
 
 class ClassItem extends Component {
@@ -17,7 +16,7 @@ class ClassItem extends Component {
     return filteredClass.map(item => (
       <div className="class-item" key={item.id}>
         <div className="class-img">
-          <img src={presentation} alt={presentation} />
+          <img src={item.image} alt={item.image} />
         </div>
         <div className="class-right">
           <h3>{item.name}</h3>
@@ -41,7 +40,7 @@ class ClassItem extends Component {
 
 const mapStateToProps = state => {
   return{
-    classes: state.classes
+    classes: state.student.classes
   }
 }
 
