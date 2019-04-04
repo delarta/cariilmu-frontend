@@ -1,68 +1,128 @@
-import React, { Component } from 'react'
-import {Form,FormGroup, Label, Input, Button, Container, InputGroup, InputGroupAddon} from 'reactstrap'
-import {Link} from 'react-router-dom'
-export default class SignupMentor extends Component {
+import React, { Component } from "react";
+import {
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Button,
+} from "reactstrap";
+import { connect } from "react-redux";
+import { signUp } from "../../actions/mentorActions";
+
+class SignupUser extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: "",
+      name: "",
+      username: "",
+      password: "",
+      password_confirm: ""
+    };
+  }
+
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
+
+  onSubmit = e => {
+    e.preventDefault();
+    this.props.signUp(
+      this.state.name,
+      this.state.username,
+      this.state.email,
+      this.state.password
+    );
+    this.setState({
+      email: "",
+      name: "",
+      username: "",
+      password: "",
+      password_confirm: ""
+    });
+  };
   render() {
     return (
-        <Container>
-        <Form>
-        <FormGroup>
-          <Label for="headertext">Create Your Account as Mentor! </Label>
-        </FormGroup>
-        <FormGroup>
-          <Label for="fullName">Full name :</Label>
-          <Input
-            type="text"
-            name="namaMentor"
-            id="namaMantor"
-            placeholder="type your fullname"
-          />
-        </FormGroup>s
-        <FormGroup>
-          <Label for="emailUser">Email :</Label>
-          <Input
-            type="email"
-            name="emailMentor"
-            id="emailMentor"
-            placeholder="type your email addres"
-          />
-        </FormGroup>
-
-        <FormGroup>
-          <Label for="phoneUser">Your Phone :</Label>
-          <InputGroup>
-          <InputGroupAddon addonType="prepend">+62
-          </InputGroupAddon>
-          <input
-            type="string"
-            name="userPhone"
-            id="userPhone"
-            placeholder=" 812345678"
-          />
-          </InputGroup>
-        </FormGroup>
-
-        <FormGroup>
-          <Label for="passwordMentor">Password :</Label>
-          <Input
-            type="password"
-            name="passwordMentor"
-            id="passwordMentor"
-            placeholder="type your password"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="confirmPassword">Confirm Password :</Label>
-          <Input
-            type="password"
-            name="passwordMentor"
-            id="passwordMentor"
-            placeholder="retype your password"
-          />
-        </FormGroup>
-        <Button color="success" type="submit">Register</Button>
-      </Form>
-      </Container>
+      <div className="auth-container">
+        <div className="auth-banner mentor" />
+        <div className="container auth-page">
+          <div className="auth-page-content">
+            <h1 className="text-center mb-3">Sign Up | Mentor</h1>
+            <Form onSubmit={this.onSubmit}>
+              <FormGroup>
+                <Label for="name">Full Name</Label>
+                <Input
+                  onChange={this.onChange}
+                  value={this.state.name}
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="type your full name"
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="username">Username</Label>
+                <Input
+                  onChange={this.onChange}
+                  value={this.state.username}
+                  type="text"
+                  name="username"
+                  id="username"
+                  placeholder="type your username"
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="email">Email</Label>
+                <Input
+                  onChange={this.onChange}
+                  value={this.state.email}
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="type your email"
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="password">Password</Label>
+                <Input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="type your password"
+                  onChange={this.onChange}
+                  value={this.state.password}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="password_confirm">Confirm Password</Label>
+                <Input
+                  type="password"
+                  name="password_confirm"
+                  id="password_confirm"
+                  placeholder="retype your password"
+                  onChange={this.onChange}
+                  value={this.state.password_confirm}
+                />
+              </FormGroup>
+              <div className="text-center">
+                <Button color="primary">Sign Up</Button>
+              </div>
+            </Form>
+          </div>
+        </div>
+      </div>
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    signUp: (name, username, email, password) => {
+      dispatch(signUp(name, username, email, password));
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SignupUser);

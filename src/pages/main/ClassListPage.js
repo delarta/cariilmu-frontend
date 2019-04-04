@@ -41,7 +41,7 @@ class ClassListPage extends Component {
 }
 
 const mapStateToProps = state => {
-  return { classes: state.classes };
+  return { classes: state.student.classes };
 };
 
 export default connect(mapStateToProps)(ClassListPage);

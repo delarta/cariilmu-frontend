@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Container, Button } from "reactstrap";
-import phone from "../assets/img/ipad.svg";
-import presentation from "../assets/img/presentation.svg";
-import gift from "../assets/img/gift.svg";
-import thinking from "../assets/img/thinking.svg";
+import phone from "../../assets/img/ipad.svg";
+import presentation from "../../assets/img/presentation.svg";
+import gift from "../../assets/img/gift.svg";
+import thinking from "../../assets/img/thinking.svg";
 import { Link } from "react-router-dom";
 
 class Landing extends Component {
@@ -28,7 +28,7 @@ class Landing extends Component {
                 <Link className="btn btn-primary" to="/home">
                   Get Started
                 </Link>
-                <Link className="btn btn-primary" to="/signup-mentor">
+                <Link className="btn btn-primary" to="/signin-mentor">
                   Become A Mentor 
                 </Link>
               </div>

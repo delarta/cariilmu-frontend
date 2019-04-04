@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 import { connect } from 'react-redux';
 
-import bannervid from "../assets/vid/banner.mp4";
+import bannervid from "../../assets/vid/banner.mp4";
 import ClassItem from "./ClassItem";
 import CategoryItem from "./CategoryItem";
 
@@ -14,14 +14,14 @@ class HomePage extends Component {
       <div className="home-page">
         <div className="home-banner">
           <video autoPlay muted loop className="hero-video" src={bannervid} />
-          {this.props.user[0].name === '' ? 
+          {this.props.user.name === '' ? 
           <Container className="home-banner-text text-center">
             <h1>Join Us</h1>
             <Link to="/signin" className="btn btn-primary">Get started for free</Link>
           </Container> 
           :
           <Container className="home-banner-text text-center">
-            <h1>Welcome, {this.props.user[0].name}</h1>
+            <h1>Welcome, {this.props.user.name}</h1>
             <p>Enjoy your class</p>
           </Container> 
           }
@@ -50,7 +50,7 @@ class HomePage extends Component {
 
 const mapStateToProps = state => {
   return{
-    user: state.user
+    user: state.student.user
     
   }
 }

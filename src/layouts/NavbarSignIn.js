@@ -13,6 +13,7 @@ import {
 import logo from "../assets/img/logo_light_inline.png";
 import avatar from "../assets/img/thinking.svg";
 
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class NavbarSignIn extends React.Component {
@@ -31,7 +32,7 @@ class NavbarSignIn extends React.Component {
     });
   }
 
-  render() {
+  componentDidMount(){
     window.onscroll = () => {
       if (window.innerWidth > 768) {
         if (window.pageYOffset >= 60) {
@@ -51,6 +52,10 @@ class NavbarSignIn extends React.Component {
         }
       }
     };
+  }
+
+  render() {
+    
     return (
       <Navbar dark expand="md">
           <Link className="navbar-brand" to="/">
@@ -66,19 +71,22 @@ class NavbarSignIn extends React.Component {
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  Name
+                  {this.props.user.name}
                 </DropdownToggle>
                 <DropdownMenu right>
                   <Link to='/profile' className="dropdown-item">
                     <img src={avatar} alt={avatar}/>
                   </Link>
                   <Link to='/profile' className="dropdown-item disabled">
-                    Nama
+                    {this.props.user.name}
                   </Link>
                   <DropdownItem divider />
                   <Link to='/schedule' className="dropdown-item">
                     Schedule
                   </Link>
+                  <button onClick={this.props.logOut} className="dropdown-item">
+                    Logout
+                  </button>
                 </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>
@@ -92,4 +100,15 @@ class NavbarSignIn extends React.Component {
   }
 }
 
-export default NavbarSignIn;
+const mapStateToProps = state => {
+  return {
+    user: state.student.user
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    logOut: () => dispatch({type: "LOG_OUT"})
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(NavbarSignIn);

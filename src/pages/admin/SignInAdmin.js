@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, withRouter} from "react-router-dom";
 import { connect } from 'react-redux';
-import { signIn } from '../../actions/studentActions';
+import { signIn } from '../../actions/adminActions';
 import axios from 'axios'
 
-class SignInPage extends Component {
+class SignInAdmin extends Component {
   constructor(props) {
     super(props)
   
@@ -19,21 +19,26 @@ class SignInPage extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.signIn(this.state.email, this.state.password);
+    this.props.signIn(this.state.email, this.state.password)
     this.setState({
       email: "",
       password: ""
     });
   }
 
+  componentDidUpdate() {
+    console.log(this.props.role)
+    this.props.role === 'admin' && this.props.history.push('/admin')
+  }
+
   render() {
-    // if(this.props.history.push('/home'))
+
     return (
-      <div className="auth-container">
+      <div className="auth-container auth-admin">
         <div className="auth-banner" />
         <div className="container auth-page">
           <div className="auth-page-content">
-            <h1 className="text-center mb-3">Sign In | Student</h1>
+            <h1 className="text-center mb-3">Sign In | Admin</h1>
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
                 <Label for="emailStudent">Email</Label>
@@ -76,17 +81,25 @@ class SignInPage extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    role: state.auth.role
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return{
     signIn: (email, password) => {
       axios
-        .post("https://cari-ilmu.herokuapp.com/login", {
+        .post("https://cari-ilmu.herokuapp.com/admin/sign-in", {
           'email':email,
           'password':password
         })
         .then(res => {
           console.log(res);
           dispatch(signIn(email, password, res.data.message));
+          console.log(this.props)
+
         })
         .catch(err => {
           console.log(err.response);
@@ -95,4 +108,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(SignInPage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignInAdmin)) ;

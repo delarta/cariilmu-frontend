@@ -5,22 +5,55 @@ import {
   Label,
   Input,
   Button,
-  InputGroup,
-  InputGroupAddon
 } from "reactstrap";
+import { connect } from "react-redux";
+import { signUp } from "../../actions/studentActions";
+import axios from "axios";
 
-export default class SignupUser extends Component {
+class SignupUser extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: "",
+      name: "",
+      username: "",
+      password: ""
+    };
+  }
+
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
+
+  onSubmit = e => {
+    e.preventDefault();
+    this.props.signUp(
+      this.state.name,
+      this.state.username,
+      this.state.email,
+      this.state.password
+    );
+    this.setState({
+      email: "",
+      name: "",
+      username: "",
+      password: ""
+    });
+  };
   render() {
+    console.log(this.props);
+
     return (
       <div className="auth-container">
         <div className="auth-banner" />
         <div className="container auth-page">
           <div className="auth-page-content">
             <h1 className="text-center mb-3">Sign Up</h1>
-            <Form>
+            <Form onSubmit={this.onSubmit}>
               <FormGroup>
                 <Label for="name">Full Name</Label>
                 <Input
+                  onChange={this.onChange}
+                  value={this.state.name}
                   type="text"
                   name="name"
                   id="name"
@@ -28,8 +61,10 @@ export default class SignupUser extends Component {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="username">Full Name</Label>
+                <Label for="username">Username</Label>
                 <Input
+                  onChange={this.onChange}
+                  value={this.state.username}
                   type="text"
                   name="username"
                   id="username"
@@ -39,19 +74,21 @@ export default class SignupUser extends Component {
               <FormGroup>
                 <Label for="email">Email</Label>
                 <Input
+                  onChange={this.onChange}
+                  value={this.state.email}
                   type="email"
                   name="email"
                   id="email"
                   placeholder="type your email"
                 />
               </FormGroup>
-              <FormGroup>
+              {/* <FormGroup>
                 <Label for="phone">Phone Number</Label>
                 <InputGroup>
                   <InputGroupAddon addonType="prepend">+62</InputGroupAddon>
                   <Input type="text" id="phone" placeholder="81234567890" />
                 </InputGroup>
-              </FormGroup>
+              </FormGroup> */}
               <FormGroup>
                 <Label for="password">Password</Label>
                 <Input
@@ -59,6 +96,8 @@ export default class SignupUser extends Component {
                   name="password"
                   id="password"
                   placeholder="type your password"
+                  onChange={this.onChange}
+                  value={this.state.password}
                 />
               </FormGroup>
               <FormGroup>
@@ -70,13 +109,9 @@ export default class SignupUser extends Component {
                   placeholder="retype your password"
                 />
               </FormGroup>
-              <FormGroup>
+              {/* <FormGroup>
                 <Label for="birth">Date of Birth</Label>
-                <Input
-                  type="date"
-                  name="birth"
-                  id="birth"
-                />
+                <Input type="date" name="birth" id="birth" />
               </FormGroup>
               <FormGroup>
                 <Label for="gender">Gender</Label>
@@ -84,7 +119,7 @@ export default class SignupUser extends Component {
                   <option>Male</option>
                   <option>Female</option>
                 </Input>
-              </FormGroup>
+              </FormGroup> */}
               <div className="text-center">
                 <Button color="primary">Sign Up</Button>
               </div>
@@ -95,3 +130,31 @@ export default class SignupUser extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    signUp: (name, username, email, password) => {
+      axios
+        .post("https://cari-ilmu.herokuapp.com/", {
+          name,
+          username,
+          email,
+          password
+        })
+        .then(res => {
+          console.log(res);
+          localStorage.setItem("token", res.data.token);
+          dispatch(signUp(name, username, email, password));
+          this.props.history.push('/home');
+        })
+        .catch(err => {
+          console.log(err.response);
+        });
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SignupUser);
