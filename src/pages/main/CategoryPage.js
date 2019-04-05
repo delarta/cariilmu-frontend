@@ -10,7 +10,7 @@ class CategoryPage extends Component {
     return (
         categories.map((item, index) => (
           <Card key={index} className="category-item">
-            <i className={item.image} style={{width:"100%"}}></i>
+            <i className={item.image}></i>
             <CardBody>
               <Link to="/class">{item.name}</Link>
             </CardBody>
