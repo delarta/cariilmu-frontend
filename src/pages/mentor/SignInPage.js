@@ -1,15 +1,8 @@
-<<<<<<< HEAD
-import React, { Component } from 'react'
-import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
-import {Link} from 'react-router-dom'
-import Photo from "../../assets/img/photo.png";
-=======
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { signIn } from '../../actions/mentorActions';
->>>>>>> ff2e46a6d5fe366393319ba94ee1df3bd6193d4c
 
 class SignInPage extends Component {
   constructor(props) {
@@ -39,39 +32,6 @@ class SignInPage extends Component {
     this.props.role === 'mentor' && this.props.history.push('/mentor');
 
     return (
-<<<<<<< HEAD
-      <div className= "container">
-        <div className="signInPage">
-          <div className="signInMentor mt-5"> 
-            <img className="imageSignIn"src={Photo} alt={Photo}/>
-          </div>
-        </div>
-        <Form>
-        <FormGroup>
-          <Label for="emailMentor">email :</Label>
-          <Input
-            type="email"
-            name="emailSignInMentor"
-            id="emailMentor"
-            placeholder="type your email"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="password">password</Label>
-          <Input
-            type="password"
-            name="passwordSignInMentor"
-            id="passwordMentor"
-            placeholder="type your password"
-          />
-        </FormGroup>
-        <Button bgcolor>Submit</Button>
-      </Form>
-      <span>
-        <text className="linkSignup">Doesn't have an account?</text>
-        <Link to ="/SignUpPage" className="linkSignup"> Sign Up </Link>
-            </span>
-=======
       <div className="auth-container">
         <div className="auth-banner mentor" />
         <div className="container auth-page">
@@ -114,7 +74,6 @@ class SignInPage extends Component {
             </Form>
           </div>
         </div>
->>>>>>> ff2e46a6d5fe366393319ba94ee1df3bd6193d4c
       </div>
     );
   }
