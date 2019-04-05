@@ -33,23 +33,23 @@ const initState = {
     },
     {
       id: 5,
-      name: "Programming",
-      image: "ti-desktop"
+      name: "Business",
+      image: "ti-money"
     },
     {
       id: 6,
-      name: "Programming",
-      image: "ti-desktop"
+      name: "Design",
+      image: "ti-pencil-alt"
     },
     {
       id: 7,
-      name: "Programming",
-      image: "ti-desktop"
+      name: "Language",
+      image: "ti-comment-alt"
     },
     {
       id: 8,
-      name: "Programming",
-      image: "ti-desktop"
+      name: "Mathematic",
+      image: "ti-ruler-alt-2"
     }
   ],
   classes: [
@@ -68,7 +68,7 @@ const initState = {
       image: require('../assets/img/art.jpg'),
       name: "Face Illustration",
       mentor: "Ade Rahman",
-      category: "design",
+      category: "art",
       fee: 50000,
       desc:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsam eveniet quae, harum veritatis voluptate reiciendis dignissimos! Voluptates, in. Sunt accusantium quaerat exercitationem tenetur minima id soluta fuga ullam officiis omnis, laboriosam reprehenderit eligendi molestiae sapiente vel optio similique voluptatibus eos, necessitatibus eveniet, quibusdam quisquam magnam amet dolores! Nulla, totam."
@@ -86,9 +86,9 @@ const initState = {
     {
       id: 4,
       image: require('../assets/img/art.jpg'),
-      name: "Reog Dance",
+      name: "Basic Native",
       mentor: "Andy Setiawan",
-      category: "dance",
+      category: "programming",
       fee: 70000,
       desc:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsam eveniet quae, harum veritatis voluptate reiciendis dignissimos! Voluptates, in. Sunt accusantium quaerat exercitationem tenetur minima id soluta fuga ullam officiis omnis, laboriosam reprehenderit eligendi molestiae sapiente vel optio similique voluptatibus eos, necessitatibus eveniet, quibusdam quisquam magnam amet dolores! Nulla, totam."
@@ -96,7 +96,7 @@ const initState = {
     {
       id: 5,
       image: require('../assets/img/sport.jpg'),
-      name: "Swimming",
+      name: "Basic Soccer",
       mentor: "Harun",
       category: "sport",
       fee: 700000,
@@ -106,10 +106,30 @@ const initState = {
     {
       id: 6,
       image: require('../assets/img/art.jpg'),
-      name: "Abstract Painting",
+      name: "Basic Persuasion",
       mentor: "Zakarias",
-      category: "art",
+      category: "business",
       fee: 90000,
+      desc:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsam eveniet quae, harum veritatis voluptate reiciendis dignissimos! Voluptates, in. Sunt accusantium quaerat exercitationem tenetur minima id soluta fuga ullam officiis omnis, laboriosam reprehenderit eligendi molestiae sapiente vel optio similique voluptatibus eos, necessitatibus eveniet, quibusdam quisquam magnam amet dolores! Nulla, totam."
+    },
+    {
+      id: 7,
+      image: require('../assets/img/art.jpg'),
+      name: "Basic Japanese Language",
+      mentor: "Meggy",
+      category: "language",
+      fee: 80000,
+      desc:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsam eveniet quae, harum veritatis voluptate reiciendis dignissimos! Voluptates, in. Sunt accusantium quaerat exercitationem tenetur minima id soluta fuga ullam officiis omnis, laboriosam reprehenderit eligendi molestiae sapiente vel optio similique voluptatibus eos, necessitatibus eveniet, quibusdam quisquam magnam amet dolores! Nulla, totam."
+    },
+    {
+      id: 8,
+      image: require('../assets/img/art.jpg'),
+      name: "Basic Aljebra",
+      mentor: "Tandjaja",
+      category: "mathematic",
+      fee: 60000,
       desc:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsam eveniet quae, harum veritatis voluptate reiciendis dignissimos! Voluptates, in. Sunt accusantium quaerat exercitationem tenetur minima id soluta fuga ullam officiis omnis, laboriosam reprehenderit eligendi molestiae sapiente vel optio similique voluptatibus eos, necessitatibus eveniet, quibusdam quisquam magnam amet dolores! Nulla, totam."
     }

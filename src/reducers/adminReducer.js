@@ -18,7 +18,7 @@ const initState = {
       image: require("../assets/img/art.jpg"),
       name: "Face Illustration",
       mentor: "Ade Rahman",
-      category: "design",
+      category: "art",
       status: "active",
       createdAt: new Date(),
       fee: 50000,
@@ -40,9 +40,9 @@ const initState = {
     {
       id: 4,
       image: require("../assets/img/art.jpg"),
-      name: "Reog Dance",
+      name: "Basic Native",
       mentor: "Andy Setiawan",
-      category: "dance",
+      category: "programming",
       status: "active",
       createdAt: new Date(),
       fee: 70000,
@@ -52,7 +52,7 @@ const initState = {
     {
       id: 5,
       image: require("../assets/img/sport.jpg"),
-      name: "Swimming",
+      name: "Basic Soccer",
       mentor: "Harun",
       category: "sport",
       status: "not active",
@@ -64,12 +64,36 @@ const initState = {
     {
       id: 6,
       image: require("../assets/img/art.jpg"),
-      name: "Abstract Painting",
+      name: "Basic Persuasion",
       mentor: "Zakarias",
-      category: "art",
+      category: "business",
       status: "active",
       createdAt: new Date(),
       fee: 90000,
+      desc:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsam eveniet quae, harum veritatis voluptate reiciendis dignissimos! Voluptates, in. Sunt accusantium quaerat exercitationem tenetur minima id soluta fuga ullam officiis omnis, laboriosam reprehenderit eligendi molestiae sapiente vel optio similique voluptatibus eos, necessitatibus eveniet, quibusdam quisquam magnam amet dolores! Nulla, totam."
+    },
+    {
+      id: 7,
+      image: require("../assets/img/art.jpg"),
+      name: "Basic Japanese Language",
+      mentor: "Meggy",
+      category: "language",
+      status: "active",
+      createdAt: new Date(),
+      fee: 80000,
+      desc:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsam eveniet quae, harum veritatis voluptate reiciendis dignissimos! Voluptates, in. Sunt accusantium quaerat exercitationem tenetur minima id soluta fuga ullam officiis omnis, laboriosam reprehenderit eligendi molestiae sapiente vel optio similique voluptatibus eos, necessitatibus eveniet, quibusdam quisquam magnam amet dolores! Nulla, totam."
+    },
+    {
+      id: 8,
+      image: require("../assets/img/art.jpg"),
+      name: "Basic Algebra",
+      mentor: "Tanjaja",
+      category: "mathematic",
+      status: "active",
+      createdAt: new Date(),
+      fee: 60000,
       desc:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsam eveniet quae, harum veritatis voluptate reiciendis dignissimos! Voluptates, in. Sunt accusantium quaerat exercitationem tenetur minima id soluta fuga ullam officiis omnis, laboriosam reprehenderit eligendi molestiae sapiente vel optio similique voluptatibus eos, necessitatibus eveniet, quibusdam quisquam magnam amet dolores! Nulla, totam."
     }

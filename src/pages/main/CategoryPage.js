@@ -1,24 +1,29 @@
-import React, { Component } from 'react'
-import {CardDeck, Card, CardImg, CardBody, CardText, CardLink} from 'reactstrap'
-import art from "../assets/img/art.svg";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+
+import {Card,CardBody,CardTitle } from "reactstrap";
 
 class CategoryPage extends Component {
   render() {
+    const categories = this.props.categories;
     return (
-      <div>
-        <CardDeck>
-          <Card>
+      categories.map((item, index) => (
+          <Card key={index} className="category-item">
+            <i className={item.image}></i>
             <CardBody>
-              <CardLink href="#">
-              <CardImg style={{width:"100px"}} src={art} alt={art}/>  
-              <CardText>art</CardText>
-              </CardLink>
+              <CardTitle>{item.name}</CardTitle>
             </CardBody>
           </Card>
-    </CardDeck>>
-      </div>
-    )
+      ))
+    );
   }
 }
 
-export default CategoryPage
+const mapStateToProps = state => {
+  return {
+    categories: state.student.categories
+  };
+};
+
+export default connect(mapStateToProps)(CategoryPage);
+
