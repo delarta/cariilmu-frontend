@@ -1,6 +1,7 @@
 const initState = {
   mentor: {},
-  classes: []
+  classes: [],
+  students: []
 };
 const mentorReducer = (state = initState, action) => {
   switch (action.type) {
@@ -15,12 +16,19 @@ const mentorReducer = (state = initState, action) => {
         classes: [...state.classes, action.payload]
       };
     case "EDIT_CLASS_MENTOR":
+
       return {
         ...state,
-        classes: [...state.classes.map(item => {
-          if(item._id === action.payload._id) item.status = action.payload.status
-          return item
-        })]
+        classes: [
+          ...state.classes.map(item => {
+            if (item._id === action.payload.id) {
+              item.name = action.payload.name;
+              item.info = action.payload.info;
+              item.schedule = action.payload.schedule;
+            }
+            return item;
+          })
+        ]
       };
     case "DELETE_CLASS_MENTOR":
       return {
@@ -30,12 +38,15 @@ const mentorReducer = (state = initState, action) => {
     case "FINISH_CLASS_MENTOR":
       return {
         ...state,
-        classes: [...state.classes.map(item => {
-          if(item._id === action.payload._id) item.status = action.payload.status
-          return item
-        })]
+        classes: [
+          ...state.classes.map(item => {
+            if (item._id === action.payload._id)
+              item.status = action.payload.status;
+            return item;
+          })
+        ]
       };
-    case "FETCH_CLASS":
+    case "FETCH_CLASS_MENTOR":
       return {
         ...state,
         classes: action.payload

@@ -1,11 +1,6 @@
 const initState = {
   todos: [],
-  user: {
-    name: "Joni",
-    username: "",
-    email: "",
-    role: "student"
-  },
+  user: {},
   token: false,
   isAdmin: false,
   mentors: [],
@@ -118,23 +113,6 @@ const initState = {
 
 const studentReducer = (state = initState, action) => {
   switch (action.type) {
-    // case "SIGN_IN":
-    //   console.log(action.response.username);
-    //   return {
-    //     ...state,
-    //     user: {
-    //       username: action.response.username,
-    //       name: action.response.name,
-    //       email: action.response.email,
-    //       role: "student"
-    //     }
-    //   };
-    // case "SIGN_UP":
-    //   console.log(action.type);
-    //   return {
-    //     ...state,
-    //     user: { name: action.name, role: "student" }
-    //   };
     case "LOG_OUT":
       return {
         ...state,

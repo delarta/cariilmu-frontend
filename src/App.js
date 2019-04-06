@@ -11,9 +11,6 @@ import SignInMentor from "./pages/mentor/SignInPage"
 import SignUpMentor from "./pages/mentor/SignUpPage"
 import MentorPage from "./pages/mentor/MentorDashboard"
 
-
-
-
 import { connect } from "react-redux";
 
 class App extends Component {

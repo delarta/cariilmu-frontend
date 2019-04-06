@@ -12,7 +12,7 @@ const authReducer = (state = initState, action) => {
       localStorage.setItem("role", action.response.data.role);
       return {
         ...state,
-        role: action.response.data.role
+        role: localStorage.getItem("role")
       };
     case "SIGN_UP":
       return state;

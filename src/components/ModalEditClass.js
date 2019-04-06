@@ -10,19 +10,25 @@ import {
   Label,
   Input
 } from "reactstrap";
-import { addClass } from "../actions/mentorActions";
+import { editClass } from "../actions/mentorActions";
 import { connect } from "react-redux";
 
 class ModalEditClass extends React.Component {
   constructor(props) {
     super(props);
+
+    const { classes, classId } = this.props;
+    let classItem = classes.filter(item => item._id === classId);
+
     this.state = {
       modal: props.initialModalState,
-      name: "",
-      info: "",
-      schedule: "",
-      fee: ""
+      name: classItem[0].name,
+      info: classItem[0].info,
+      schedule: classItem[0].schedule,
+      fee: classItem[0].fee
     };
+
+    
 
     this.toggle = this.toggle.bind(this);
   }
@@ -37,14 +43,13 @@ class ModalEditClass extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.addClass(
+    this.props.editClass(
+      this.props.classId,
       this.state.name,
       this.state.info,
-      this.state.schedule,
-      this.state.fee
+      this.state.schedule
     );
 
-    console.log(this.state);
     this.setState({
       name: "",
       info: "",
@@ -56,10 +61,10 @@ class ModalEditClass extends React.Component {
 
   render() {
     return (
-      <div>
-        <Button color="info" onClick={this.toggle}>
-          Add Class
-        </Button>
+      <React.Fragment>
+        <button className="btn btn-primary" onClick={this.toggle}>
+          <i className="ti-pencil" />
+        </button>
 
         <Modal
           isOpen={this.state.modal}
@@ -67,7 +72,7 @@ class ModalEditClass extends React.Component {
           className={this.props.className}
         >
           <Form onSubmit={this.onSubmit}>
-            <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+            <ModalHeader toggle={this.toggle}>Edit Class</ModalHeader>
             <ModalBody>
               <FormGroup>
                 <Label for="name">Class Name</Label>
@@ -103,6 +108,7 @@ class ModalEditClass extends React.Component {
               <FormGroup>
                 <Label for="fee">Fee (Rp) </Label>
                 <Input
+                  disabled
                   type="number"
                   name="fee"
                   id="fee"
@@ -120,16 +126,25 @@ class ModalEditClass extends React.Component {
             </ModalFooter>
           </Form>
         </Modal>
-      </div>
+      </React.Fragment>
     );
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    addClass: (name, info, schedule, fee) =>
-      dispatch(addClass(name, info, schedule, fee))
+    classes: state.mentor.classes
   };
 };
 
-export default connect(null, mapDispatchToProps)(ModalEditClass);
+const mapDispatchToProps = dispatch => {
+  return {
+    editClass: (id, name, info, schedule) =>
+      dispatch(editClass(id, name, info, schedule))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ModalEditClass);

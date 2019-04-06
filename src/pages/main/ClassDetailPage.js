@@ -11,7 +11,6 @@ class ClassDetailPage extends Component {
   }
   render() {
     const { classId } = this.props.match.params;
-    console.log(typeof classId);
     let classItem = this.props.classes
       .filter(item => item.id == classId)
       .map(item => (

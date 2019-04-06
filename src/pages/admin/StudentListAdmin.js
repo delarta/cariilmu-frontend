@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import DataTable from "react-data-table-component";
+import { connect } from "react-redux";
 
-export default class StudentListAdmin extends Component {
+class StudentListAdmin extends Component {
   render() {
     const tableStyle = {
       title: {
@@ -14,27 +15,23 @@ export default class StudentListAdmin extends Component {
         fontSize: "1em"
       }
     };
-    const data = [];
+    const data = this.props.students;
     const columns = [
       {
-        name: "Mentor Name",
+        name: "Student Name",
         selector: "name",
         sortable: true
       },
       {
-        name: "Teach",
-        selector: "mentor",
-        sortable: true
-      },
-      {
-        name: "Category",
-        selector: "category",
-        sortable: true
-      },
-      {
-        name: "Fee",
-        selector: "fee",
-        sortable: true
+        name: "Class",
+        selector: "class",
+        sortable: true,
+        right: true,
+        cell: row => {
+          return (
+            <button key={row._id} className="btn btn-info">Show</button>
+          )
+        }
       }
     ];
     return (
@@ -44,7 +41,7 @@ export default class StudentListAdmin extends Component {
         </div>
         <DataTable
           noHeader={true}
-          style={{height:"100%"}}
+          style={{ height: "100%" }}
           striped={true}
           highlightOnHover={true}
           customTheme={tableStyle}
@@ -57,3 +54,11 @@ export default class StudentListAdmin extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    students: state.admin.students
+  }
+}
+
+export default connect(mapStateToProps)(StudentListAdmin);
