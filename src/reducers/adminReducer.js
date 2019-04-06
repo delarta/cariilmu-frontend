@@ -72,7 +72,25 @@ const initState = {
       fee: 90000,
       desc:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsam eveniet quae, harum veritatis voluptate reiciendis dignissimos! Voluptates, in. Sunt accusantium quaerat exercitationem tenetur minima id soluta fuga ullam officiis omnis, laboriosam reprehenderit eligendi molestiae sapiente vel optio similique voluptatibus eos, necessitatibus eveniet, quibusdam quisquam magnam amet dolores! Nulla, totam."
-    }
+    },
+    {
+      id: 7,
+      name: "British Conversation",
+      mentor: "Meggy",
+      category: "language",
+      fee: 100000,
+      desc:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsam eveniet quae, harum veritatis voluptate reiciendis dignissimos! Voluptates, in. Sunt accusantium quaerat exercitationem tenetur minima id soluta fuga ullam officiis omnis, laboriosam reprehenderit eligendi molestiae sapiente vel optio similique voluptatibus eos, necessitatibus eveniet, quibusdam quisquam magnam amet dolores! Nulla, totam."
+    },
+    {
+      id: 8,
+      name: "Algebra",
+      mentor: "Liliana",
+      category: "mathematic",
+      fee: 90000,
+      desc:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsam eveniet quae, harum veritatis voluptate reiciendis dignissimos! Voluptates, in. Sunt accusantium quaerat exercitationem tenetur minima id soluta fuga ullam officiis omnis, laboriosam reprehenderit eligendi molestiae sapiente vel optio similique voluptatibus eos, necessitatibus eveniet, quibusdam quisquam magnam amet dolores! Nulla, totam."
+    },
   ]
 };
 const adminReducer = (state = initState, action) => {
@@ -95,3 +113,4 @@ const adminReducer = (state = initState, action) => {
 };
 
 export default adminReducer;
+
