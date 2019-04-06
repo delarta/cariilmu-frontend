@@ -13,7 +13,7 @@ class CategoryItem extends Component {
     return (
       categories.map((item, index) => (
           <Card key={index} className="category-item">
-            <i className={item.image} style={{width:"100%"}}></i>
+            <i className={item.image}></i>
             <CardBody>
               <CardTitle>{item.name}</CardTitle>
             </CardBody>
