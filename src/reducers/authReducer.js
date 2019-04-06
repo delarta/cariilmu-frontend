@@ -27,8 +27,8 @@ const authReducer = (state = initState, action) => {
       return {
         ...state,
         role: localStorage.getItem("role")
-      }
-      
+      };
+
     default:
       return state;
   }

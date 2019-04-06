@@ -1,4 +1,3 @@
-
 import axios from "axios";
 
 const url = "https://cari-ilmu-test.herokuapp.com";
@@ -24,7 +23,6 @@ export const signIn = (email, password) => {
       });
   };
 };
-
 
 export const signUp = (name, username, email, password) => {
   return dispatch => {

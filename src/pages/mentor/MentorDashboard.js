@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Sidebar from "../../layouts/Sidebar";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import ClassListMentor from "./ClassListMentor";
 import StudentListMentor from "./StudentListMentor";
 import PaymentMentor from "./PaymentPage";
@@ -15,10 +15,10 @@ class AdminPage extends Component {
   }
 
   render() {
-    localStorage.getItem("role") !== "mentor" &&
+    this.props.role !== "mentor" &&
       this.props.history.push("/signin-mentor");
     return (
-      <Router>
+      <React.Fragment>
         <div id="admin-page">
           <div className="admin-grid">
             <Sidebar />
@@ -28,10 +28,16 @@ class AdminPage extends Component {
             <Route exact path="/mentor/payments" component={PaymentMentor} />
           </div>
         </div>
-      </Router>
+      </React.Fragment>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    role: state.auth.role
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -40,6 +46,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(AdminPage);

@@ -12,7 +12,7 @@ class SideBar extends React.Component {
     this.props.history.push("/signin-mentor");
   };
   render() {
-    const { role, mentor } = this.props;
+    const { mentor } = this.props;
     let sidebarStyle =
       localStorage.getItem("role") === "mentor" ? "sidebar-mentor" : "sidebar";
     return (
