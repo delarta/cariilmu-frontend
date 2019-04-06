@@ -23,36 +23,3 @@ export const getClass = () => {
       .catch(err => console.log(err.response));
   };
 };
-
-// export const getMentors = () => {
-//   return dispatch => {
-//     axios({
-//       method: "get",
-//       url: `${url}/mentor`
-//     })
-//       .then(res => {
-//         dispatch({
-//           type: "FETCH_MENTOR_ADMIN",
-//           payload: res.data.data
-//         });
-//       })
-//       .catch(err => console.log(err.response));
-//   };
-// };
-
-// export const getCategories = () => {
-//   return dispatch => {
-//     axios({
-//       method: "get",
-//       url: `${url}/category`,
-//       headers: { Authorization: localStorage.getItem("token") }
-//     })
-//       .then(res => {
-//         dispatch({
-//           type: "FETCH_CATEGORY_ADMIN",
-//           payload: res.data.data
-//         });
-//       })
-//       .catch(err => console.log(err.response));
-//   };
-// };
