@@ -3,6 +3,7 @@ import {
   Button
 } from "reactstrap";
 import Logo from "../../assets/img/presentation.svg";
+import ModalConfirmation from "../../components/ModalConfirmation";
 
 import "./SchedulePage.scss";
 
@@ -37,8 +38,9 @@ class SchedulePage extends Component {
               </p>
               <p>
                 <i className="ti-alarm-clock" /> 15.00 - 19.00{" "}
+                
               </p>
-              <Button color="danger">Not Yet</Button>{" "}
+              <ModalConfirmation initialModalState={false}/>
             </div>
 
             <div className="class-box">

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup, Col, Button } from "reactstrap";
+import { Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, FormText, FormGroup, Col, Button } from "reactstrap";
+import {Link} from "react-router-dom";
 
 export default class ModalConfirmation extends Component {
 
@@ -35,40 +36,24 @@ export default class ModalConfirmation extends Component {
     
   render() {
     return (
-      <div className="sectio">
-        <Form inline onSubmit={(e) => e.preventDefault()}>
-          <Button className="btn btn-primary" onClick={this.toggle}>{this.props.buttonLabel} Enroll Now</Button>
-          {/* <Spinner style={{ width: '3rem', height: '3rem' }} />{''} */}
-        </Form>
+      <div>
+     
+          <Button color="danger" onClick={this.toggle}> Pending</Button>
 
           <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} backdrop={this.state.backdrop}>
-              <ModalHeader toggle={this.toggle}> Checkout Payment</ModalHeader>
+              <ModalHeader toggle={this.toggle}> CONFIRMATION</ModalHeader>
               <ModalBody>
                     <FormGroup row>
-                    <Label for="item" sm={3}>Item</Label>
-                    <Col sm={9}>
-                      <Input type="item" name="item" id="item" placeholder="" />
-                    </Col>
-                  </FormGroup>
-
-                  <FormGroup row>
-                  <Label for="name" sm={3}>Name</Label>
-                    <Col sm={9}>
-                      <Input type="name" name="name" id="name" placeholder="" />
-                    </Col>
-                  </FormGroup>
-
-                  <FormGroup row>
-                    <Label for="id" sm={3}>Id Tranaksi</Label>
+                    <Label for="id" sm={3}>ID Tranaksi</Label>
                     <Col sm={9}>
                       <Input type="id" name="id" id="id" placeholder="" />
                     </Col>
                   </FormGroup>
 
                   <FormGroup row>
-                    <Label for="code" sm={3}>Code</Label>
+                  <Label for="transfer" sm={3}>Transfer To</Label>
                     <Col sm={9}>
-                      <Input type="code" name="code" id="code" placeholder="" />
+                      <Input type="transfer" name="transfer" id="transfer" placeholder="" />
                     </Col>
                   </FormGroup>
 
@@ -80,28 +65,34 @@ export default class ModalConfirmation extends Component {
                   </FormGroup>
 
                   <FormGroup row>
+                    <Label for="code" sm={3}>Code</Label>
+                    <Col sm={9}>
+                      <Input type="code" name="code" id="code" placeholder="" />
+                    </Col>
+                  </FormGroup>
+
+                  <FormGroup row>
                     <Label for="total" sm={3}>Total</Label>
                     <Col sm={9}>
                       <Input type="total" name="total" id="total" placeholder="" />
                     </Col>
                   </FormGroup>
 
-                  <FormGroup row>
-                    <Label for="backdrop" sm={3}>Bank</Label>{' '}
-                      <Col sm={9}>
-                        <Input type="select" name="backdrop" id="backdrop" onChange={this.changeBackdrop}>
-                        <option >BCA</option>
-                        <option >MANDIRI</option>
-                        <option >BRI</option>
-                        </Input>
-                      </Col>
-                  </FormGroup>
+                <FormGroup row>
 
+                <Label for="exampleFile" sm={3}>File</Label>
+                <Col sm={9}>
+                    <Input type="file" name="file" id="exampleFile" />
+                    <FormText color="muted">
+                    This is some placeholder block-level help text for the above input.
+                    It's a bit lighter and easily wraps to a new line.
+                    </FormText>
+                </Col>
+                </FormGroup>
               </ModalBody>
               <ModalFooter>
-              <Link to="/schedule" className="btn btn-primary">
-                      Confirm <i className="ti-angle-double-right" />
-                    </Link>
+
+               <Button className="btn btn-primary" onClick={this.toggle}> Confirm</Button>
               </ModalFooter>
         </Modal>
       
@@ -111,3 +102,5 @@ export default class ModalConfirmation extends Component {
     )
   }
 }
+
+
