@@ -11,8 +11,7 @@ import CategoryPage from "./pages/main/CategoryPage";
 import SignInAdmin from "./pages/admin/SignInAdmin";
 import SignInMentor from "./pages/mentor/SignInPage";
 import SignUpMentor from "./pages/mentor/SignUpPage";
-import MentorPage from "./pages/mentor/MentorDashboard";
-
+import MentorPage from "./pages/mentor";
 
 import SignInPage from "./pages/student/SignInPage";
 import SignUpPage from "./pages/student/SignUpPage";
@@ -26,7 +25,6 @@ class App extends Component {
     this.props.getRole();
   }
   render() {
-    console.log(this.props);
     return (
       <Router>
         <Route exact path="/signin-mentor" component={SignInMentor} />
@@ -35,7 +33,7 @@ class App extends Component {
 
         <Route exact path="/signin" component={SignInPage} />
         <Route exact path="/signup" component={SignUpPage} />
-
+        
         <Route exact path="/signin-admin" component={SignInAdmin} />
         <Route exact path="/admin" component={AdminPage} />
         <Route path="/" component={MainPage} />

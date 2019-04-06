@@ -6,29 +6,31 @@ import {
   InputGroupAddon,
   Button
 } from "reactstrap";
-import ClassItem from './ClassItem';
+import ClassItem from "./ClassItem";
 import { connect } from "react-redux";
 
 class ClassListPage extends Component {
   constructor(props) {
-    super(props)
-  
+    super(props);
+
     this.state = {
-       search: ''
-    }
+      search: ""
+    };
   }
-  
-  handleChange = (e) => {
-    this.setState({search: e.target.value.substr(0, 20)});
-  }
+
+  handleChange = e => {
+    this.setState({ search: e.target.value.substr(0, 20) });
+  };
   render() {
     return (
       <div className="class-page">
         <div className="container">
           <InputGroup size="lg">
-            <Input onChange={this.handleChange} placeholder="Search"/>
+            <Input onChange={this.handleChange} placeholder="Search" />
             <InputGroupAddon addonType="append">
-              <Button color="primary"><i className="ti-search" /> Search </Button>
+              <Button color="primary">
+                <i className="ti-search" /> Search{" "}
+              </Button>
             </InputGroupAddon>
           </InputGroup>
           <Container className="class-page-content mt-2 mb-5">

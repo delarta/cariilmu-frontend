@@ -34,8 +34,6 @@ class SignupUser extends Component {
     });
   };
   render() {
-    console.log(this.props);
-
     return (
       <div className="auth-container">
         <div className="auth-banner" />

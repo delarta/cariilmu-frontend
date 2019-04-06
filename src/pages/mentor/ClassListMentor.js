@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import DataTable from "react-data-table-component";
 import { connect } from "react-redux";
 import { setFinishedClass, getClass } from "../../actions/mentorActions";
-import ModalAddClass from '../../components/ModalAddClass';
-import ModalEditClass from '../../components/ModalEditClass';
-import ModalShowStudents from '../../components/ModalShowStudentInClass';
+import ModalAddClass from "../../components/ModalAddClass";
+import ModalEditClass from "../../components/ModalEditClass";
+import ModalShowStudents from "../../components/ModalShowStudentInClass";
 
 class ClassListAdmin extends Component {
   componentDidMount() {
@@ -29,21 +29,18 @@ class ClassListAdmin extends Component {
         selector: "name",
         sortable: true,
         maxWidth: "300px"
-
       },
       {
         name: "Schedule",
         selector: "schedule",
         sortable: true,
         maxWidth: "150px"
-
       },
       {
         name: "Fee",
         selector: "fee",
         sortable: true,
         maxWidth: "80px"
-
       },
       {
         name: "Status",
@@ -57,7 +54,6 @@ class ClassListAdmin extends Component {
         ignoreRowClick: true,
         maxWidth: "150px",
         cell: row => <ModalShowStudents classId={row._id} />
-        
       },
       {
         name: "Actions",
@@ -65,21 +61,25 @@ class ClassListAdmin extends Component {
         maxWidth: "200px",
         right: true,
         cell: row => {
-          if(row.status === 'finished'){
+          if (row.status === "finished") {
             return (
               <div>
-                <button className="btn btn-danger disabled">Finished</button> 
+                <button className="btn btn-danger disabled">Finished</button>
               </div>
-            )
-          }else{
+            );
+          } else {
             return (
               <div>
                 <ModalEditClass classId={row._id} />
-                <button onClick={() => this.props.setFinishedClass(row._id) } className="btn btn-warning">Set Finished</button>
+                <button
+                  onClick={() => this.props.setFinishedClass(row._id)}
+                  className="btn btn-warning"
+                >
+                  Set Finished
+                </button>
               </div>
-            )
+            );
           }
-           
         },
         ignoreRowClick: true
       }
@@ -89,12 +89,15 @@ class ClassListAdmin extends Component {
         <div className="content-header">
           <h1>Class List</h1>
         </div>
-        <div className="text-left" style={{width:'100%',marginBottom:'1em'}}>
+        <div
+          className="text-left"
+          style={{ width: "100%", marginBottom: "1em" }}
+        >
           <ModalAddClass initialModalState={false} />
         </div>
         <DataTable
           noHeader={true}
-          style={{minHeight:"70%"}}
+          style={{ minHeight: "70%" }}
           striped={true}
           highlightOnHover={true}
           customTheme={tableStyle}
@@ -116,9 +119,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setFinishedClass: (id) => dispatch(setFinishedClass(id)),
+    setFinishedClass: id => dispatch(setFinishedClass(id)),
     getClass: () => dispatch(getClass())
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps,mapDispatchToProps)(ClassListAdmin);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ClassListAdmin);

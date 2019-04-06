@@ -6,7 +6,12 @@ import ClassListAdmin from "./ClassListAdmin";
 import StudentListAdmin from "./StudentListAdmin";
 import MentorListAdmin from "./MentorListAdmin";
 import { connect } from "react-redux";
-import { getMentors, getClass, getStudents, getCategories } from "../../actions/adminActions";
+import {
+  getMentors,
+  getClass,
+  getStudents,
+  getCategories
+} from "../../actions/adminActions";
 import CategoryList from "./CategoryList";
 
 class AdminPage extends Component {
@@ -15,12 +20,12 @@ class AdminPage extends Component {
     this.props.getClass();
     this.props.getStudents();
     this.props.getCategories();
-
   }
   render() {
     return (
       <Router>
-        {/* {this.props.role !== "admin" && this.props.history.push('/signin-admin')} */}
+        {this.props.role !== "admin" &&
+          this.props.history.push("/signin-admin")}
 
         <div id="admin-page">
           <div className="admin-grid">

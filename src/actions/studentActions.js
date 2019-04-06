@@ -10,7 +10,6 @@ export const signIn = (email, password) => {
         password: password
       })
       .then(res => {
-        console.log(res);
         dispatch({
           type: "SIGN_IN",
           email,
@@ -34,7 +33,6 @@ export const signUp = (name, username, email, password) => {
         password
       })
       .then(res => {
-        console.log(res);
         dispatch({
           type: "SIGN_UP",
           name,

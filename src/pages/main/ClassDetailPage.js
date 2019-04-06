@@ -7,7 +7,7 @@ import { Container } from "reactstrap";
 
 class ClassDetailPage extends Component {
   componentDidMount() {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0);
   }
   render() {
     const { classId } = this.props.match.params;
