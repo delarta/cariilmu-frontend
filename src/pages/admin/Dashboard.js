@@ -29,9 +29,9 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => {
   return {
-    mentors: state.student.mentors,
-    classes: state.student.classes,
-    students: state.student.students
+    mentors: state.admin.mentors,
+    classes: state.admin.classes,
+    students: state.admin.students
   }
 }
 

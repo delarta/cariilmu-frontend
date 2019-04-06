@@ -22,22 +22,16 @@ class AdminPage extends Component {
         <div id="admin-page">
           <div className="admin-grid">
             <Sidebar />
-            <Route exact path="/admin" component={Dashboard} />
+            <Route exact path="/mentor" component={Dashboard} />
             <Route exact path="/mentor/classes" component={ClassListMentor} />
             <Route exact path="/mentor/students" component={StudentListMentor} />
-            <Route path="/mentor/payments" component={PaymentMentor} />
+            <Route exact path="/mentor/payments" component={PaymentMentor} />
           </div>
         </div>
       </Router>
     );
   }
 }
-
-const mapStateToProps = state => {
-  return {
-    role: state.auth.role
-  };
-};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -46,6 +40,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(AdminPage);

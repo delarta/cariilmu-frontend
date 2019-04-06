@@ -11,15 +11,18 @@ import SignInMentor from "./pages/mentor/SignInPage"
 import SignUpMentor from "./pages/mentor/SignUpPage"
 import MentorPage from "./pages/mentor/MentorDashboard"
 
-
-
+import { getRole } from './actions/mainActions';
 
 import { connect } from "react-redux";
 
 class App extends Component {
+  componentDidMount() {
+    this.props.getRole()
+  }
   render() {
-    
+    console.log(this.props)
     return (
+
       <Router>
         <Route exact path="/signin-mentor" component={SignInMentor} />
         <Route exact path="/signup-mentor" component={SignUpMentor} />
@@ -36,8 +39,14 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    isAdmin: state.isAdmin
+    role: state.auth.role
   }
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    getRole : () => dispatch(getRole())
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

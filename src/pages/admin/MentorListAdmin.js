@@ -1,7 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import DataTable from "react-data-table-component";
+import { connect } from "react-redux";
 
-export default class MentorListAdmin extends Component {
+class MentorListAdmin extends Component {
+  componentDidMount() {}
+
   render() {
     const tableStyle = {
       title: {
@@ -14,7 +17,7 @@ export default class MentorListAdmin extends Component {
         fontSize: "1em"
       }
     };
-    const data = [];
+    const data = this.props.mentors;
     const columns = [
       {
         name: "Mentor Name",
@@ -22,19 +25,11 @@ export default class MentorListAdmin extends Component {
         sortable: true
       },
       {
-        name: "Teach",
-        selector: "mentor",
-        sortable: true
-      },
-      {
-        name: "Category",
-        selector: "category",
-        sortable: true
-      },
-      {
-        name: "Fee",
-        selector: "fee",
-        sortable: true
+        name: "Status",
+        selector: "confirmed",
+        sortable: true,
+        right: true,
+        cell: row => (row.confirmed ? "Verified" : "Unverified")
       }
     ];
     return (
@@ -44,7 +39,7 @@ export default class MentorListAdmin extends Component {
         </div>
         <DataTable
           noHeader={true}
-          style={{height:"100%"}}
+          style={{ height: "100%" }}
           striped={true}
           highlightOnHover={true}
           customTheme={tableStyle}
@@ -57,3 +52,18 @@ export default class MentorListAdmin extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    mentors: state.admin.mentors
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MentorListAdmin);

@@ -16,11 +16,8 @@ html {
 }
 
 body {
-  // font-family: "Nunito", sans-serif;
   font-family: 'Lato', sans-serif;
-  // font-family: 'Slabo 27px', serif;
-  // font-family: 'Noto Serif', serif;
-  background-color: #f4f4f4;
+  background-color: $light;
 }
 a {
   color: $blue;
@@ -41,7 +38,7 @@ p {
 
 // button style
 .btn {
-  border-radius: 3px;
+  border-radius: 3px !important;
   padding: 0.5em 1em;
   text-transform: uppercase;
   font-size: 1em;
@@ -127,12 +124,10 @@ nav.navbar.navbar-dark {
 
   .auth-page {
     width: 500px;
-    border-radius: 5px;
+    border-radius: 3px;
     min-height: 50vh;
     background-color: $light;
     position: relative;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -611,7 +606,7 @@ footer {
   flex-direction: column;
   margin-right: 1em;
   .dashboard-header {
-    min-height: 200px;
+    min-height: 100px;
     background-color: transparent;
     margin-bottom: 1em;
     border-radius: 5px;
@@ -622,7 +617,7 @@ footer {
     h1 {
       text-transform: uppercase;
       color: $darkblue;
-      font-size: 5em;
+      font-size: 4em;
       font-weight: 600;
     }
   }
@@ -658,7 +653,7 @@ footer {
 
   .content-header {
     width: 100%;
-    min-height: 200px;
+    min-height: 100px;
     background-color: transparent;
     margin-bottom: 1em;
     border-radius: 5px;
@@ -670,7 +665,7 @@ footer {
     h1 {
       text-transform: uppercase;
       color: $darkblue;
-      font-size: 5em;
+      font-size: 4em;
       font-weight: 600;
     }
   }
@@ -679,7 +674,8 @@ footer {
 // Sidebar
 
 #sidebar {
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   background-color: $darkblue;
 
   .list-group {
@@ -690,12 +686,76 @@ footer {
       img {
         width: 50%;
       }
+
+      i{
+        font-weight: 600;
+        margin-right: 1em;
+      }
+
+      
     }
+
     .list-group-item:hover {
       background-color: $blue;
       color: $dimlight;
       text-decoration: none;
     }
+
+    .list-group-item.logout:hover {
+      background-color: $red;
+    }
+  }
+}
+
+
+#sidebar-mentor {
+  min-height: 100vh;
+  height: 100%;
+
+  background-color: $blue;
+
+  .list-group {
+    .list-group-item {
+      background-color: transparent;
+      color: $light;
+      text-decoration: none;
+      img {
+        width: 50%;
+      }
+      i{
+        font-weight: 600;
+        margin-right: 1em;
+      }
+    }
+    .list-group-item:hover {
+      background-color: $darkblue;
+      color: $light;
+      text-decoration: none;
+    }
+
+    .list-group-item.logout:hover {
+      background-color: $red;
+    }
+  }
+}
+
+.modal{
+  .modal-dialog{
+    .modal-content{
+      border: none;
+      border-radius: 3px;
+      overflow: hidden;
+      .modal-header{
+      border-radius: 0;
+        background-color: $blue;
+        h5{
+          font-weight: 500;
+          color: $light;
+          text-transform: uppercase;
+        }
+      }
+    }
+
   }
 }
 
