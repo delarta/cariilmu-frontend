@@ -55,3 +55,4 @@ const adminReducer = (state = initState, action) => {
 };
 
 export default adminReducer;
+

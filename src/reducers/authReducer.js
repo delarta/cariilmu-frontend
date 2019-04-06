@@ -19,11 +19,16 @@ const authReducer = (state = initState, action) => {
     case "SIGN_OUT":
       localStorage.removeItem("token");
       localStorage.removeItem("role");
-
       return {
         ...state,
         role: ""
       };
+    case "FETCH_ROLE":
+      return {
+        ...state,
+        role: localStorage.getItem("role")
+      }
+      
     default:
       return state;
   }
