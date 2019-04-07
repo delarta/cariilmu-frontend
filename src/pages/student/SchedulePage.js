@@ -1,64 +1,65 @@
-import React, { Component } from 'react'
-import { Button } from 'reactstrap';
-import Logo from '../../assets/img/schedule.jpg';
-import "./SchedulePage.css";
+import React, { Component } from "react";
+import { Button } from "reactstrap";
+import Logo from "../../assets/img/schedule.jpg";
 
+import ModalConfirmation from "../../components/ModalConfirmation";
+import { connect } from "react-redux";
+import { getClass } from "../../actions/mainActions";
 
-export default class SchedulePage extends Component {
+import "./SchedulePage.scss";
+
+class SchedulePage extends Component {
+  componentDidMount() {
+    this.props.getClass();
+  }
+
   render() {
+    console.log(this.props.classes);
     return (
-      <div>
-         <section className='section'>
-            <div className='box2'> 
-              <div className="class-box">
-                  <div className="img2">
-                    <img src={Logo} alt={Logo}/>
-                  </div>
-                  <h2> Code Blok</h2>
-                  <h5> Harun </h5>
-                      <p>
-                        <i className="ti-calendar" /> Kamis, 1 November 2019{" "}
-                      </p>
-                      <p>
-                        <i className="ti-alarm-clock" /> 15.00 - 19.00{" "}
-                      </p>
-                      <Button color="success">Paid</Button>{' '}
-              </div>
-
-              <div className="class-box">
-                  <div className="img1">
-                    <img src={Logo} alt={Logo}/>
-                  </div>
-                  <h2> Music</h2>
-                  <h5> Danu </h5>
-                      <p>
-                        <i className="ti-calendar" /> Kamis, 1 November 2019{" "}
-                      </p>
-                      <p>
-                        <i className="ti-alarm-clock" /> 15.00 - 19.00{" "}
-                      </p>
-                      <Button color="danger">Pending Payment</Button>{' '}
-              </div>
-                
-
-              <div className="class-box">
-                  <div className="img1">
-                    <img src={Logo} alt={Logo}/>
-                  </div>
-                  <h2> E Sport</h2>
-                  <h5> Ade Rahman </h5>
-                    <p>
-                      <i className="ti-calendar" /> Kamis, 1 November 2019{" "}
-                    </p>
-                    <p>
-                      <i className="ti-alarm-clock" /> 15.00 - 19.00{" "}
-                    </p>
-                    <Button color="success">Paid</Button>{' '}
-              </div>
+      <div className="sectio">
+        <div className="box1">
+        {this.props.classes.map((item, index) => {
+          return (
+            <div key={index}className="class-box">
+            <div className="img1">
+              <img src={Logo} alt={Logo} />
             </div>
+            <h2> {item.name}</h2>
+            <p>
+              <i className="ti-calendar" /> {item.schedule}{" "}
+            </p>
+            <p>
+              <i className="ti-alarm-clock" /> {item.durationInMinutes}{" "}
+            </p>
+            <Button color="success">Paid</Button>{" "}
+          </div>
+          )
 
-        </section>
+        })
+          
+        }
+          
+
+        
+        </div>
       </div>
-    )
+    );
   }
 }
+const mapStateToProps = state => {
+  return {
+    classes: state.main.classes
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getClass: () => dispatch(getClass())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SchedulePage);
+
