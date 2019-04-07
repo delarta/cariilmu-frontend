@@ -44,7 +44,6 @@ class ModalAddClass extends React.Component {
       this.state.fee
     );
 
-    console.log(this.state);
     this.setState({
       name: "",
       info: "",
@@ -56,9 +55,9 @@ class ModalAddClass extends React.Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Button color="info" onClick={this.toggle}>
-          Add Class
+          <i className="ti-plus"/> Add Class
         </Button>
 
         <Modal
@@ -121,7 +120,7 @@ class ModalAddClass extends React.Component {
             </ModalFooter>
           </Form>
         </Modal>
-      </div>
+      </React.Fragment>
     );
   }
 }

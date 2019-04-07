@@ -84,7 +84,7 @@ class NavbarSignIn extends React.Component {
                   <Link to='/schedule' className="dropdown-item">
                     Schedule
                   </Link>
-                  <button onClick={this.props.logOut} className="dropdown-item">
+                  <button onClick={this.props.signOut} className="dropdown-item">
                     Logout
                   </button>
                 </DropdownMenu>
@@ -108,7 +108,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logOut: () => dispatch({type: "LOG_OUT"})
+    signOut: () => dispatch({type: "SIGN_OUT"})
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(NavbarSignIn);

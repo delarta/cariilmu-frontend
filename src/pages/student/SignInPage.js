@@ -1,20 +1,21 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { Link } from "react-router-dom";
-import { connect } from 'react-redux';
-import { signIn } from '../../actions/studentActions';
-import axios from 'axios'
+import { Link, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { signIn } from "../../actions/studentActions";
+
+import logo from "../../assets/img/logo_dark.png"
 
 class SignInPage extends Component {
   constructor(props) {
-    super(props)
-  
+    super(props);
+
     this.state = {
-       email: '',
-       password: ''
-    }
+      email: "",
+      password: ""
+    };
   }
-  
+
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = e => {
@@ -24,15 +25,19 @@ class SignInPage extends Component {
       email: "",
       password: ""
     });
-  }
+  };
 
   render() {
-    // if(this.props.history.push('/home'))
+    this.props.role === 'student' && this.props.history.push('/home')
+
     return (
       <div className="auth-container">
         <div className="auth-banner" />
         <div className="container auth-page">
           <div className="auth-page-content">
+            <div className="text-center">
+              <img src={logo} style={{width:'30%',opacity:'0.8'}} alt={logo}/>
+            </div>
             <h1 className="text-center mb-3">Sign In | Student</h1>
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
@@ -62,10 +67,7 @@ class SignInPage extends Component {
               <div className="text-center">
                 <Button color="primary">Sign In</Button>
                 <p className="mt-3">
-                  Doesn't have an account?{" "}
-                  <Link to="/signup">
-                    Sign Up
-                  </Link>{" "}
+                  Doesn't have an account? <Link to="/signup">Sign Up</Link>{" "}
                 </p>
               </div>
             </Form>
@@ -76,23 +78,23 @@ class SignInPage extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return{
-    signIn: (email, password) => {
-      axios
-        .post("https://cari-ilmu.herokuapp.com/login", {
-          'email':email,
-          'password':password
-        })
-        .then(res => {
-          console.log(res);
-          dispatch(signIn(email, password, res.data.message));
-        })
-        .catch(err => {
-          console.log(err.response);
-        });
-    }
-  }
-}
 
-export default connect(null, mapDispatchToProps)(SignInPage);
+const mapStateToProps = state => {
+  return {
+    role:  state.auth.role
+    }
+  
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    signIn: (email, password) => {
+      dispatch(signIn(email, password));
+    }
+  };
+};
+
+export default withRouter (connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignInPage));

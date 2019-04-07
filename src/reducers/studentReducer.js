@@ -1,11 +1,6 @@
 const initState = {
   todos: [],
-  user: {
-    name: "Joni",
-    username: "",
-    email: "",
-    role: "student"
-  },
+  user: {},
   token: false,
   isAdmin: false,
   mentors: [],
@@ -85,7 +80,7 @@ const initState = {
     },
     {
       id: 4,
-      image: require('../assets/img/native.jpg'),
+      image: require('../assets/img/art.jpg'),
       name: "Basic Native",
       mentor: "Andy Setiawan",
       category: "programming",
@@ -95,7 +90,7 @@ const initState = {
     },
     {
       id: 5,
-      image: require('../assets/img/soccer.jpg'),
+      image: require('../assets/img/sport.jpg'),
       name: "Basic Soccer",
       mentor: "Harun",
       category: "sport",
@@ -105,7 +100,7 @@ const initState = {
     },
     {
       id: 6,
-      image: require('../assets/img/persuasion.jpg'),
+      image: require('../assets/img/art.jpg'),
       name: "Basic Persuasion",
       mentor: "Zakarias",
       category: "business",
@@ -115,7 +110,7 @@ const initState = {
     },
     {
       id: 7,
-      image: require('../assets/img/japanese.jpg'),
+      image: require('../assets/img/art.jpg'),
       name: "Basic Japanese Language",
       mentor: "Meggy",
       category: "language",
@@ -125,7 +120,7 @@ const initState = {
     },
     {
       id: 8,
-      image: require('../assets/img/math.jpg'),
+      image: require('../assets/img/art.jpg'),
       name: "Basic Aljebra",
       mentor: "Tandjaja",
       category: "mathematic",
@@ -138,23 +133,6 @@ const initState = {
 
 const studentReducer = (state = initState, action) => {
   switch (action.type) {
-    // case "SIGN_IN":
-    //   console.log(action.response.username);
-    //   return {
-    //     ...state,
-    //     user: {
-    //       username: action.response.username,
-    //       name: action.response.name,
-    //       email: action.response.email,
-    //       role: "student"
-    //     }
-    //   };
-    // case "SIGN_UP":
-    //   console.log(action.type);
-    //   return {
-    //     ...state,
-    //     user: { name: action.name, role: "student" }
-    //   };
     case "LOG_OUT":
       return {
         ...state,

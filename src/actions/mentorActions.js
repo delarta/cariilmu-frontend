@@ -10,8 +10,6 @@ export const signIn = (email, password) => {
         password: password
       })
       .then(res => {
-        console.log(res);
-
         dispatch({
           type: "SIGN_IN",
           email,
@@ -35,13 +33,8 @@ export const signUp = (name, username, email, password) => {
         password
       })
       .then(res => {
-        console.log(res);
         dispatch({
-          type: "SIGN_UP",
-          name,
-          username,
-          email,
-          password
+          type: "SIGN_UP"
         });
       })
       .catch(err => {
@@ -58,7 +51,6 @@ export const getMentor = () => {
       headers: { Authorization: localStorage.getItem("token") }
     })
       .then(res => {
-        console.log(res.data.data);
         dispatch({
           type: "FETCH_MENTOR",
           payload: res.data.data
@@ -76,7 +68,6 @@ export const setFinishedClass = id => {
       headers: { Authorization: localStorage.getItem("token") }
     })
       .then(res => {
-        console.log(res.data.data);
         dispatch({
           type: "FINISH_CLASS_MENTOR",
           payload: res.data.data
@@ -94,9 +85,8 @@ export const getClass = () => {
       headers: { Authorization: localStorage.getItem("token") }
     })
       .then(res => {
-        console.log(res);
         dispatch({
-          type: "FETCH_CLASS",
+          type: "FETCH_CLASS_MENTOR",
           payload: res.data.data
         });
       })
@@ -118,10 +108,36 @@ export const addClass = (name, info, schedule, fee) => {
       }
     })
       .then(res => {
-        console.log(res);
         dispatch({
           type: "ADD_CLASS_MENTOR",
           payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
+export const editClass = (id, name, info, schedule) => {
+  return dispatch => {
+    axios({
+      method: "put",
+      url: `${url}/mentor/class/${id}`,
+      headers: { Authorization: localStorage.getItem("token") },
+      data: {
+        name,
+        info,
+        schedule
+      }
+    })
+      .then(res => {
+        dispatch({
+          type: "EDIT_CLASS_MENTOR",
+          payload: {
+            id,
+            name,
+            info,
+            schedule
+          }
         });
       })
       .catch(err => console.log(err.response));

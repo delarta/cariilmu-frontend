@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import DataTable from "react-data-table-component";
 import { connect } from "react-redux";
-import { delClass } from "../../actions/adminActions";
 
-class ClassListAdmin extends Component {
+class CategoryList extends Component {
+  componentDidMount() {}
+
   render() {
     const tableStyle = {
       title: {
@@ -16,32 +17,26 @@ class ClassListAdmin extends Component {
         fontSize: "1em"
       }
     };
-    const data = this.props.classes;
+    const data = this.props.categories;
     const columns = [
       {
-        name: "Class Name",
+        name: "Category Name",
         selector: "name",
         sortable: true
       },
       {
-        name: "Actions",
+        name: "Status",
+        selector: "confirmed",
         sortable: true,
         right: true,
-        cell: row => (
-          <button
-            onClick={() => this.props.delClass(row.id)}
-            className="btn btn-danger"
-          >
-            Delete
-          </button>
-        ),
-        ignoreRowClick: true
+        ignoreRowClick: true,
+        cell: row => <button className="btn btn-danger" key={row._id}>Delete</button>
       }
     ];
     return (
       <div className="content-admin">
         <div className="content-header">
-          <h1>Class List</h1>
+          <h1>Categories</h1>
         </div>
         <DataTable
           noHeader={true}
@@ -61,17 +56,15 @@ class ClassListAdmin extends Component {
 
 const mapStateToProps = state => {
   return {
-    classes: state.admin.classes
+    categories: state.admin.categories
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    delClass: id => dispatch(delClass(id))
-  };
+  return {};
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ClassListAdmin);
+)(CategoryList);

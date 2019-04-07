@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 
 class ClassItem extends Component {
   render() {
-    let filteredClass = '';
+    let filteredClass = "";
 
-    if (this.props.searchItem !== undefined){
+    if (this.props.searchItem !== undefined) {
       filteredClass = this.props.classes.filter(item => {
         return item.name.toLowerCase().indexOf(this.props.searchItem) !== -1;
-      })
-    }else{
+      });
+    } else {
       filteredClass = this.props.classes;
     }
     return filteredClass.map(item => (
@@ -39,9 +39,9 @@ class ClassItem extends Component {
 }
 
 const mapStateToProps = state => {
-  return{
+  return {
     classes: state.student.classes
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps)(ClassItem);

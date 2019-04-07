@@ -7,11 +7,10 @@ import { Container } from "reactstrap";
 
 class ClassDetailPage extends Component {
   componentDidMount() {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0);
   }
   render() {
     const { classId } = this.props.match.params;
-    console.log(typeof classId);
     let classItem = this.props.classes
       .filter(item => item.id == classId)
       .map(item => (
