@@ -12,7 +12,7 @@ class SideBar extends React.Component {
     this.props.history.push("/signin-mentor");
   };
   render() {
-    const { role, mentor } = this.props;
+    const {role, mentor } = this.props;
     let sidebarStyle =
       localStorage.getItem("role") === "mentor" ? "sidebar-mentor" : "sidebar";
     return (
@@ -65,7 +65,7 @@ class SideBar extends React.Component {
 
           <div className="mt-5">
             <Link
-              to="signin-mentor"
+              to={`signin-${role}`}
               className="list-group-item logout"
               onClick={this.handleLogout}
             >

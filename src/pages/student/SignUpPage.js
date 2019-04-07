@@ -1,14 +1,8 @@
 import React, { Component } from "react";
-import {
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-} from "reactstrap";
+import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { connect } from "react-redux";
 import { signUp } from "../../actions/studentActions";
-import axios from "axios";
+import logo from "../../assets/img/logo_dark.png"
 
 class SignupUser extends Component {
   constructor(props) {
@@ -40,13 +34,18 @@ class SignupUser extends Component {
     });
   };
   render() {
-    console.log(this.props);
-
     return (
       <div className="auth-container">
         <div className="auth-banner" />
         <div className="container auth-page">
           <div className="auth-page-content">
+            <div className="text-center">
+              <img
+                src={logo}
+                style={{ width: "30%", opacity: "0.8" }}
+                alt={logo}
+              />
+            </div>
             <h1 className="text-center mb-3">Sign Up</h1>
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
@@ -82,13 +81,6 @@ class SignupUser extends Component {
                   placeholder="type your email"
                 />
               </FormGroup>
-              {/* <FormGroup>
-                <Label for="phone">Phone Number</Label>
-                <InputGroup>
-                  <InputGroupAddon addonType="prepend">+62</InputGroupAddon>
-                  <Input type="text" id="phone" placeholder="81234567890" />
-                </InputGroup>
-              </FormGroup> */}
               <FormGroup>
                 <Label for="password">Password</Label>
                 <Input
@@ -109,17 +101,6 @@ class SignupUser extends Component {
                   placeholder="retype your password"
                 />
               </FormGroup>
-              {/* <FormGroup>
-                <Label for="birth">Date of Birth</Label>
-                <Input type="date" name="birth" id="birth" />
-              </FormGroup>
-              <FormGroup>
-                <Label for="gender">Gender</Label>
-                <Input type="select" name="gender" id="gender">
-                  <option>Male</option>
-                  <option>Female</option>
-                </Input>
-              </FormGroup> */}
               <div className="text-center">
                 <Button color="primary">Sign Up</Button>
               </div>
@@ -134,22 +115,7 @@ class SignupUser extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     signUp: (name, username, email, password) => {
-      axios
-        .post("https://cari-ilmu.herokuapp.com/", {
-          name,
-          username,
-          email,
-          password
-        })
-        .then(res => {
-          console.log(res);
-          localStorage.setItem("token", res.data.token);
-          dispatch(signUp(name, username, email, password));
-          this.props.history.push('/home');
-        })
-        .catch(err => {
-          console.log(err.response);
-        });
+      dispatch(signUp(name, username, email, password));
     }
   };
 };

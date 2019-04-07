@@ -5,7 +5,7 @@ const url = "https://cari-ilmu-test.herokuapp.com";
 export const signIn = (email, password) => {
   return dispatch => {
     axios
-      .post("https://cari-ilmu.herokuapp.com/admin/sign-in", {
+      .post("https://cari-ilmu-test.herokuapp.com/admin/sign-in", {
         email: email,
         password: password
       })
@@ -38,8 +38,7 @@ export const getClass = () => {
   return dispatch => {
     axios({
       method: "get",
-      url: `${url}/class`,
-      // headers: { Authorization: localStorage.getItem("token") }
+      url: `${url}/class`
     })
       .then(res => {
         dispatch({
@@ -101,7 +100,6 @@ export const getCategories = () => {
       .catch(err => console.log(err.response));
   };
 };
-
 
 export const delClass = id => {
   return {

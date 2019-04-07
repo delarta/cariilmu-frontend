@@ -29,8 +29,10 @@ class StudentListAdmin extends Component {
         right: true,
         cell: row => {
           return (
-            <button key={row._id} className="btn btn-info">Show</button>
-          )
+            <button key={row._id} className="btn btn-info">
+              Show
+            </button>
+          );
         }
       }
     ];
@@ -58,7 +60,7 @@ class StudentListAdmin extends Component {
 const mapStateToProps = state => {
   return {
     students: state.admin.students
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps)(StudentListAdmin);

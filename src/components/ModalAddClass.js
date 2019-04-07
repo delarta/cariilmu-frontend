@@ -44,7 +44,6 @@ class ModalAddClass extends React.Component {
       this.state.fee
     );
 
-    console.log(this.state);
     this.setState({
       name: "",
       info: "",

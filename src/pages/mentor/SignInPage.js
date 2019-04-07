@@ -34,9 +34,6 @@ class SignInPage extends Component {
     }
   }
   
-  componentDidUpdate() {
-    console.log(this.props.role)
-  }
   render() {
     this.props.role === 'mentor' && this.props.history.push('/mentor');
 

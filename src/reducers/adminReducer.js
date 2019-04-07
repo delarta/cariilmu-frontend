@@ -30,21 +30,18 @@ const adminReducer = (state = initState, action) => {
       };
 
     case "FETCH_STUDENT_ADMIN":
-      console.log(action.payload);
       return {
         ...state,
         students: action.payload
       };
 
     case "FETCH_CLASS_ADMIN":
-      console.log(action.payload);
       return {
         ...state,
         classes: action.payload
       };
 
     case "FETCH_CATEGORY_ADMIN":
-      console.log(action.payload);
       return {
         ...state,
         categories: action.payload
