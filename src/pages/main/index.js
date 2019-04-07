@@ -11,7 +11,7 @@ import ClassList from "./ClassListPage";
 import ClassDetail from "./ClassDetailPage";
 import ConfirmationPage from '../mentor/ConfirmationPage';
 import PaymentPage from '../mentor/PaymentPage';
-import SchedulePage from '../mentor/SchedulePage';
+import SchedulePage from '../student/SchedulePage';
 
 export default class index extends Component {
   render() {
