@@ -11,12 +11,14 @@ import { connect } from "react-redux";
 class AdminPage extends Component {
   componentDidMount() {
     this.props.getMentor();
-    this.props.role !== "mentor" && this.props.history.push("/signin-mentor");
   }
 
   render() {
+
     return (
       <Router>
+    {this.props.role !== "mentor" && this.props.history.push("/signin-mentor")}
+
         <div id="admin-page">
           <div className="admin-grid">
             <Sidebar />

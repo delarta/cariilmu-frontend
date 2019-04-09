@@ -41,7 +41,7 @@ p {
   padding: 0.5em 1em;
   text-transform: uppercase;
   font-size: 1em;
-  // font-weight: 600;
+  box-shadow: 0 2px 8px rgba($color: #141414, $alpha: 0.1);
 }
 
 .btn.btn-primary {
@@ -90,7 +90,6 @@ nav.navbar.navbar-dark {
   min-height: 10vh;
   background-color: transparent;
   transition: ease-out 0.1s;
-  // box-shadow: 0 0 1px rgba($color: #000000, $alpha: 0.2)
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -891,4 +890,3 @@ footer {
     }
   }
 }
-
