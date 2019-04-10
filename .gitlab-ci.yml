@@ -1,5 +1,5 @@
 # Using the node alpine image to build the React app
-image: node:alpine
+image: node:latest
 
 variables:
   PUBLIC_URL: /frontend
@@ -30,11 +30,12 @@ deploy-to-staging:
     name: staging
     url: https://$HEROKU_STAGING_APP.$DOMAIN_APP
   script:
-    - apk update
-    - apk add ruby ruby-dev rubygems-integration
-    - gem add dpl
+    - apt-get update -qy
+    - apt-get install -y ruby ruby-dev rubygems-integration
+    - gem install dpl
     - dpl --provider=heroku --app=$HEROKU_STAGING_APP --api-key=$HEROKU_API_KEY
 
+    
 deploy-production:
   type: deploy
   stage: production
@@ -42,9 +43,9 @@ deploy-production:
     name: production
     url: https://$HEROKU_PRODUCTION_APP.$DOMAIN_APP
   script:
-    - apk update
-    - apk add ruby ruby-dev rubygems-integration
-    - gem add
+    - apt-get update -qy
+    - apt-get install -y ruby ruby-dev rubygems-integration
+    - gem install dpl
     - dpl --provider=heroku --app=$HEROKU_PRODUCTION_APP --api-key=$HEROKU_API_KEY
   only:
     - master
