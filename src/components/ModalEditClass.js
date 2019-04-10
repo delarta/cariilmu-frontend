@@ -28,8 +28,6 @@ class ModalEditClass extends React.Component {
       fee: classItem[0].fee
     };
 
-    
-
     this.toggle = this.toggle.bind(this);
   }
 

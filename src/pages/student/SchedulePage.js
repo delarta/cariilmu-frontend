@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button } from "reactstrap";
 import Logo from "../../assets/img/schedule.jpg";
 
-import ModalConfirmation from "../../components/ModalConfirmation";
+// import ModalConfirmation from "../../components/ModalConfirmation";
 import { connect } from "react-redux";
 import { getClass } from "../../actions/mainActions";
 

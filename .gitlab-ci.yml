@@ -1,0 +1,51 @@
+# Using the node alpine image to build the React app
+image: node:latest
+
+variables:
+  PUBLIC_URL: /frontend
+  DOMAIN_APP: herokuapp.com
+  HEROKU_STAGING_APP: staging-cariilmu
+  HEROKU_PRODUCTION_APP: cariilmu
+  HEROKU_API_KEY: 4ae2d33e-cb35-46f7-a6cb-d28ec3b30de3
+
+# Name the stages involved in the pipeline
+stages:
+- build
+- staging
+- production
+
+deploy-to-development:
+  type: build
+  script:
+    - npm install
+    - CI=false npm run build
+  except:
+    - develop
+    - master
+
+deploy-to-staging:
+  type: deploy
+  stage: staging
+  environment:
+    name: staging
+    url: https://$HEROKU_STAGING_APP.$DOMAIN_APP
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby ruby-dev rubygems-integration
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_STAGING_APP --api-key=$HEROKU_API_KEY
+
+    
+deploy-production:
+  type: deploy
+  stage: production
+  environment:
+    name: production
+    url: https://$HEROKU_PRODUCTION_APP.$DOMAIN_APP
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby ruby-dev rubygems-integration
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_PRODUCTION_APP --api-key=$HEROKU_API_KEY
+  only:
+    - master
