@@ -1,5 +1,5 @@
 import React from "react";
-import { ListGroup, ListGroupItem } from "reactstrap";
+import { ListGroup } from "reactstrap";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -12,7 +12,7 @@ class SideBar extends React.Component {
     this.props.history.push("/signin-mentor");
   };
   render() {
-    const {role, mentor } = this.props;
+    const { role, mentor } = this.props;
     let sidebarStyle =
       localStorage.getItem("role") === "mentor" ? "sidebar-mentor" : "sidebar";
     return (
@@ -21,11 +21,22 @@ class SideBar extends React.Component {
           <Link className="list-group-item" to="/">
             <img src={logo} alt={logo} />
           </Link>
-          <ListGroupItem tag="a" href="#">
-            <img src={avatar} alt={avatar} />
-          </ListGroupItem>
+          <Link
+            to={`/${localStorage.getItem("role")}`}
+            className="list-group-item disabled"
+            id="avatar-logo"
+            tag="a"
+            href="#"
+          >
+            {localStorage.getItem("role") === "mentor" ? (
+              <img src={mentor.photo} alt="avatar" />
+            ) : (
+              <img src={avatar} alt={avatar} />
+            )}
+          </Link>
           <Link
             className="list-group-item disabled"
+            id="avatar-name"
             to={`/${localStorage.getItem("role")}`}
           >
             {mentor.name}
@@ -61,6 +72,15 @@ class SideBar extends React.Component {
                 Categories
               </Link>
             </React.Fragment>
+          )}
+
+          {localStorage.getItem("role") === "mentor" && (
+            <Link
+              className="list-group-item"
+              to={`/${localStorage.getItem("role")}/profile`}
+            >
+              <i className="ti-settings" /> Profile
+            </Link>
           )}
 
           <div className="mt-5">

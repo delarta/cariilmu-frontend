@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { signIn } from "../../actions/adminActions";
 import { getRole } from "../../actions/mainActions";
@@ -64,10 +64,7 @@ class SignInAdmin extends Component {
                 />
               </FormGroup>
               <div className="text-center">
-                <Button color="primary">Sign In</Button>
-                <p className="mt-3">
-                  Doesn't have an account? <Link to="/signup">Sign Up</Link>{" "}
-                </p>
+                <Button color="danger">Sign In</Button>
               </div>
             </Form>
           </div>
