@@ -31,11 +31,10 @@ deploy-to-staging:
     url: https://$HEROKU_STAGING_APP.$DOMAIN_APP
   script:
     - apk update
-    - apk install ruby ruby-dev rubygems-integration
-    - gem install dpl
+    - apk add ruby ruby-dev rubygems-integration
+    - gem add dpl
     - dpl --provider=heroku --app=$HEROKU_STAGING_APP --api-key=$HEROKU_API_KEY
 
-    
 deploy-production:
   type: deploy
   stage: production
@@ -44,8 +43,8 @@ deploy-production:
     url: https://$HEROKU_PRODUCTION_APP.$DOMAIN_APP
   script:
     - apk update
-    - apk install ruby ruby-dev rubygems-integration
-    - gem install
+    - apk add ruby ruby-dev rubygems-integration
+    - gem add
     - dpl --provider=heroku --app=$HEROKU_PRODUCTION_APP --api-key=$HEROKU_API_KEY
   only:
     - master
