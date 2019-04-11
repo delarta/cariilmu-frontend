@@ -12,6 +12,9 @@ import {
   Button
 } from "reactstrap";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 export default class ModalConfirmation extends Component {
   constructor(props) {
     super(props);
@@ -111,13 +114,13 @@ export default class ModalConfirmation extends Component {
                 File
               </Label>
               <Col sm={9}>
-                <Input type="file" name="file" id="exampleFile" />
-                <FormText color="muted">
-                  This is some placeholder block-level help text for the above
-                  input. It's a bit lighter and easily wraps to a new line.
-                </FormText>
+              <Input type="file" name="file" id="exampleFile" />
+              <FormText color="muted">
+                This is some placeholder block-level help text for the above input.
+                It's a bit lighter and easily wraps to a new line.
+              </FormText>
               </Col>
-            </FormGroup>
+        </FormGroup>
           </ModalBody>
           <ModalFooter>
             <Button className="btn btn-primary" onClick={this.toggle}>
