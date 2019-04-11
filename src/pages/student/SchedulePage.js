@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button } from "reactstrap";
 import Logo from "../../assets/img/schedule.jpg";
 
-// import ModalConfirmation from "../../components/ModalConfirmation";
+import ModalConfirmation from "../../components/ModalConfirmation";
 import { connect } from "react-redux";
 import { getClass } from "../../actions/mainActions";
 
@@ -31,7 +31,7 @@ class SchedulePage extends Component {
             <p>
               <i className="ti-alarm-clock" /> {item.durationInMinutes}{" "}
             </p>
-            <Button color="success">Paid</Button>{" "}
+            <ModalConfirmation initialState={false} />
           </div>
           )
 
