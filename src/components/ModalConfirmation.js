@@ -94,10 +94,7 @@ export default class ModalConfirmation extends Component {
 
                <Button className="btn btn-primary" onClick={this.toggle}> Confirm</Button>
               </ModalFooter>
-        </Modal>
-      
-
-        
+        </Modal>      
       </div>
     )
   }
