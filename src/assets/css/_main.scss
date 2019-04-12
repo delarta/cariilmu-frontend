@@ -6,7 +6,7 @@ $darkblue: #233142;
 $light: #fafafa;
 $red: #ff5959;
 $dimlight: rgba(
-  $color: #ffffff,
+  $color: #fafafa,
   $alpha: 0.8
 );
 
@@ -37,9 +37,16 @@ p {
 
 // form control
 
-.form-control{
-  background-color: #f1f1f1;
+.form-control {
+  background-color: #e5e5e5;
   border: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  // border-bottom: 2px solid $blue;
+
+  &:disabled {
+    border-bottom: 2px #e1e1e1 solid;
+  }
 }
 
 // input type file styling
@@ -51,11 +58,11 @@ p {
   padding: 0;
   position: absolute !important;
   white-space: nowrap;
-  width: 1px;  
+  width: 1px;
 }
 
 [type="file"] + label {
-  margin-top:1em;
+  margin-top: 1em;
   border-radius: 3px !important;
   padding: 0.5em 1em;
   text-transform: uppercase;
@@ -65,13 +72,13 @@ p {
   border-color: $orange;
   color: $light;
 }
- 
+
 [type="file"]:focus + label,
 [type="file"] + label:hover {
   cursor: pointer;
-  background-color: darken($orange, 10%);
+  background-color: darken($orange, 5%);
 }
- 
+
 [type="file"]:focus + label {
   outline: 1px dotted #000;
   outline: -webkit-focus-ring-color auto 5px;
@@ -79,23 +86,23 @@ p {
 
 // button style
 .btn {
-  border:none;
+  border: none;
   border-radius: 3px !important;
   padding: 0.5em 1em;
   text-transform: uppercase;
   font-size: 1em;
-  box-shadow: 0 2px 8px rgba($color: #141414, $alpha: 0.1);
+  box-shadow: 5px 5px 10px rgba($color: #141414, $alpha: 0.2);
 
   &.btn-primary {
     background-color: $orange;
-  
-    &:hover{
-      background-color: darken($orange, 10%);
+
+    &:hover {
+      background-color: darken($orange, 5%);
     }
-    &:active{
+    &:active {
       background-color: darken($orange, 15%) !important;
     }
-    &:focus{
+    &:focus {
       outline: none;
     }
   }
@@ -105,32 +112,43 @@ p {
     &:hover {
       background-color: darken($blue, 10%);
     }
-    &:active{
+    &:active {
       background-color: darken($blue, 15%) !important;
     }
-    &:focus{
+    &:focus {
       outline: none;
     }
   }
 
   &.btn.btn-danger {
     background-color: $red;
+    &.disabled {
+      cursor: default;
+
+      &:hover {
+        background-color: $red;
+        
+      }
+      &:active {
+        background-color: $red;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
     &:hover {
       background-color: darken($red, 10%);
     }
-    &:active{
+    &:active {
       background-color: darken($red, 15%) !important;
     }
-    &:focus{
+    &:focus {
       outline: none;
     }
   }
 }
 
-
-
-
-
+// height
 .vh-100 {
   min-height: 100vh;
 }
@@ -651,6 +669,7 @@ footer {
 // Admin Page
 #admin-page {
   min-height: 100vh;
+  background-color: #f0f0f0;
 
   .admin-grid {
     display: grid;
@@ -670,7 +689,7 @@ footer {
     border-radius: 5px;
     display: flex;
     align-items: center;
-    padding-left: 1em;
+    margin-top: 1.5em;
 
     h1 {
       text-transform: uppercase;
@@ -692,14 +711,25 @@ footer {
       align-items: center;
       border-radius: 5px;
       min-height: 200px;
-      background-color: $blue;
+      background-color: $dimlight;
       color: $light;
+      border-bottom: 2px solid $blue;
 
       h1 {
         font-size: 10em;
         font-weight: 600;
       }
     }
+  }
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0.5em;
+
+  .btn {
+    padding: 0.25em 0.5em;
   }
 }
 
@@ -713,11 +743,11 @@ footer {
     width: 100%;
     min-height: 100px;
     background-color: transparent;
+    margin-top: 1.5em;
     margin-bottom: 1em;
     border-radius: 5px;
     display: flex;
     align-items: center;
-    padding-left: 1em;
     justify-self: flex-start;
 
     h1 {
@@ -727,11 +757,12 @@ footer {
       font-weight: 600;
     }
   }
-  .content-body{
-    width:100%;
+  .content-body {
+    width: 100%;
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-gap: 1em
+    grid-gap: 1em;
+    padding-bottom:1em;
   }
 }
 
@@ -757,7 +788,7 @@ footer {
       }
     }
 
-    #avatar-logo{
+    #avatar-logo {
       text-align: center;
     }
 
@@ -777,13 +808,17 @@ footer {
   min-height: 100vh;
   height: 100%;
 
-  background-color: $blue;
+  background-color: $light;
 
   .list-group {
     .list-group-item {
       background-color: transparent;
-      color: $light;
+      color: $darkblue;
       text-decoration: none;
+      border: none;
+      transition: 180ms ease background;
+      border-bottom: 1px rgba($color: $darkblue, $alpha: 0.1) solid;
+
       img {
         width: 50%;
       }
@@ -792,25 +827,30 @@ footer {
         margin-right: 1em;
       }
     }
-    #avatar-logo{
+    .active-sidebar {
+      background-color: darken($dimlight, 10%);
+      border-bottom: 2px $orange solid;
+      box-shadow: 0 2px 5px rgba($color: #141414, $alpha: 0.2);
+    }
+    #avatar-logo {
       text-align: center;
       border-bottom: none;
 
-      img{
+      img {
         object-fit: cover;
-        height:120px;
-        width:120px;
+        height: 120px;
+        width: 120px;
         border-radius: 50%;
       }
     }
-    #avatar-name{
+    #avatar-name {
       border-top: none;
       text-align: center;
+      text-transform: uppercase;
     }
     .list-group-item:hover {
-      background-color: $darkblue;
-      color: $light;
-      text-decoration: none;
+      background-color: darken($dimlight, 10%);
+      color: $darkblue;
     }
 
     .list-group-item.logout:hover {
@@ -851,8 +891,8 @@ footer {
     position: fixed;
     width: 100%;
     min-height: 10vh;
-    background-color: $darkblue !important;
-    box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.2);
+    background-color: $blue !important;
+    box-shadow: 0 2px 5px rgba($color: #141414, $alpha: 0.2);
   }
 
   #banner {
@@ -873,6 +913,11 @@ footer {
       .auth-page-content {
         min-width: 100%;
       }
+    }
+  }
+  #admin-page {
+    .admin-grid {
+      grid-template-columns: 1fr;
     }
   }
 

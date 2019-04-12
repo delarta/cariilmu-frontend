@@ -1,10 +1,10 @@
 import React from "react";
-import { ListGroup } from "reactstrap";
-import { Link, withRouter } from "react-router-dom";
+import { ListGroup, Badge } from "reactstrap";
+import { NavLink, Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import avatar from "../assets/img/thinking.svg";
-import logo from "../assets/img/logo_light_inline.png";
+import logo from "../assets/img/logo_dark_inline.png";
 
 class SideBar extends React.Component {
   handleLogout = () => {
@@ -18,7 +18,7 @@ class SideBar extends React.Component {
     return (
       <div id={sidebarStyle}>
         <ListGroup flush>
-          <Link className="list-group-item" to="/">
+          <Link  className="list-group-item" to="/">
             <img src={logo} alt={logo} />
           </Link>
           <Link
@@ -34,63 +34,77 @@ class SideBar extends React.Component {
               <img src={avatar} alt={avatar} />
             )}
           </Link>
+          {localStorage.getItem("role") === "mentor" &&
           <Link
+          
             className="list-group-item disabled"
             id="avatar-name"
+            
             to={`/${localStorage.getItem("role")}`}
           >
             {mentor.name}
+            <p> 
+              {mentor.verified ? 
+                (<Badge color="success">verified</Badge>):
+                (<Badge color="danger">Unverified</Badge>)
+              }
+            </p>
           </Link>
-          <Link
+          }
+          <NavLink
             className="list-group-item"
+            activeClassName="active-sidebar"
+            exact
             to={`/${localStorage.getItem("role")}`}
           >
             <i className="ti-dashboard" /> Dashboard
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             className="list-group-item"
+            activeClassName="active-sidebar"
             to={`/${localStorage.getItem("role")}/classes`}
           >
             <i className="ti-blackboard" /> Classes
-          </Link>
+          </NavLink>
           {localStorage.getItem("role") === "admin" && (
             <React.Fragment>
-              <Link
+              <NavLink
                 className="list-group-item"
                 to={`/${localStorage.getItem("role")}/students`}
               >
                 <i className="ti-medall" /> Students
-              </Link>
-              <Link className="list-group-item" to="/admin/mentors">
+              </NavLink>
+              <NavLink className="list-group-item" to="/admin/mentors">
                 <i className="ti-briefcase" /> Mentors
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 className="list-group-item"
                 to={`/${localStorage.getItem("role")}/categories`}
               >
                 <i className="ti-agenda" />
                 Categories
-              </Link>
+              </NavLink>
             </React.Fragment>
           )}
 
           {localStorage.getItem("role") === "mentor" && (
-            <Link
+            <NavLink
               className="list-group-item"
+              activeClassName="active-sidebar"
               to={`/${localStorage.getItem("role")}/profile`}
             >
               <i className="ti-settings" /> Profile
-            </Link>
+            </NavLink>
           )}
 
           <div className="mt-5">
-            <Link
+            <NavLink
               to={`signin-${role}`}
               className="list-group-item logout"
               onClick={this.handleLogout}
             >
               <i className="ti-power-off" /> Logout
-            </Link>
+            </NavLink>
           </div>
         </ListGroup>
       </div>

@@ -1,7 +1,8 @@
 const initState = {
   mentor: {},
   classes: [],
-  students: []
+  students: [],
+  categories: []
 };
 
 const mainReducer = (state = initState, action) => {
@@ -10,6 +11,11 @@ const mainReducer = (state = initState, action) => {
      return {
        ...state,
        classes : action.payload
+     }
+    case "FETCH_CATEGORY":
+     return {
+       ...state,
+       categories : action.payload
      }
     default:
       return state;

@@ -10,22 +10,23 @@ import {
   Label,
   Input
 } from "reactstrap";
-import { editClass } from "../actions/mentorActions";
+import { editClass, getClass} from "../actions/mentorActions";
 import { connect } from "react-redux";
 
 class ModalEditClass extends React.Component {
   constructor(props) {
     super(props);
 
-    const { classes, classId } = this.props;
-    let classItem = classes.filter(item => item._id === classId);
+    const { classes, classId} = this.props;
+    let classItem = classes.filter(item => item._id === classId)[0];
 
     this.state = {
       modal: props.initialModalState,
-      name: classItem[0].name,
-      info: classItem[0].info,
-      schedule: classItem[0].schedule,
-      fee: classItem[0].fee
+      name: classItem.name,
+      info: classItem.info,
+      schedule: classItem.schedule,
+      category: classItem.category,
+      fee: classItem.fee
     };
 
     this.toggle = this.toggle.bind(this);
@@ -45,14 +46,17 @@ class ModalEditClass extends React.Component {
       this.props.classId,
       this.state.name,
       this.state.info,
-      this.state.schedule
+      this.state.schedule,
+      this.state.category
     );
+    this.props.getClass();
 
     this.setState({
       name: "",
       info: "",
       schedule: "",
-      fee: ""
+      fee: "",
+      category: ""
     });
     this.toggle();
   };
@@ -104,6 +108,23 @@ class ModalEditClass extends React.Component {
                 />
               </FormGroup>
               <FormGroup>
+                <Label for="category">Category</Label>
+                <Input
+                  onChange={this.onChange}
+                  required
+                  type="select"
+                  name="category"
+                  id="category"
+                  defaultValue={this.state.category}
+                >
+                  {this.props.categories.map((category, index) => (
+                    <option key={index} value={category._id}>
+                      {category.name}
+                    </option>
+                  ))}
+                </Input>
+              </FormGroup>
+              <FormGroup>
                 <Label for="fee">Fee (Rp) </Label>
                 <Input
                   disabled
@@ -131,14 +152,17 @@ class ModalEditClass extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    classes: state.mentor.classes
+    classes: state.mentor.classes,
+    categories: state.main.categories
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    editClass: (id, name, info, schedule) =>
-      dispatch(editClass(id, name, info, schedule))
+    editClass: (id, name, info, schedule, category) =>
+      dispatch(editClass(id, name, info, schedule, category)),
+      getClass: () =>
+      dispatch(getClass())
   };
 };
 

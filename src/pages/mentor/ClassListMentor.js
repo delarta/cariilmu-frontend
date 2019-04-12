@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import DataTable from "react-data-table-component";
+import BootstrapTable from "react-bootstrap-table-next";
+import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
+import paginationFactory from "react-bootstrap-table2-paginator";
 import { connect } from "react-redux";
 import { setFinishedClass, getClass } from "../../actions/mentorActions";
 import ModalAddClass from "../../components/ModalAddClass";
@@ -10,80 +12,76 @@ class ClassListAdmin extends Component {
   componentDidMount() {
     this.props.getClass();
   }
+
   render() {
-    const tableStyle = {
-      title: {
-        fontSize: "2em"
-      },
-      header: {
-        fontSize: "1.2em"
-      },
-      rows: {
-        fontSize: "0.8em"
-      }
-    };
-    const data = this.props.classes;
+    const data = this.props.classes.reverse();
+
     const columns = [
       {
-        name: "Class Name",
-        selector: "name",
-        sortable: true,
-        maxWidth: "300px"
+        text: "Id",
+        dataField: "_id",
+        hidden: true
       },
       {
-        name: "Schedule",
-        selector: "schedule",
-        sortable: true,
-        maxWidth: "150px"
+        text: "Class Name",
+        dataField: "name",
+        sort: true,
+        filter: textFilter()
       },
       {
-        name: "Fee",
-        selector: "fee",
-        sortable: true,
-        maxWidth: "80px"
+        text: "Schedule",
+        dataField: "schedule",
+        sort: true
       },
       {
-        name: "Status",
-        selector: "status",
-        sortable: true,
-        maxWidth: "80px"
+        text: "Fee",
+        dataField: "fee",
+        sort: true
       },
       {
-        name: "Students",
-        button: true,
-        ignoreRowClick: true,
-        maxWidth: "150px",
-        cell: row => <ModalShowStudents classId={row._id} />
+        text: "Status",
+        dataField: "status",
+        sort: true
       },
       {
-        name: "Actions",
-        button: true,
-        maxWidth: "200px",
-        right: true,
-        cell: row => {
+        text: "Category",
+        dataField: "category.name",
+        sort: true,
+        filter: textFilter()
+      },
+      {
+        text: "Actions",
+        dataField: "actions",
+        isDummyField: true,
+        formatter: (cell, row) => {
           if (row.status === "finished") {
             return (
-              <div>
-                <button className="btn btn-danger disabled">Finished</button>
+              <div className="action-buttons">
+                <button className="btn btn-danger disabled">
+                  Finished
+                </button>
+                <ModalShowStudents classId={row._id} />
               </div>
             );
           } else {
             return (
-              <div>
+              <div className="action-buttons">
                 <ModalEditClass classId={row._id} />
                 <button
                   onClick={() => this.props.setFinishedClass(row._id)}
                   className="btn btn-warning"
                 >
-                  Set Finished
+                  <i className="ti-check" />
                 </button>
+                <ModalShowStudents classId={row._id} />
+
               </div>
             );
           }
-        },
-        ignoreRowClick: true
+        }
       }
     ];
+
     return (
       <div className="content-admin">
         <div className="content-header">
@@ -95,16 +93,16 @@ class ClassListAdmin extends Component {
         >
           <ModalAddClass initialModalState={false} />
         </div>
-        <DataTable
-          noHeader={true}
-          style={{ minHeight: "70%" }}
-          striped={true}
-          highlightOnHover={true}
-          customTheme={tableStyle}
-          columns={columns}
-          responsive={true}
+        <BootstrapTable
+          className="table-responsive"
+          keyField="_id"
           data={data}
-          pagination={true}
+          columns={columns}
+          striped
+          hover
+          filter={filterFactory()}
+          pagination={paginationFactory()}
+          bootstrap4={true}
         />
       </div>
     );

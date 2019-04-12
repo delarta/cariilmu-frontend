@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Sidebar from "../../layouts/Sidebar";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 import ClassListMentor from "./ClassListMentor";
 import PaymentMentor from "./PaymentPage";
 import EditProfile from "./EditProfile";
@@ -35,7 +35,8 @@ class AdminPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    role: state.auth.role
+    role: state.auth.role,
+    mentor: state.mentor.mentor
   };
 };
 
@@ -45,7 +46,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AdminPage);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(AdminPage)
+);

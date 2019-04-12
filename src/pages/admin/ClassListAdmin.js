@@ -1,41 +1,56 @@
 import React, { Component } from "react";
-import DataTable from "react-data-table-component";
 import { connect } from "react-redux";
 import { delClass } from "../../actions/adminActions";
 
+import BootstrapTable from "react-bootstrap-table-next";
+import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
+import paginationFactory from "react-bootstrap-table2-paginator";
+
 class ClassListAdmin extends Component {
   render() {
-    const tableStyle = {
-      title: {
-        fontSize: "2em"
-      },
-      header: {
-        fontSize: "1.5em"
-      },
-      rows: {
-        fontSize: "1em"
-      }
-    };
     const data = this.props.classes;
     const columns = [
       {
-        name: "Class Name",
-        selector: "name",
-        sortable: true
+        text: "Id",
+        dataField: "_id",
+        hidden: true
       },
       {
-        name: "Actions",
-        sortable: true,
-        right: true,
-        cell: row => (
+        text: "Class Name",
+        dataField: "name",
+        sort: true,
+        filter: textFilter()
+      },
+      {
+        text: "Mentor",
+        dataField: "mentor.name",
+        sort: true,
+        filter: textFilter()
+      },
+      {
+        text: "Status",
+        dataField: "status",
+        sort: true,
+        filter: textFilter(),
+        formatter: (cell, row) =>
+          row.status === "finished" ? (
+            <span style={{ color: "red" }}>Finished</span>
+          ) : (
+            <span style={{ color: "green" }}>Opened</span>
+          )
+      },
+      {
+        text: "Actions",
+        dataField: "actions",
+        isDummyField: true,
+        formatter: (cell, row) => (
           <button
-            onClick={() => this.props.delClass(row.id)}
+            onClick={() => this.props.delClass(row._id)}
             className="btn btn-danger"
           >
             Delete
           </button>
-        ),
-        ignoreRowClick: true
+        )
       }
     ];
     return (
@@ -43,16 +58,16 @@ class ClassListAdmin extends Component {
         <div className="content-header">
           <h1>Class List</h1>
         </div>
-        <DataTable
-          noHeader={true}
-          style={{ height: "100%" }}
-          striped={true}
-          highlightOnHover={true}
-          customTheme={tableStyle}
-          columns={columns}
-          responsive={true}
+        <BootstrapTable
+          className="table-responsive"
+          keyField="_id"
           data={data}
-          pagination={true}
+          columns={columns}
+          striped
+          hover
+          filter={filterFactory()}
+          pagination={paginationFactory()}
+          bootstrap4={true}
         />
       </div>
     );

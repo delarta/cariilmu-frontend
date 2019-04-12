@@ -46,6 +46,19 @@ const adminReducer = (state = initState, action) => {
         ...state,
         categories: action.payload
       };
+    case "EDIT_CATEGORY_ADMIN":
+      return {
+        ...state,
+        categories: [
+          ...state.categories.map(item => {
+            if (item._id === action.payload.id) {
+              item.name = action.payload.name;
+              item.photo = action.payload.photo;
+            }
+            return item;
+          })
+        ]
+      };
     default:
       return state;
   }

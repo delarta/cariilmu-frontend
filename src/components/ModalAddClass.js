@@ -11,6 +11,8 @@ import {
   Input
 } from "reactstrap";
 import { addClass } from "../actions/mentorActions";
+import { getCategories } from "../actions/mainActions";
+
 import { connect } from "react-redux";
 
 class ModalAddClass extends React.Component {
@@ -21,10 +23,15 @@ class ModalAddClass extends React.Component {
       name: "",
       info: "",
       schedule: "",
-      fee: ""
+      fee: "",
+      category: ""
     };
 
     this.toggle = this.toggle.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getCategories();
   }
 
   toggle() {
@@ -41,14 +48,16 @@ class ModalAddClass extends React.Component {
       this.state.name,
       this.state.info,
       this.state.schedule,
-      this.state.fee
+      this.state.fee,
+      this.state.category
     );
 
     this.setState({
       name: "",
       info: "",
       schedule: "",
-      fee: ""
+      fee: "",
+      category:""
     });
     this.toggle();
   };
@@ -57,7 +66,7 @@ class ModalAddClass extends React.Component {
     return (
       <React.Fragment>
         <Button color="info" onClick={this.toggle}>
-          <i className="ti-plus"/> Add Class
+          <i className="ti-plus" /> Add Class
         </Button>
 
         <Modal
@@ -65,7 +74,7 @@ class ModalAddClass extends React.Component {
           toggle={this.toggle}
           className={this.props.className}
         >
-          <Form onSubmit={this.onSubmit}>
+          <Form onSubmit={this.onSubmit} encType="multipart/form-data">
             <ModalHeader toggle={this.toggle}>Add Class</ModalHeader>
             <ModalBody>
               <FormGroup>
@@ -77,6 +86,7 @@ class ModalAddClass extends React.Component {
                   name="name"
                   id="name"
                   placeholder="Your awesome class"
+                  required
                 />
               </FormGroup>
               <FormGroup>
@@ -88,6 +98,7 @@ class ModalAddClass extends React.Component {
                   name="info"
                   id="info"
                   placeholder="Class description"
+                  required
                 />
               </FormGroup>
               <FormGroup>
@@ -98,6 +109,7 @@ class ModalAddClass extends React.Component {
                   type="date"
                   name="schedule"
                   id="schedule"
+                  required
                 />
               </FormGroup>
               <FormGroup>
@@ -109,7 +121,14 @@ class ModalAddClass extends React.Component {
                   placeholder="type your fee"
                   onChange={this.onChange}
                   value={this.state.fee}
+                  required
                 />
+              </FormGroup>
+              <FormGroup>
+                <Label for="category">Category</Label>
+                <Input onChange={this.onChange} required type="select" defaultValue="0" name="category" id="category">
+                  {this.props.categories.map((category, index) =>  <option key={index} value={category._id}>{category.name}</option>)}
+                </Input>
               </FormGroup>
             </ModalBody>
             <ModalFooter>
@@ -125,11 +144,21 @@ class ModalAddClass extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    categories: state.main.categories
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
-    addClass: (name, info, schedule, fee) =>
-      dispatch(addClass(name, info, schedule, fee))
+    addClass: (name, info, schedule, fee, category) =>
+      dispatch(addClass(name, info, schedule, fee, category)),
+    getCategories: () => dispatch(getCategories())
   };
 };
 
-export default connect(null, mapDispatchToProps)(ModalAddClass);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ModalAddClass);

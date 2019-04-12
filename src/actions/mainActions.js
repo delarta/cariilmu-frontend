@@ -23,3 +23,18 @@ export const getClass = () => {
       .catch(err => console.log(err.response));
   };
 };
+
+export const getCategories = () => {
+  return dispatch => {
+    axios({
+      method: "get",
+      url: `${url}/category`})
+      .then(res => {
+        dispatch({
+          type: "FETCH_CATEGORY",
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};

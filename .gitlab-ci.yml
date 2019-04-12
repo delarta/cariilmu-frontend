@@ -2,7 +2,6 @@
 image: node:latest
 
 variables:
-  PUBLIC_URL: /frontend
   DOMAIN_APP: herokuapp.com
   HEROKU_STAGING_APP: staging-cariilmu
   HEROKU_PRODUCTION_APP: cariilmu

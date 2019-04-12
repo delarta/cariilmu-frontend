@@ -38,7 +38,8 @@ export const getClass = () => {
   return dispatch => {
     axios({
       method: "get",
-      url: `${url}/class`
+      url: `${url}/admin/class`,
+      headers: { Authorization: localStorage.getItem("token") }
     })
       .then(res => {
         dispatch({
@@ -95,6 +96,37 @@ export const getCategories = () => {
         dispatch({
           type: "FETCH_CATEGORY_ADMIN",
           payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
+export const editCategory = (id, name, photo) => {
+  return dispatch => {
+    let bodyFormData = new FormData();
+
+    bodyFormData.set("name", name);
+    bodyFormData.append("photo", photo);    
+
+    axios({
+      method: "put",
+      url: `${url}/admin/category/${id}`,
+      headers: {
+        Authorization: localStorage.getItem("token"),
+        "Content-Type": "multipart/form-data"
+      },
+      data: bodyFormData
+    })
+      .then(res => {
+        console.log(res)
+        dispatch({
+          type: "EDIT_CATEGORY_ADMIN",
+          payload: {
+            _id : id,
+            name,
+            photo
+          }
         });
       })
       .catch(err => console.log(err.response));
