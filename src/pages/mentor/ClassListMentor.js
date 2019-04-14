@@ -114,17 +114,19 @@ class ClassListAdmin extends Component {
         >
           <ModalAddClass initialModalState={false} />
         </div>
-        <BootstrapTable
-          className="table-responsive"
-          keyField="_id"
-          data={data}
-          columns={columns}
-          striped
-          hover
-          filter={filterFactory()}
-          pagination={paginationFactory()}
-          bootstrap4={true}
-        />
+        <div className="table-content">
+          <BootstrapTable
+            className="table-responsive"
+            keyField="_id"
+            data={data}
+            columns={columns}
+            striped
+            hover
+            filter={filterFactory()}
+            pagination={paginationFactory()}
+            bootstrap4={true}
+          />
+        </div>
       </div>
     );
   }

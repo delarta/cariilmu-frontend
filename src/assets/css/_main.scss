@@ -372,7 +372,7 @@ section {
       rgba(79, 157, 166, 1) 70%
     ),
     url("../img/banner.jpg");
-  
+
   background-size: cover;
   min-height: 100vh;
   background-size: cover;
@@ -408,19 +408,19 @@ section {
       }
     }
 
-    .banner-img{
-      img{
-        width: 100%
+    .banner-img {
+      img {
+        width: 100%;
       }
     }
   }
 }
 
-#about-us{
-  .content{
+#about-us {
+  .content {
     padding: 5em;
-    div{
-      h2{
+    div {
+      h2 {
         font-weight: 700;
         text-transform: uppercase;
       }
@@ -452,10 +452,10 @@ section {
       color: rgba($color: $darkblue, $alpha: 0.5);
     }
 
-    div{
-      i{
+    div {
+      i {
         font-size: 5rem;
-        color: $orange
+        color: $orange;
       }
     }
 
@@ -722,6 +722,11 @@ footer {
   }
 }
 
+.table-content {
+  max-width: calc(100vw - 1em);
+  overflow-x: scroll;
+}
+
 // Admin Page
 #admin-page {
   min-height: 100vh;
@@ -943,6 +948,15 @@ footer {
 }
 
 @media only screen and (max-width: 768px), only screen and (max-height: 500px) {
+  table.table-striped.table-hover.table-bordered {
+    width: auto;
+  }
+
+  #sidebar-mentor {
+    min-height: 0;
+    max-height: 100vh;
+  }
+
   nav.navbar.navbar-dark {
     position: fixed;
     width: 100%;
@@ -959,8 +973,8 @@ footer {
       .banner-img {
         display: none;
       }
-      .banner-text{
-        .banner-buttons{
+      .banner-text {
+        .banner-buttons {
           width: 100%;
           grid-template-columns: 1fr;
         }
@@ -1080,6 +1094,38 @@ footer {
       padding-right: 1em;
       .btn {
         width: 100%;
+      }
+    }
+  }
+
+  #admin-dashboard {
+    margin: 0;
+    .dashboard-header {
+      width: 100%;
+      justify-content: center;
+
+      h1 {
+        font-size: 2em;
+      }
+    }
+    .dashboard-content {
+      grid-template-columns: 1fr;
+      div {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        min-height: 200px;
+        background-color: $dimlight;
+        color: $light;
+        border-bottom: 2px solid $blue;
+
+        h1 {
+          font-size: 5em;
+          font-weight: 600;
+        }
       }
     }
   }

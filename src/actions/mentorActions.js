@@ -50,7 +50,7 @@ export const signUp = (name, username, email, password) => {
           text: "please sign in",
           type: "success"
         });
-        this.props.history.push('/signin-mentor')
+        this.props.history.push("/signin-mentor");
         dispatch({
           type: "SIGN_UP"
         });
@@ -147,7 +147,6 @@ export const addClass = (name, info, schedule, fee, category) => {
 };
 
 export const editClass = (id, name, info, schedule, category) => {
-  console.log(category);
   return dispatch => {
     let bodyFormData = new FormData();
 
@@ -171,7 +170,6 @@ export const editClass = (id, name, info, schedule, category) => {
           timer: 1000,
           type: "success"
         });
-        console.log(res);
         dispatch({
           type: "EDIT_CLASS_MENTOR",
           payload: {
