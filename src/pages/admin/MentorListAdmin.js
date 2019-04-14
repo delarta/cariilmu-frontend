@@ -5,18 +5,36 @@ import BootstrapTable from "react-bootstrap-table-next";
 import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import paginationFactory from "react-bootstrap-table2-paginator";
 
+import { verifyMentor, deleteMentor } from "../../actions/adminActions";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+
 class MentorListAdmin extends Component {
   handleDelete = id => {
-    console.log(id);
+    MySwal.fire({
+      title: <p>Are You Sure ?</p>,
+      type: "question",
+      confirmButtonText: "Yes Delete It",
+      showCancelButton: true
+    }).then(result => {
+      if (result.value) {
+        this.props.deleteMentor(id);
+        MySwal.fire({
+          title: <p>Mentor Deleted</p>,
+          type: "success"
+        });
+      }
+    });
   };
 
   handleVerify = id => {
-    console.log(id);
+    this.props.verifyMentor(id);
   };
 
   render() {
     const data = this.props.mentors;
-    console.log(data);
     const columns = [
       {
         text: "Id",
@@ -115,7 +133,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    verifyMentor: id => dispatch(verifyMentor(id)),
+    deleteMentor: id => dispatch(deleteMentor(id))
+  };
 };
 
 export default connect(

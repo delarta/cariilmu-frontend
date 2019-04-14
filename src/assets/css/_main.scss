@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Lato|Noto+Serif|Slabo+27px|Nunito");
 
 $orange: #f07b3f;
+$yellow: #f3ae4b;
 $blue: #4f9da6;
 $darkblue: #233142;
 $light: #fafafa;
@@ -8,6 +9,12 @@ $red: #ff5959;
 $dimlight: rgba(
   $color: #fafafa,
   $alpha: 0.8
+);
+$maingrad: linear-gradient(
+  322deg,
+  rgba(180, 243, 207, 1) 0%,
+  rgba(130, 200, 187, 0.8) 24%,
+  rgba(79, 157, 166, 1) 70%
 );
 
 html {
@@ -86,18 +93,28 @@ p {
 
 // button style
 .btn {
-  border: none;
   border-radius: 3px !important;
   padding: 0.5em 1em;
   text-transform: uppercase;
   font-size: 1em;
-  box-shadow: 5px 5px 10px rgba($color: #141414, $alpha: 0.2);
+  box-shadow: 2px 2px 10px rgba($color: #141414, $alpha: 0.1);
+  &.btn-outline-primary {
+    border: none;
+    background-color: $light;
+    color: $blue;
 
+    &:hover {
+      background-color: $dimlight;
+      transform: translateY(-2px);
+    }
+  }
   &.btn-primary {
+    border: none;
     background-color: $orange;
 
     &:hover {
-      background-color: darken($orange, 5%);
+      background-color: lighten($orange, 5%);
+      transform: translateY(-2px);
     }
     &:active {
       background-color: darken($orange, 15%) !important;
@@ -108,9 +125,15 @@ p {
   }
 
   &.btn.btn-info {
+    border: none;
+
+    // background-color: #706381;
+    // background-color: #774898;
     background-color: $blue;
+
     &:hover {
       background-color: darken($blue, 10%);
+      transform: translateY(-2px);
     }
     &:active {
       background-color: darken($blue, 15%) !important;
@@ -121,13 +144,14 @@ p {
   }
 
   &.btn.btn-danger {
+    border: none;
+
     background-color: $red;
     &.disabled {
       cursor: default;
 
       &:hover {
         background-color: $red;
-        
       }
       &:active {
         background-color: $red;
@@ -138,6 +162,7 @@ p {
     }
     &:hover {
       background-color: darken($red, 10%);
+      transform: translateY(-2px);
     }
     &:active {
       background-color: darken($red, 15%) !important;
@@ -224,7 +249,7 @@ nav.navbar.navbar-dark {
 
 .auth-admin {
   background: none;
-  background-color: $red;
+  background-color: $light;
 }
 
 // Home-page
@@ -339,17 +364,20 @@ section {
 }
 
 #banner {
-  background-image: linear-gradient(
-      rgba($color: $blue, $alpha: 0.9),
-      rgba($color: $blue, $alpha: 0.9)
+  background: rgb(180, 243, 207);
+  background: linear-gradient(
+      322deg,
+      rgba(180, 243, 207, 1) 0%,
+      rgba(130, 200, 187, 0.8) 24%,
+      rgba(79, 157, 166, 1) 70%
     ),
     url("../img/banner.jpg");
+  
   background-size: cover;
-  background-attachment: fixed;
   min-height: 100vh;
   background-size: cover;
-  -webkit-clip-path: ellipse(88% 76% at 50% 23%);
-  clip-path: ellipse(88% 76% at 50% 23%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 76%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 76%, 0% 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -357,6 +385,7 @@ section {
   .banner-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
+    grid-gap: 1em;
 
     .banner-text {
       text-align: justify;
@@ -365,6 +394,7 @@ section {
       h2 {
         color: $light;
         font-weight: 600;
+        text-transform: uppercase;
       }
       p {
         color: $dimlight;
@@ -374,6 +404,25 @@ section {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: 1em;
+        width: 70%;
+      }
+    }
+
+    .banner-img{
+      img{
+        width: 100%
+      }
+    }
+  }
+}
+
+#about-us{
+  .content{
+    padding: 5em;
+    div{
+      h2{
+        font-weight: 700;
+        text-transform: uppercase;
       }
     }
   }
@@ -403,6 +452,13 @@ section {
       color: rgba($color: $darkblue, $alpha: 0.5);
     }
 
+    div{
+      i{
+        font-size: 5rem;
+        color: $orange
+      }
+    }
+
     img {
       width: 60%;
     }
@@ -418,7 +474,7 @@ section {
     div {
       align-self: center;
       img {
-        width: 60%;
+        width: 90%;
       }
       h3 {
         text-transform: uppercase;
@@ -762,7 +818,7 @@ footer {
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-gap: 1em;
-    padding-bottom:1em;
+    padding-bottom: 1em;
   }
 }
 
@@ -902,6 +958,12 @@ footer {
       grid-template-columns: 1fr;
       .banner-img {
         display: none;
+      }
+      .banner-text{
+        .banner-buttons{
+          width: 100%;
+          grid-template-columns: 1fr;
+        }
       }
     }
   }

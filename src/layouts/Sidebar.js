@@ -2,8 +2,9 @@ import React from "react";
 import { ListGroup, Badge } from "reactstrap";
 import { NavLink, Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { signOut } from "../actions/mainActions";
 
-import avatar from "../assets/img/thinking.svg";
+import avatar from "../assets/img/user.svg";
 import logo from "../assets/img/logo_dark_inline.png";
 
 class SideBar extends React.Component {
@@ -18,7 +19,7 @@ class SideBar extends React.Component {
     return (
       <div id={sidebarStyle}>
         <ListGroup flush>
-          <Link  className="list-group-item" to="/">
+          <Link className="list-group-item" to="/">
             <img src={logo} alt={logo} />
           </Link>
           <Link
@@ -34,23 +35,22 @@ class SideBar extends React.Component {
               <img src={avatar} alt={avatar} />
             )}
           </Link>
-          {localStorage.getItem("role") === "mentor" &&
-          <Link
-          
-            className="list-group-item disabled"
-            id="avatar-name"
-            
-            to={`/${localStorage.getItem("role")}`}
-          >
-            {mentor.name}
-            <p> 
-              {mentor.verified ? 
-                (<Badge color="success">verified</Badge>):
-                (<Badge color="danger">Unverified</Badge>)
-              }
-            </p>
-          </Link>
-          }
+          {localStorage.getItem("role") === "mentor" && (
+            <Link
+              className="list-group-item disabled"
+              id="avatar-name"
+              to={`/${localStorage.getItem("role")}`}
+            >
+              {mentor.name}
+              <p>
+                {mentor.verified ? (
+                  <Badge color="success">verified</Badge>
+                ) : (
+                  <Badge color="danger">Unverified</Badge>
+                )}
+              </p>
+            </Link>
+          )}
           <NavLink
             className="list-group-item"
             activeClassName="active-sidebar"
@@ -121,7 +121,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    signOut: () => dispatch({ type: "SIGN_OUT" })
+    signOut: () => dispatch(signOut())
   };
 };
 

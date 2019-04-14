@@ -5,13 +5,14 @@ import ClassListMentor from "./ClassListMentor";
 import PaymentMentor from "./PaymentPage";
 import EditProfile from "./EditProfile";
 import Dashboard from "./Dashboard";
-import { getMentor } from "../../actions/mentorActions";
+import { getMentor, getClass } from "../../actions/mentorActions";
 
 import { connect } from "react-redux";
 
 class AdminPage extends Component {
   componentDidMount() {
     this.props.getMentor();
+    this.props.getClass();
   }
 
   render() {
@@ -42,7 +43,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getMentor: () => dispatch(getMentor())
+    getMentor: () => dispatch(getMentor()),
+    getClass: () => dispatch(getClass())
   };
 };
 

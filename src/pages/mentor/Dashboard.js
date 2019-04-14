@@ -1,12 +1,7 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux';
-import { getClass } from '../../actions/mentorActions'
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class Dashboard extends Component {
-
-  componentDidMount() {
-    this.props.getClass();
-  }
   render() {
     return (
       <div id="admin-dashboard">
@@ -18,28 +13,18 @@ class Dashboard extends Component {
             <h1>{this.props.classes.length} </h1>
             <h2>Class</h2>
           </div>
-          <div>
-            
-          </div>
-          <div>
-            
-          </div>
+          <div />
+          <div />
         </div>
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    classes: state.mentor.classes,
-  }
-}
+    classes: state.mentor.classes
+  };
+};
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getClass: () => dispatch(getClass())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
+export default connect(mapStateToProps)(Dashboard);

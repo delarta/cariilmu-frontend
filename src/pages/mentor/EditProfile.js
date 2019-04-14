@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { Form, FormGroup, Label, Input } from "reactstrap";
-import { editProfile, getMentor } from "../../actions/mentorActions";
+import { editProfile } from "../../actions/mentorActions";
 
-import avatar from "../../assets/img/thinking.svg";
+import avatar from "../../assets/img/user.svg";
 
 class EditProfile extends Component {
   constructor(props) {
@@ -37,7 +37,8 @@ class EditProfile extends Component {
       this.state.birthday,
       this.state.photo,
       this.state.ektp,
-      this.state.ektpNumber
+      this.state.ektpNumber,
+      this.state.certificate
     );
   };
 
@@ -48,7 +49,7 @@ class EditProfile extends Component {
     });
   };
   render() {
-    console.log(this.state);
+    console.log(this.props.mentor);
     return (
       <div className="content-admin">
         <div className="content-header">
@@ -120,11 +121,11 @@ class EditProfile extends Component {
             </FormGroup>
             <FormGroup>
               <Label for="ektimg">E-Ktp</Label>
-              {this.state.ektp !== undefined && (
+              {this.props.mentor !== undefined && (
                 <div id="ektimg">
                   <img
-                    src={this.state.ektp}
-                    alt={this.state.ektp}
+                    src={this.props.mentor.ektp}
+                    alt={this.props.mentor.ektp}
                     style={{ width: "50%" }}
                   />
                 </div>
@@ -140,11 +141,11 @@ class EditProfile extends Component {
 
             <FormGroup>
               <Label for="certificateimg">Certificate</Label>
-              {this.state.certificate !== undefined && (
+              {this.props.mentor !== undefined && (
                 <div id="certificateimg">
                   <img
-                    src={this.state.certificate[0]}
-                    alt={this.state.certificate[0]}
+                    src={this.props.mentor.certificate[0]}
+                    alt={this.props.mentor.certificate[0]}
                     style={{ width: "50%" }}
                   />
                 </div>
@@ -162,12 +163,12 @@ class EditProfile extends Component {
           </div>
           <div className="text-center">
             <div>
-              {this.state.photo === undefined ? (
+              {this.props.mentor === undefined ? (
                 <img src={avatar} alt={avatar} style={{ width: "60%" }} />
               ) : (
                 <img
-                  src={this.state.photo}
-                  alt={this.state.photo}
+                  src={this.props.mentor.photo}
+                  alt={this.props.mentor.photo}
                   style={{ width: "60%" }}
                 />
               )}
@@ -201,10 +202,10 @@ const mapDispatchToProps = dispatch => {
       birthday,
       photo,
       ektp = undefined,
-      ektpNumber
+      ektpNumber,
+      certificate
     ) =>
-      dispatch(editProfile(id, name, bio, birthday, photo, ektp, ektpNumber)),
-    getMentor: () => dispatch(getMentor())
+      dispatch(editProfile(id, name, bio, birthday, photo, ektp, ektpNumber, certificate))
   };
 };
 

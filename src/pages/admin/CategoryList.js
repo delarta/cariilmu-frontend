@@ -8,7 +8,10 @@ import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import paginationFactory from "react-bootstrap-table2-paginator";
 
 class CategoryList extends Component {
-  componentDidMount() {}
+  
+  componentDidMount() {
+    
+  }
 
   render() {
     const data = this.props.categories;

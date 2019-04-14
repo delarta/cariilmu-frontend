@@ -3,15 +3,33 @@ import BootstrapTable from "react-bootstrap-table-next";
 import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { connect } from "react-redux";
-import { setFinishedClass, getClass } from "../../actions/mentorActions";
+import { setFinishedClass } from "../../actions/mentorActions";
 import ModalAddClass from "../../components/ModalAddClass";
 import ModalEditClass from "../../components/ModalEditClass";
 import ModalShowStudents from "../../components/ModalShowStudentInClass";
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+
 class ClassListAdmin extends Component {
-  componentDidMount() {
-    this.props.getClass();
-  }
+  handleFinishedClass = id => {
+    MySwal.fire({
+      title: <p>Set class to finished ?</p>,
+      type: "question",
+      confirmButtonText: "Yes",
+      showCancelButton: true
+    }).then(result => {
+      if (result.value) {
+        this.props.setFinishedClass(id);
+        MySwal.fire({
+          title: <p>Class Finished</p>,
+          type: "success"
+        });
+      }
+    });
+  };
 
   render() {
     const data = this.props.classes.reverse();
@@ -41,7 +59,13 @@ class ClassListAdmin extends Component {
       {
         text: "Status",
         dataField: "status",
-        sort: true
+        sort: true,
+        formatter: (cell, row) =>
+          row.status === "finished" ? (
+            <span style={{ color: "red" }}>{row.status}</span>
+          ) : (
+            <span style={{ color: "green" }}>{row.status}</span>
+          )
       },
       {
         text: "Category",
@@ -57,9 +81,7 @@ class ClassListAdmin extends Component {
           if (row.status === "finished") {
             return (
               <div className="action-buttons">
-                <button className="btn btn-danger disabled">
-                  Finished
-                </button>
+                <button className="btn btn-danger disabled">Finished</button>
                 <ModalShowStudents classId={row._id} />
               </div>
             );
@@ -68,13 +90,12 @@ class ClassListAdmin extends Component {
               <div className="action-buttons">
                 <ModalEditClass classId={row._id} />
                 <button
-                  onClick={() => this.props.setFinishedClass(row._id)}
+                  onClick={() => this.handleFinishedClass(row._id)}
                   className="btn btn-warning"
                 >
                   <i className="ti-check" />
                 </button>
                 <ModalShowStudents classId={row._id} />
-
               </div>
             );
           }
@@ -117,8 +138,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setFinishedClass: id => dispatch(setFinishedClass(id)),
-    getClass: () => dispatch(getClass())
+    setFinishedClass: id => dispatch(setFinishedClass(id))
   };
 };
 

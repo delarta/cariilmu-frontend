@@ -5,7 +5,7 @@ const url = "https://cari-ilmu-test.herokuapp.com";
 export const signIn = (email, password) => {
   return dispatch => {
     axios
-      .post("https://cari-ilmu-test.herokuapp.com/admin/sign-in", {
+      .post(`${url}/admin/sign-in`, {
         email: email,
         password: password
       })
@@ -44,6 +44,24 @@ export const getClass = () => {
       .then(res => {
         dispatch({
           type: "FETCH_CLASS_ADMIN",
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
+export const deleteClass = (id) => {
+  return dispatch => {
+    axios({
+      method: "delete",
+      url: `${url}/admin/class/${id}`,
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+      .then(res => {
+        console.log(res)
+        dispatch({
+          type: "DELETE_CLASS_ADMIN",
           payload: res.data.data
         });
       })
@@ -119,6 +137,7 @@ export const editCategory = (id, name, photo) => {
       data: bodyFormData
     })
       .then(res => {
+        getMentors()
         console.log(res)
         dispatch({
           type: "EDIT_CATEGORY_ADMIN",
@@ -133,9 +152,38 @@ export const editCategory = (id, name, photo) => {
   };
 };
 
-export const delClass = id => {
-  return {
-    type: "DELETE_CLASS",
-    id
+export const verifyMentor = (id) => {
+  return dispatch => {
+    axios({
+      method: "put",
+      url: `${url}/admin/mentor/${id}/verify`,
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+      .then(res => {
+        console.log(res)
+        dispatch({
+          type: "VERIFY_MENTOR",
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
+
+export const deleteMentor = id => {
+  return dispatch => {
+    axios({
+      method: "delete",
+      url: `${url}/admin/mentor/${id}`,
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+    .then(res => {
+      console.log(res)
+      dispatch({
+        type: "DELETE_MENTOR",
+        payload: res.data.data
+      });
+    })
   };
 };

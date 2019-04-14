@@ -25,10 +25,9 @@ class ModalEditClass extends React.Component {
       name: classItem.name,
       info: classItem.info,
       schedule: classItem.schedule,
-      category: classItem.category,
+      category: classItem.category._id,
       fee: classItem.fee
     };
-
     this.toggle = this.toggle.bind(this);
   }
 
@@ -42,12 +41,13 @@ class ModalEditClass extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
+    let categoryObj = this.props.categories.filter(item => item._id === this.state.category)[0]
     this.props.editClass(
       this.props.classId,
       this.state.name,
       this.state.info,
       this.state.schedule,
-      this.state.category
+      categoryObj
     );
     this.props.getClass();
 
