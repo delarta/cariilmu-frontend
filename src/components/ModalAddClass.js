@@ -15,6 +15,8 @@ import { getCategories } from "../actions/mainActions";
 
 import { connect } from "react-redux";
 
+import DatePicker from "react-datepicker";
+
 class ModalAddClass extends React.Component {
   constructor(props) {
     super(props);
@@ -22,9 +24,10 @@ class ModalAddClass extends React.Component {
       modal: props.initialModalState,
       name: "",
       info: "",
-      schedule: "",
+      schedule: new Date(),
       fee: "",
-      category: ""
+      category: "",
+      image: ""
     };
 
     this.toggle = this.toggle.bind(this);
@@ -43,13 +46,18 @@ class ModalAddClass extends React.Component {
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = e => {
+    let categoryObj = this.props.categories.filter(
+      item => item._id === this.state.category
+    )[0];
+    console.log(categoryObj);
     e.preventDefault();
     this.props.addClass(
       this.state.name,
       this.state.info,
       this.state.schedule,
       this.state.fee,
-      this.state.category
+      categoryObj,
+      this.state.image
     );
 
     this.setState({
@@ -57,9 +65,17 @@ class ModalAddClass extends React.Component {
       info: "",
       schedule: "",
       fee: "",
-      category:""
+      category: "",
+      image: ""
     });
     this.toggle();
+  };
+
+  getPhoto = e => {
+    e.preventDefault();
+    this.setState({
+      [e.target.name]: e.target.files[0]
+    });
   };
 
   render() {
@@ -103,14 +119,20 @@ class ModalAddClass extends React.Component {
               </FormGroup>
               <FormGroup>
                 <Label for="schedule">Schedule</Label>
-                <Input
-                  onChange={this.onChange}
-                  value={this.state.schedule}
-                  type="date"
-                  name="schedule"
-                  id="schedule"
-                  required
-                />
+                <div>
+                  <DatePicker
+                    selected={this.state.schedule}
+                    dateFormat="yyyy/MM/dd"
+                    onChange={this.handleDate}
+                    showMonthDropdown
+                    showYearDropdown
+                    minDate={new Date()}
+                    dropdownMode="select"
+                    id="schedule"
+                    name="schedule"
+                    className="form-control"
+                  />
+                </div>
               </FormGroup>
               <FormGroup>
                 <Label for="fee">Fee (Rp) </Label>
@@ -126,9 +148,38 @@ class ModalAddClass extends React.Component {
               </FormGroup>
               <FormGroup>
                 <Label for="category">Category</Label>
-                <Input onChange={this.onChange} required type="select" defaultValue="0" name="category" id="category">
-                  {this.props.categories.map((category, index) =>  <option key={index} value={category._id}>{category.name}</option>)}
+                <Input
+                  onChange={this.onChange}
+                  required
+                  type="select"
+                  defaultValue={this.state.category}
+                  name="category"
+                  id="category"
+                >
+                  {this.props.categories.map((category, index) => (
+                    <option key={index} value={category._id}>
+                      {category.name}
+                    </option>
+                  ))}
                 </Input>
+              </FormGroup>
+              <FormGroup>
+                <Label for="image">Class Image</Label>
+                <br />
+                {/* <div id="photoimg">
+                  <img
+                    src={this.state.image}
+                    alt={this.state.image}
+                    style={{ width: "50%" }}
+                  />
+                </div> */}
+                <input
+                  type="file"
+                  onChange={this.getPhoto}
+                  name="image"
+                  id="image"
+                />
+                <label htmlFor="image">Upload Image</label>
               </FormGroup>
             </ModalBody>
             <ModalFooter>
@@ -147,13 +198,13 @@ class ModalAddClass extends React.Component {
 const mapStateToProps = state => {
   return {
     categories: state.main.categories
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
-    addClass: (name, info, schedule, fee, category) =>
-      dispatch(addClass(name, info, schedule, fee, category)),
+    addClass: (name, info, schedule, fee, category, image) =>
+      dispatch(addClass(name, info, schedule, fee, category, image)),
     getCategories: () => dispatch(getCategories())
   };
 };

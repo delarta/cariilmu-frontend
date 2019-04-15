@@ -30,7 +30,20 @@ class MentorListAdmin extends Component {
   };
 
   handleVerify = id => {
-    this.props.verifyMentor(id);
+    MySwal.fire({
+      title: <p>Verify mentor ?</p>,
+      type: "question",
+      confirmButtonText: "Yes",
+      showCancelButton: true
+    }).then(result => {
+      if (result.value) {
+        this.props.verifyMentor(id);
+        MySwal.fire({
+          title: <p>Mentor Verified</p>,
+          type: "success"
+        });
+      }
+    });
   };
 
   render() {

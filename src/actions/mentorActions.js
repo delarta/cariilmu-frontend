@@ -58,7 +58,7 @@ export const signUp = (name, username, email, password) => {
       .catch(err => {
         Swal.fire({
           title: "Signed Up Failed",
-          text: err.response.data.message,
+          text: err.response.data.data,
           type: "error"
         });
         console.log(err.response);
@@ -117,7 +117,7 @@ export const getClass = () => {
   };
 };
 
-export const addClass = (name, info, schedule, fee, category) => {
+export const addClass = (name, info, schedule, fee, category, image) => {
   return dispatch => {
     let bodyFormData = new FormData();
 
@@ -125,7 +125,8 @@ export const addClass = (name, info, schedule, fee, category) => {
     bodyFormData.set("info", info);
     bodyFormData.set("schedule", schedule);
     bodyFormData.set("fee", fee);
-    bodyFormData.set("category", category);
+    bodyFormData.set("category", category._id);
+    bodyFormData.append("image", image);
 
     axios({
       method: "post",
@@ -137,6 +138,7 @@ export const addClass = (name, info, schedule, fee, category) => {
       data: bodyFormData
     })
       .then(res => {
+        console.log(res)
         dispatch({
           type: "ADD_CLASS_MENTOR",
           payload: res.data.data
@@ -196,6 +198,7 @@ export const editProfile = (
   certificate
 ) => {
   return dispatch => {
+    
     let bodyFormData = new FormData();
 
     bodyFormData.set("name", name);
@@ -216,6 +219,7 @@ export const editProfile = (
       data: bodyFormData
     })
       .then(res => {
+        console.log(res)
         Swal.fire({
           title: "Profile Edited!",
           timer: 1000,

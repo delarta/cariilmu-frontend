@@ -49,7 +49,10 @@ class ClassListAdmin extends Component {
       {
         text: "Schedule",
         dataField: "schedule",
-        sort: true
+        sort: true,
+        formatter: (cell, row ) => (
+          <span>{new Date (row.schedule).toDateString()}</span>
+        )
       },
       {
         text: "Fee",
@@ -112,7 +115,14 @@ class ClassListAdmin extends Component {
           className="text-left"
           style={{ width: "100%", marginBottom: "1em" }}
         >
-          <ModalAddClass initialModalState={false} />
+          {this.props.mentor.verified ? (
+            <ModalAddClass initialModalState={false} />
+          ) : (
+            <div>
+              <button className="btn btn-disabled"><i className="ti ti-plus"/> Add Class</button>{" "}
+              <p className="mt-2"> <span style={{color:"red"}}>*</span> Please wait for admin's verification to add class</p>
+            </div>
+          )}
         </div>
         <div className="table-content">
           <BootstrapTable
@@ -134,7 +144,8 @@ class ClassListAdmin extends Component {
 
 const mapStateToProps = state => {
   return {
-    classes: state.mentor.classes
+    classes: state.mentor.classes,
+    mentor: state.mentor.mentor
   };
 };
 

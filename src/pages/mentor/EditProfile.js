@@ -49,7 +49,6 @@ class EditProfile extends Component {
     });
   };
   render() {
-    console.log(this.props.mentor);
     return (
       <div className="content-admin">
         <div className="content-header">

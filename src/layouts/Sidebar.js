@@ -14,6 +14,7 @@ class SideBar extends React.Component {
   };
   render() {
     const { role, mentor } = this.props;
+    console.log(mentor)
     let sidebarStyle =
       localStorage.getItem("role") === "mentor" ? "sidebar-mentor" : "sidebar";
     return (
@@ -29,8 +30,8 @@ class SideBar extends React.Component {
             tag="a"
             href="#"
           >
-            {localStorage.getItem("role") === "mentor" ? (
-              <img src={mentor.photo} alt="avatar" />
+            {localStorage.getItem("role") === "mentor" && mentor.photo? (
+              <img src={mentor.photo} alt={mentor.photo} />
             ) : (
               <img src={avatar} alt={avatar} />
             )}

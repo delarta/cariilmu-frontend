@@ -48,12 +48,21 @@ class ClassDetailPage extends Component {
     window.scrollTo(0, 0);
   }
   render() {
+    
     const { classId } = this.props.match.params;
+    const backgroundStyle = (image) =>{
+      return {
+        backgroundImage: `url(${image})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "105%",
+        backgroundPosition: "-5px"
+      }
+    }
     let classItem = this.props.classes
       .filter(item => item._id === classId)
       .map(item => (
         <Container key={item._id} className="my-5">
-          <div className="class-detail-banner">
+          <div className="class-detail-banner" style={backgroundStyle(item.image)}>
             <Container className="detail-banner-text">
               <h2>{item.name}</h2>
               <p className="class-fee">Price : Rp {item.fee}</p>

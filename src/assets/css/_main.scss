@@ -17,6 +17,8 @@ $maingrad: linear-gradient(
   rgba(79, 157, 166, 1) 70%
 );
 
+$orangegrad: linear-gradient(322deg, rgba(240,203,94,1) 0%, rgba(240,123,63,1) 53%);
+
 html {
   scroll-behavior: smooth;
 }
@@ -218,11 +220,11 @@ nav.navbar.navbar-dark {
     top: 0;
     left: 0;
     width: 100%;
-    height: 50vh;
+    height: 90vh;
     z-index: -1;
-    background-color: $blue;
-    -webkit-clip-path: ellipse(88% 76% at 50% 23%);
-    clip-path: ellipse(88% 76% at 50% 23%);
+    background: $maingrad;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 76%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 76%, 0% 100%);
   }
 
   .auth-page {
@@ -244,12 +246,14 @@ nav.navbar.navbar-dark {
 }
 
 .auth-banner.mentor {
-  background-color: $orange;
+//   background: rgb(240,203,94);
+// background: linear-gradient(322deg, rgba(240,203,94,1) 0%, rgba(240,123,63,1) 53%);
+background: $orangegrad;
 }
 
 .auth-admin {
   background: none;
-  background-color: $light;
+  background-color: $darkblue;
 }
 
 // Home-page
@@ -258,7 +262,7 @@ nav.navbar.navbar-dark {
   position: relative;
   z-index: 1;
   min-height: 50vh;
-  background-color: #f4f4f4;
+  background-color: $light;
   // background-image: url("../img/analysis.svg");
   background-repeat: no-repeat;
   background-position: bottom right;
@@ -395,6 +399,8 @@ section {
         color: $light;
         font-weight: 600;
         text-transform: uppercase;
+        text-align: left;
+
       }
       p {
         color: $dimlight;
@@ -574,7 +580,8 @@ footer {
   grid-template-columns: 1fr;
   background-color: $light;
   padding-bottom: 1em;
-  box-shadow: 0 2px 8px rgba($color: #141414, $alpha: 0.1);
+  // box-shadow: 0 2px 8px rgba($color: #141414, $alpha: 0.1);
+  transition: 250ms ease-out;
 
   h3 {
     text-transform: uppercase;
@@ -602,6 +609,10 @@ footer {
 }
 
 .class-item:hover {
+  -webkit-box-shadow: 0px 18px 90px -38px rgba(20,20,20,1);
+-moz-box-shadow: 0px 18px 90px -38px rgba(20,20,20,1);
+box-shadow: 0px 18px 90px -38px rgba(20,20,20,1);
+  transform: translateY(-4px);
   cursor: pointer;
   .class-img {
     img {
@@ -639,19 +650,12 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $blue;
+  background: $maingrad;
 
   .class-detail-banner {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     height: 55vh;
-    background-image: linear-gradient(
-        rgba($color: $darkblue, $alpha: 0.5),
-        rgba($color: $darkblue, $alpha: 0.5)
-      ),
-      url("../img/banner.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
     display: flex;
     align-items: flex-end;
 
@@ -1008,7 +1012,7 @@ footer {
     padding: 2em 0;
     .fitur-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: 1fr 1fr;
     }
   }
 
@@ -1125,6 +1129,17 @@ footer {
         h1 {
           font-size: 5em;
           font-weight: 600;
+        }
+      }
+    }
+  }
+  #download {
+  
+    .download-grid {
+      grid-template-columns: 1fr;
+      div {
+        img{
+          display: none;
         }
       }
     }

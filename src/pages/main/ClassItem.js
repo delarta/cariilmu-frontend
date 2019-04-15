@@ -15,7 +15,7 @@ componentDidMount(){
         return item.name.toLowerCase().indexOf(this.props.searchItem) !== -1;
       });
     } else {
-      filteredClass = this.props.classes.slice(0, 8);
+      filteredClass = this.props.classes.reverse().slice(0, 8);
     }
     return filteredClass.map(item => (
       <div className="class-item" key={item._id}>
@@ -27,7 +27,7 @@ componentDidMount(){
           <p className="class-mentor">{item.mentor.name}</p>
           <div className="class-grid">
             <p>
-              <i className="ti-calendar" /> Kamis, 1 November 2019{" "}
+              <i className="ti-calendar" /> {new Date (item.schedule).toDateString()}{" "}
             </p>
             <p>
               <i className="ti-alarm-clock" /> 15.00 - 19.00{" "}

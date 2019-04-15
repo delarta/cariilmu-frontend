@@ -12,6 +12,8 @@
     "react-bootstrap-table2-filter": "^1.1.8",
     "react-bootstrap-table2-paginator": "^2.0.5",
     "react-data-table-component": "^1.4.6",
+    "react-date-picker": "^7.5.0",
+    "react-datepicker": "^2.4.0",
     "react-dom": "^16.8.5",
     "react-redux": "^6.0.1",
     "react-router": "^5.0.0",
