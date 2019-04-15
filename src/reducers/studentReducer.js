@@ -1,6 +1,6 @@
 const initState = {
   todos: [],
-  user: {},
+  student: {},
   token: false,
   isAdmin: false,
   mentors: [],
@@ -133,12 +133,12 @@ const initState = {
 
 const studentReducer = (state = initState, action) => {
   switch (action.type) {
-    case "LOG_OUT":
+    case "FETCH_STUDENT_DATA":
       return {
         ...state,
-        user: { name: "", email: "", role: "guest" }
-      };
-    case "FETCH_CLASS":
+        student: action.payload
+      }
+    case "FETCH_CLASS_STUDENT":
       return state.classes;
     default:
       return state;

@@ -1,13 +1,8 @@
 import React, { Component } from "react";
-import {
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-} from "reactstrap";
+import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { connect } from "react-redux";
 import { signUp } from "../../actions/mentorActions";
+import { withRouter } from "react-router-dom";
 
 class SignupUser extends Component {
   constructor(props) {
@@ -122,7 +117,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(SignupUser);
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(SignupUser)
+);

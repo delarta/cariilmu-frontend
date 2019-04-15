@@ -11,7 +11,11 @@ import {
   Input
 } from "reactstrap";
 import { addClass } from "../actions/mentorActions";
+import { getCategories } from "../actions/mainActions";
+
 import { connect } from "react-redux";
+
+import DatePicker from "react-datepicker";
 
 class ModalAddClass extends React.Component {
   constructor(props) {
@@ -20,11 +24,17 @@ class ModalAddClass extends React.Component {
       modal: props.initialModalState,
       name: "",
       info: "",
-      schedule: "",
-      fee: ""
+      schedule: new Date(),
+      fee: "",
+      category: "",
+      image: ""
     };
 
     this.toggle = this.toggle.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getCategories();
   }
 
   toggle() {
@@ -36,28 +46,43 @@ class ModalAddClass extends React.Component {
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = e => {
+    let categoryObj = this.props.categories.filter(
+      item => item._id === this.state.category
+    )[0];
+    console.log(categoryObj);
     e.preventDefault();
     this.props.addClass(
       this.state.name,
       this.state.info,
       this.state.schedule,
-      this.state.fee
+      this.state.fee,
+      categoryObj,
+      this.state.image
     );
 
     this.setState({
       name: "",
       info: "",
       schedule: "",
-      fee: ""
+      fee: "",
+      category: "",
+      image: ""
     });
     this.toggle();
+  };
+
+  getPhoto = e => {
+    e.preventDefault();
+    this.setState({
+      [e.target.name]: e.target.files[0]
+    });
   };
 
   render() {
     return (
       <React.Fragment>
         <Button color="info" onClick={this.toggle}>
-          <i className="ti-plus"/> Add Class
+          <i className="ti-plus" /> Add Class
         </Button>
 
         <Modal
@@ -65,7 +90,7 @@ class ModalAddClass extends React.Component {
           toggle={this.toggle}
           className={this.props.className}
         >
-          <Form onSubmit={this.onSubmit}>
+          <Form onSubmit={this.onSubmit} encType="multipart/form-data">
             <ModalHeader toggle={this.toggle}>Add Class</ModalHeader>
             <ModalBody>
               <FormGroup>
@@ -77,6 +102,7 @@ class ModalAddClass extends React.Component {
                   name="name"
                   id="name"
                   placeholder="Your awesome class"
+                  required
                 />
               </FormGroup>
               <FormGroup>
@@ -88,17 +114,25 @@ class ModalAddClass extends React.Component {
                   name="info"
                   id="info"
                   placeholder="Class description"
+                  required
                 />
               </FormGroup>
               <FormGroup>
                 <Label for="schedule">Schedule</Label>
-                <Input
-                  onChange={this.onChange}
-                  value={this.state.schedule}
-                  type="date"
-                  name="schedule"
-                  id="schedule"
-                />
+                <div>
+                  <DatePicker
+                    selected={this.state.schedule}
+                    dateFormat="yyyy/MM/dd"
+                    onChange={this.handleDate}
+                    showMonthDropdown
+                    showYearDropdown
+                    minDate={new Date()}
+                    dropdownMode="select"
+                    id="schedule"
+                    name="schedule"
+                    className="form-control"
+                  />
+                </div>
               </FormGroup>
               <FormGroup>
                 <Label for="fee">Fee (Rp) </Label>
@@ -109,7 +143,43 @@ class ModalAddClass extends React.Component {
                   placeholder="type your fee"
                   onChange={this.onChange}
                   value={this.state.fee}
+                  required
                 />
+              </FormGroup>
+              <FormGroup>
+                <Label for="category">Category</Label>
+                <Input
+                  onChange={this.onChange}
+                  required
+                  type="select"
+                  defaultValue={this.state.category}
+                  name="category"
+                  id="category"
+                >
+                  {this.props.categories.map((category, index) => (
+                    <option key={index} value={category._id}>
+                      {category.name}
+                    </option>
+                  ))}
+                </Input>
+              </FormGroup>
+              <FormGroup>
+                <Label for="image">Class Image</Label>
+                <br />
+                {/* <div id="photoimg">
+                  <img
+                    src={this.state.image}
+                    alt={this.state.image}
+                    style={{ width: "50%" }}
+                  />
+                </div> */}
+                <input
+                  type="file"
+                  onChange={this.getPhoto}
+                  name="image"
+                  id="image"
+                />
+                <label htmlFor="image">Upload Image</label>
               </FormGroup>
             </ModalBody>
             <ModalFooter>
@@ -125,11 +195,21 @@ class ModalAddClass extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    addClass: (name, info, schedule, fee) =>
-      dispatch(addClass(name, info, schedule, fee))
+    categories: state.main.categories
   };
 };
 
-export default connect(null, mapDispatchToProps)(ModalAddClass);
+const mapDispatchToProps = dispatch => {
+  return {
+    addClass: (name, info, schedule, fee, category, image) =>
+      dispatch(addClass(name, info, schedule, fee, category, image)),
+    getCategories: () => dispatch(getCategories())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ModalAddClass);

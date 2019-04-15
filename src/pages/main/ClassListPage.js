@@ -8,6 +8,7 @@ import {
 } from "reactstrap";
 import ClassItem from "./ClassItem";
 import { connect } from "react-redux";
+import { getClass } from "../../actions/mainActions";
 
 class ClassListPage extends Component {
   constructor(props) {
@@ -16,6 +17,10 @@ class ClassListPage extends Component {
     this.state = {
       search: ""
     };
+  }
+
+  componentDidMount() {
+    this.props.getClass();
   }
 
   handleChange = e => {
@@ -43,7 +48,16 @@ class ClassListPage extends Component {
 }
 
 const mapStateToProps = state => {
-  return { classes: state.student.classes };
+  return { classes: state.main.classes };
 };
 
-export default connect(mapStateToProps)(ClassListPage);
+const mapDispatchToProps = dispatch => {
+  return {
+    getClass: () => dispatch(getClass())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ClassListPage);

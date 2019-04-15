@@ -46,3 +46,25 @@ export const signUp = (name, username, email, password) => {
       });
   };
 };
+
+
+export const getStudentData = () => {
+  return dispatch => {
+    axios({
+      method: 'get',
+      url: `${url}/student`,
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+      .then(res => {
+        console.log(res)
+        dispatch({
+          type: "FETCH_STUDENT_DATA",
+          payload: res.data.data
+        })
+      })
+      .catch(err => {
+        console.log(err.response);
+      });
+  };
+};
+

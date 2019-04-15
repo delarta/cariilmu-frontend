@@ -11,22 +11,24 @@ const adminReducer = (state = initState, action) => {
         ...state,
         mentors: action.payload
       };
-    case "CONFIRM_MENTOR_ADMIN":
+    case "VERIFY_MENTOR":
+      console.log(action.payload)
       return {
         ...state,
-        classes: [
-          ...state.classes.map(item => {
-            if (item._id === action.payload.id) {
-              item.name = action.payload.nb;
+        mentors: [
+          ...state.mentors.map(item => {
+            if (item._id === action.payload._id){
+              item.verified = action.payload.verified;
             }
-            return item;
+            return item
           })
         ]
-      };
-    case "DELETE_MENTOR_ADMIN":
+      }
+    case "DELETE_MENTOR":
+      console.log(action.payload)
       return {
         ...state,
-        mentors: [...state.classes.filter(item => item._id !== action.id)]
+        mentors: [...state.mentors.filter(item => item._id !== action.payload._id)]
       };
 
     case "FETCH_STUDENT_ADMIN":
@@ -40,11 +42,29 @@ const adminReducer = (state = initState, action) => {
         ...state,
         classes: action.payload
       };
+    case "DELETE_CLASS_ADMIN":
+    return {
+      ...state,
+        classes: [...state.classes.filter(item => item._id !== action.payload._id)]
+    }
 
     case "FETCH_CATEGORY_ADMIN":
       return {
         ...state,
         categories: action.payload
+      };
+    case "EDIT_CATEGORY_ADMIN":
+      return {
+        ...state,
+        categories: [
+          ...state.categories.map(item => {
+            if (item._id === action.payload.id) {
+              item.name = action.payload.name;
+              item.photo = action.payload.photo;
+            }
+            return item;
+          })
+        ]
       };
     default:
       return state;

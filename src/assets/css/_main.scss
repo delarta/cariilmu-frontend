@@ -1,14 +1,23 @@
 @import url("https://fonts.googleapis.com/css?family=Lato|Noto+Serif|Slabo+27px|Nunito");
 
 $orange: #f07b3f;
+$yellow: #f3ae4b;
 $blue: #4f9da6;
 $darkblue: #233142;
 $light: #fafafa;
 $red: #ff5959;
 $dimlight: rgba(
-  $color: #ffffff,
+  $color: #fafafa,
   $alpha: 0.8
 );
+$maingrad: linear-gradient(
+  322deg,
+  rgba(180, 243, 207, 1) 0%,
+  rgba(130, 200, 187, 0.8) 24%,
+  rgba(79, 157, 166, 1) 70%
+);
+
+$orangegrad: linear-gradient(322deg, rgba(240,203,94,1) 0%, rgba(240,123,63,1) 53%);
 
 html {
   scroll-behavior: smooth;
@@ -37,9 +46,16 @@ p {
 
 // form control
 
-.form-control{
-  background-color: #f1f1f1;
+.form-control {
+  background-color: #e5e5e5;
   border: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  // border-bottom: 2px solid $blue;
+
+  &:disabled {
+    border-bottom: 2px #e1e1e1 solid;
+  }
 }
 
 // input type file styling
@@ -51,11 +67,11 @@ p {
   padding: 0;
   position: absolute !important;
   white-space: nowrap;
-  width: 1px;  
+  width: 1px;
 }
 
 [type="file"] + label {
-  margin-top:1em;
+  margin-top: 1em;
   border-radius: 3px !important;
   padding: 0.5em 1em;
   text-transform: uppercase;
@@ -65,13 +81,13 @@ p {
   border-color: $orange;
   color: $light;
 }
- 
+
 [type="file"]:focus + label,
 [type="file"] + label:hover {
   cursor: pointer;
-  background-color: darken($orange, 10%);
+  background-color: darken($orange, 5%);
 }
- 
+
 [type="file"]:focus + label {
   outline: 1px dotted #000;
   outline: -webkit-focus-ring-color auto 5px;
@@ -79,58 +95,87 @@ p {
 
 // button style
 .btn {
-  border:none;
   border-radius: 3px !important;
   padding: 0.5em 1em;
   text-transform: uppercase;
   font-size: 1em;
-  box-shadow: 0 2px 8px rgba($color: #141414, $alpha: 0.1);
+  box-shadow: 2px 2px 10px rgba($color: #141414, $alpha: 0.1);
+  &.btn-outline-primary {
+    border: none;
+    background-color: $light;
+    color: $blue;
 
-  &.btn-primary {
-    background-color: $orange;
-  
-    &:hover{
-      background-color: darken($orange, 10%);
+    &:hover {
+      background-color: $dimlight;
+      transform: translateY(-2px);
     }
-    &:active{
+  }
+  &.btn-primary {
+    border: none;
+    background-color: $orange;
+
+    &:hover {
+      background-color: lighten($orange, 5%);
+      transform: translateY(-2px);
+    }
+    &:active {
       background-color: darken($orange, 15%) !important;
     }
-    &:focus{
+    &:focus {
       outline: none;
     }
   }
 
   &.btn.btn-info {
+    border: none;
+
+    // background-color: #706381;
+    // background-color: #774898;
     background-color: $blue;
+
     &:hover {
       background-color: darken($blue, 10%);
+      transform: translateY(-2px);
     }
-    &:active{
+    &:active {
       background-color: darken($blue, 15%) !important;
     }
-    &:focus{
+    &:focus {
       outline: none;
     }
   }
 
   &.btn.btn-danger {
+    border: none;
+
     background-color: $red;
+    &.disabled {
+      cursor: default;
+
+      &:hover {
+        background-color: $red;
+      }
+      &:active {
+        background-color: $red;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
     &:hover {
       background-color: darken($red, 10%);
+      transform: translateY(-2px);
     }
-    &:active{
+    &:active {
       background-color: darken($red, 15%) !important;
     }
-    &:focus{
+    &:focus {
       outline: none;
     }
   }
 }
 
-
-
-
-
+// height
 .vh-100 {
   min-height: 100vh;
 }
@@ -175,11 +220,11 @@ nav.navbar.navbar-dark {
     top: 0;
     left: 0;
     width: 100%;
-    height: 50vh;
+    height: 90vh;
     z-index: -1;
-    background-color: $blue;
-    -webkit-clip-path: ellipse(88% 76% at 50% 23%);
-    clip-path: ellipse(88% 76% at 50% 23%);
+    background: $maingrad;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 76%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 76%, 0% 100%);
   }
 
   .auth-page {
@@ -201,12 +246,14 @@ nav.navbar.navbar-dark {
 }
 
 .auth-banner.mentor {
-  background-color: $orange;
+//   background: rgb(240,203,94);
+// background: linear-gradient(322deg, rgba(240,203,94,1) 0%, rgba(240,123,63,1) 53%);
+background: $orangegrad;
 }
 
 .auth-admin {
   background: none;
-  background-color: $red;
+  background-color: $darkblue;
 }
 
 // Home-page
@@ -215,7 +262,7 @@ nav.navbar.navbar-dark {
   position: relative;
   z-index: 1;
   min-height: 50vh;
-  background-color: #f4f4f4;
+  background-color: $light;
   // background-image: url("../img/analysis.svg");
   background-repeat: no-repeat;
   background-position: bottom right;
@@ -321,17 +368,20 @@ section {
 }
 
 #banner {
-  background-image: linear-gradient(
-      rgba($color: $blue, $alpha: 0.9),
-      rgba($color: $blue, $alpha: 0.9)
+  background: rgb(180, 243, 207);
+  background: linear-gradient(
+      322deg,
+      rgba(180, 243, 207, 1) 0%,
+      rgba(130, 200, 187, 0.8) 24%,
+      rgba(79, 157, 166, 1) 70%
     ),
     url("../img/banner.jpg");
+
   background-size: cover;
-  background-attachment: fixed;
   min-height: 100vh;
   background-size: cover;
-  -webkit-clip-path: ellipse(88% 76% at 50% 23%);
-  clip-path: ellipse(88% 76% at 50% 23%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 76%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 76%, 0% 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -339,6 +389,7 @@ section {
   .banner-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
+    grid-gap: 1em;
 
     .banner-text {
       text-align: justify;
@@ -347,6 +398,9 @@ section {
       h2 {
         color: $light;
         font-weight: 600;
+        text-transform: uppercase;
+        text-align: left;
+
       }
       p {
         color: $dimlight;
@@ -356,6 +410,25 @@ section {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: 1em;
+        width: 70%;
+      }
+    }
+
+    .banner-img {
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+#about-us {
+  .content {
+    padding: 5em;
+    div {
+      h2 {
+        font-weight: 700;
+        text-transform: uppercase;
       }
     }
   }
@@ -385,6 +458,13 @@ section {
       color: rgba($color: $darkblue, $alpha: 0.5);
     }
 
+    div {
+      i {
+        font-size: 5rem;
+        color: $orange;
+      }
+    }
+
     img {
       width: 60%;
     }
@@ -400,7 +480,7 @@ section {
     div {
       align-self: center;
       img {
-        width: 60%;
+        width: 90%;
       }
       h3 {
         text-transform: uppercase;
@@ -500,7 +580,8 @@ footer {
   grid-template-columns: 1fr;
   background-color: $light;
   padding-bottom: 1em;
-  box-shadow: 0 2px 8px rgba($color: #141414, $alpha: 0.1);
+  // box-shadow: 0 2px 8px rgba($color: #141414, $alpha: 0.1);
+  transition: 250ms ease-out;
 
   h3 {
     text-transform: uppercase;
@@ -528,6 +609,10 @@ footer {
 }
 
 .class-item:hover {
+  -webkit-box-shadow: 0px 18px 90px -38px rgba(20,20,20,1);
+-moz-box-shadow: 0px 18px 90px -38px rgba(20,20,20,1);
+box-shadow: 0px 18px 90px -38px rgba(20,20,20,1);
+  transform: translateY(-4px);
   cursor: pointer;
   .class-img {
     img {
@@ -565,19 +650,12 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $blue;
+  background: $maingrad;
 
   .class-detail-banner {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     height: 55vh;
-    background-image: linear-gradient(
-        rgba($color: $darkblue, $alpha: 0.5),
-        rgba($color: $darkblue, $alpha: 0.5)
-      ),
-      url("../img/banner.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
     display: flex;
     align-items: flex-end;
 
@@ -648,9 +726,15 @@ footer {
   }
 }
 
+.table-content {
+  max-width: calc(100vw - 1em);
+  overflow-x: scroll;
+}
+
 // Admin Page
 #admin-page {
   min-height: 100vh;
+  background-color: #f0f0f0;
 
   .admin-grid {
     display: grid;
@@ -670,7 +754,7 @@ footer {
     border-radius: 5px;
     display: flex;
     align-items: center;
-    padding-left: 1em;
+    margin-top: 1.5em;
 
     h1 {
       text-transform: uppercase;
@@ -692,14 +776,25 @@ footer {
       align-items: center;
       border-radius: 5px;
       min-height: 200px;
-      background-color: $blue;
+      background-color: $dimlight;
       color: $light;
+      border-bottom: 2px solid $blue;
 
       h1 {
         font-size: 10em;
         font-weight: 600;
       }
     }
+  }
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0.5em;
+
+  .btn {
+    padding: 0.25em 0.5em;
   }
 }
 
@@ -713,11 +808,11 @@ footer {
     width: 100%;
     min-height: 100px;
     background-color: transparent;
+    margin-top: 1.5em;
     margin-bottom: 1em;
     border-radius: 5px;
     display: flex;
     align-items: center;
-    padding-left: 1em;
     justify-self: flex-start;
 
     h1 {
@@ -727,11 +822,12 @@ footer {
       font-weight: 600;
     }
   }
-  .content-body{
-    width:100%;
+  .content-body {
+    width: 100%;
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-gap: 1em
+    grid-gap: 1em;
+    padding-bottom: 1em;
   }
 }
 
@@ -757,7 +853,7 @@ footer {
       }
     }
 
-    #avatar-logo{
+    #avatar-logo {
       text-align: center;
     }
 
@@ -777,13 +873,17 @@ footer {
   min-height: 100vh;
   height: 100%;
 
-  background-color: $blue;
+  background-color: $light;
 
   .list-group {
     .list-group-item {
       background-color: transparent;
-      color: $light;
+      color: $darkblue;
       text-decoration: none;
+      border: none;
+      transition: 180ms ease background;
+      border-bottom: 1px rgba($color: $darkblue, $alpha: 0.1) solid;
+
       img {
         width: 50%;
       }
@@ -792,25 +892,30 @@ footer {
         margin-right: 1em;
       }
     }
-    #avatar-logo{
+    .active-sidebar {
+      background-color: darken($dimlight, 10%);
+      border-bottom: 2px $orange solid;
+      box-shadow: 0 2px 5px rgba($color: #141414, $alpha: 0.2);
+    }
+    #avatar-logo {
       text-align: center;
       border-bottom: none;
 
-      img{
+      img {
         object-fit: cover;
-        height:120px;
-        width:120px;
+        height: 120px;
+        width: 120px;
         border-radius: 50%;
       }
     }
-    #avatar-name{
+    #avatar-name {
       border-top: none;
       text-align: center;
+      text-transform: uppercase;
     }
     .list-group-item:hover {
-      background-color: $darkblue;
-      color: $light;
-      text-decoration: none;
+      background-color: darken($dimlight, 10%);
+      color: $darkblue;
     }
 
     .list-group-item.logout:hover {
@@ -847,12 +952,21 @@ footer {
 }
 
 @media only screen and (max-width: 768px), only screen and (max-height: 500px) {
+  table.table-striped.table-hover.table-bordered {
+    width: auto;
+  }
+
+  #sidebar-mentor {
+    min-height: 0;
+    max-height: 100vh;
+  }
+
   nav.navbar.navbar-dark {
     position: fixed;
     width: 100%;
     min-height: 10vh;
-    background-color: $darkblue !important;
-    box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.2);
+    background-color: $blue !important;
+    box-shadow: 0 2px 5px rgba($color: #141414, $alpha: 0.2);
   }
 
   #banner {
@@ -862,6 +976,12 @@ footer {
       grid-template-columns: 1fr;
       .banner-img {
         display: none;
+      }
+      .banner-text {
+        .banner-buttons {
+          width: 100%;
+          grid-template-columns: 1fr;
+        }
       }
     }
   }
@@ -873,6 +993,11 @@ footer {
       .auth-page-content {
         min-width: 100%;
       }
+    }
+  }
+  #admin-page {
+    .admin-grid {
+      grid-template-columns: 1fr;
     }
   }
 
@@ -887,7 +1012,7 @@ footer {
     padding: 2em 0;
     .fitur-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: 1fr 1fr;
     }
   }
 
@@ -973,6 +1098,49 @@ footer {
       padding-right: 1em;
       .btn {
         width: 100%;
+      }
+    }
+  }
+
+  #admin-dashboard {
+    margin: 0;
+    .dashboard-header {
+      width: 100%;
+      justify-content: center;
+
+      h1 {
+        font-size: 2em;
+      }
+    }
+    .dashboard-content {
+      grid-template-columns: 1fr;
+      div {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        min-height: 200px;
+        background-color: $dimlight;
+        color: $light;
+        border-bottom: 2px solid $blue;
+
+        h1 {
+          font-size: 5em;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  #download {
+  
+    .download-grid {
+      grid-template-columns: 1fr;
+      div {
+        img{
+          display: none;
+        }
       }
     }
   }

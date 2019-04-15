@@ -8,13 +8,16 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem} from 'reactstrap';
+  DropdownItem
+} from "reactstrap";
 
 import logo from "../assets/img/logo_light_inline.png";
 import avatar from "../assets/img/thinking.svg";
 
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+
+import { getStudentData } from "../actions/studentActions";
 
 class NavbarSignIn extends React.Component {
   constructor(props) {
@@ -32,7 +35,9 @@ class NavbarSignIn extends React.Component {
     });
   }
 
-  componentDidMount(){
+  componentDidMount() {
+    this.props.getStudentData();
+
     window.onscroll = () => {
       if (window.innerWidth > 768) {
         if (window.pageYOffset >= 60) {
@@ -55,46 +60,42 @@ class NavbarSignIn extends React.Component {
   }
 
   render() {
-    
+    console.log(this.props.student);
     return (
       <Navbar dark expand="md">
-          <Link className="navbar-brand" to="/">
-            <img style={{ width: "150px" }} src={logo} alt={logo} />
-          </Link>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <Link to='/class' className="nav-link">
-                  Classes
+        <Link className="navbar-brand" to="/">
+          <img style={{ width: "150px" }} src={logo} alt={logo} />
+        </Link>
+        <NavbarToggler onClick={this.toggle} />
+        <Collapse isOpen={this.state.isOpen} navbar>
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <Link to="/class" className="nav-link">
+                Classes
+              </Link>
+            </NavItem>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                {this.props.role}
+              </DropdownToggle>
+              <DropdownMenu right>
+                <Link to="/profile" className="dropdown-item">
+                  <img src={avatar} alt={avatar} />
                 </Link>
-              </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  {this.props.user.name}
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <Link to='/profile' className="dropdown-item">
-                    <img src={avatar} alt={avatar}/>
-                  </Link>
-                  <Link to='/profile' className="dropdown-item disabled">
-                    {this.props.user.name}
-                  </Link>
-                  <DropdownItem divider />
-                  <Link to='/schedule' className="dropdown-item">
-                    Schedule
-                  </Link>
-                  <button onClick={this.props.signOut} className="dropdown-item">
-                    Logout
-                  </button>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-              <NavItem>
-                
-                
-              </NavItem>
-            </Nav>
-          </Collapse>
+                <Link to="/profile" className="dropdown-item disabled">
+                  {this.props.role.name}
+                </Link>
+                <DropdownItem divider />
+                <Link to="/schedule" className="dropdown-item">
+                  Schedule
+                </Link>
+                <button onClick={this.props.signOut} className="dropdown-item">
+                  Logout
+                </button>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </Nav>
+        </Collapse>
       </Navbar>
     );
   }
@@ -102,13 +103,18 @@ class NavbarSignIn extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.student.user
-  }
-}
+    role: state.auth.role,
+    student: state.student.student
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
-    signOut: () => dispatch({type: "SIGN_OUT"})
-  }
-}
-export default connect(mapStateToProps,mapDispatchToProps)(NavbarSignIn);
+    signOut: () => dispatch({ type: "SIGN_OUT" }),
+    getStudentData: () => dispatch(getStudentData())
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NavbarSignIn);

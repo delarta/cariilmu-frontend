@@ -17,7 +17,6 @@ import SignInPage from "./pages/student/SignInPage";
 import SignUpPage from "./pages/student/SignUpPage";
 
 import { getRole } from "./actions/mainActions";
-
 import { connect } from "react-redux";
 
 class App extends Component {
