@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import { Button } from "reactstrap";
-import Logo from "../../assets/img/schedule.jpg";
-
-import ModalConfirmation from "../../components/ModalConfirmation";
+import { Table } from "reactstrap";
 import { connect } from "react-redux";
 import { getClass } from "../../actions/mainActions";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import "./SchedulePage.scss";
 
@@ -17,30 +15,41 @@ class SchedulePage extends Component {
     console.log(this.props.classes);
     return (
       <div className="sectio">
+        <div className="box2"> 
+            <h2 style={{textShadow: "-1px -2px 2px #233142", color:"white"}}> My Schedule</h2>
+        </div>
+
         <div className="box1">
-        {this.props.classes.map((item, index) => {
-          return (
-            <div key={index}className="class-box">
-            <div className="img1">
-              <img src={Logo} alt={Logo} />
-            </div>
-            <h2> {item.name}</h2>
-            <p>
-              <i className="ti-calendar" /> {item.schedule}{" "}
-            </p>
-            <p>
-              <i className="ti-alarm-clock" /> {item.durationInMinutes}{" "}
-            </p>
-            <ModalConfirmation initialState={false} />
-          </div>
-          )
-
-        })
+              <Table bordered className="table">
+                      <thead style={{backgroundColor:"#4f9da6", borderRadius:"3%"}}>
+                        <tr>
+                          <th>NO</th>
+                          <th>CLASS NAME</th>
+                          <th>MENTOR</th>
+                          <th>SCHEDULE DATE</th>
+                          <th>DURATION TIME</th>
+                          <th>STATUS</th>
+                        </tr>
+                      </thead>
+                      { 
+                        this.props.classes.map((item, index) => {
+                        return(
+                          <tbody key={index} style={{backgroundColor:"white"}}>
+                          <tr>
+                            <th scope="row"> </th>
+                            <td>{item.name}</td>
+                            <td> </td>
+                            <td>{item.schedule}</td>
+                            <td>{item.durationInMinutes}</td>
+                            <td>{item.status}</td>
+                          </tr>
+                        </tbody>
+                        )
+                      })
+                    }
+                     
+              </Table>
           
-        }
-          
-
-        
         </div>
       </div>
     );

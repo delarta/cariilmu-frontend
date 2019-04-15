@@ -133,13 +133,11 @@ const initState = {
 
 const studentReducer = (state = initState, action) => {
   switch (action.type) {
-    case "LOG_OUT":
+    case "FETCH_CLASS_STUDENT":
       return {
         ...state,
-        user: { name: "", email: "", role: "guest" }
+        classes: action.payload
       };
-    case "FETCH_CLASS":
-      return state.classes;
     default:
       return state;
   }

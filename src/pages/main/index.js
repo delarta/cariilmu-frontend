@@ -9,6 +9,7 @@ import ClassDetail from "./ClassDetailPage";
 import ConfirmationPage from '../mentor/ConfirmationPage';
 import PaymentPage from '../mentor/PaymentPage';
 import SchedulePage from '../student/SchedulePage';
+import Cart from '../student/cart';
 
 export default class index extends Component {
   render() {
@@ -23,6 +24,7 @@ export default class index extends Component {
         <Route exact path="/confirmation" component={ConfirmationPage} />
         <Route exact path="/payment" component={PaymentPage} />
         <Route exact path="/schedule" component={SchedulePage} />
+        <Route exact path="/cart" component={Cart} />
       </React.Fragment>
     );
   }

@@ -128,20 +128,6 @@ class ClassDetailPage extends Component {
                     </FormGroup>
 
                     <FormGroup row>
-                      <Label for="code" sm={3}>
-                        Code
-                      </Label>
-                      <Col sm={9}>
-                        <Input
-                          type="code"
-                          name="code"
-                          id="code"
-                          placeholder=""
-                        />
-                      </Col>
-                    </FormGroup>
-
-                    <FormGroup row>
                       <Label for="price" sm={3}>
                         Price
                       </Label>
@@ -188,7 +174,7 @@ class ClassDetailPage extends Component {
                     </FormGroup>
                   </ModalBody>
                   <ModalFooter>
-                    <Link to="/schedule" className="btn btn-primary">
+                    <Link to="/cart" className="btn btn-primary">
                       Confirm <i className="ti-angle-double-right" />
                     </Link>
                   </ModalFooter>

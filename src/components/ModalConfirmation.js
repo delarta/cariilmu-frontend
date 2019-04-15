@@ -6,14 +6,13 @@ import {
   ModalFooter,
   Input,
   Label,
-  FormText,
+  Form,
   FormGroup,
   Col,
   Button
 } from "reactstrap";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default class ModalConfirmation extends Component {
   constructor(props) {
@@ -48,7 +47,7 @@ export default class ModalConfirmation extends Component {
       <div>
         <Button color="danger" onClick={this.toggle}>
           {" "}
-          Pending
+          Unpaid
         </Button>
 
         <Modal
@@ -59,6 +58,7 @@ export default class ModalConfirmation extends Component {
         >
           <ModalHeader toggle={this.toggle}> CONFIRMATION</ModalHeader>
           <ModalBody>
+            <Form>
             <FormGroup row>
               <Label for="id" sm={3}>
                 ID Tranaksi
@@ -114,13 +114,11 @@ export default class ModalConfirmation extends Component {
                 File
               </Label>
               <Col sm={9}>
-              <Input type="file" name="file" id="exampleFile" />
-              <FormText color="muted">
-                This is some placeholder block-level help text for the above input.
-                It's a bit lighter and easily wraps to a new line.
-              </FormText>
+                <Input type="file" name="file" id="exampleFile" />
+                <label htmlFor="exampleFile">upload</label>
               </Col>
-        </FormGroup>
+            </FormGroup>
+            </Form>
           </ModalBody>
           <ModalFooter>
             <Button className="btn btn-primary" onClick={this.toggle}>
