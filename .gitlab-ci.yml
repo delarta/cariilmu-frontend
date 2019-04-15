@@ -33,6 +33,8 @@ deploy-to-staging:
     - apt-get install -y ruby ruby-dev rubygems-integration
     - gem install dpl
     - dpl --provider=heroku --app=$HEROKU_STAGING_APP --api-key=$HEROKU_API_KEY
+  only:
+    - develop
 
     
 deploy-production:
@@ -47,5 +49,4 @@ deploy-production:
     - gem install dpl
     - dpl --provider=heroku --app=$HEROKU_PRODUCTION_APP --api-key=$HEROKU_API_KEY
   only:
-    - deploy
     - master
