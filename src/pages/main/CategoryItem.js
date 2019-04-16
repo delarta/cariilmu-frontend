@@ -12,7 +12,6 @@ class CategoryItem extends Component {
 
   render() {
     const categories = this.props.categories;
-    console.log(categories)
     return categories.map((item, index) => (
       <Card key={index} className="category-item">
         <i className={item.image} />

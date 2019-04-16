@@ -1,36 +1,49 @@
 import axios from "axios";
 import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const url = "https://cari-ilmu-test.herokuapp.com";
 
 export const signIn = (email, password) => {
   return dispatch => {
-    axios
-      .post(`${url}/mentor/sign-in`, {
-        email: email,
-        password: password
-      })
-      .then(res => {
-        Swal.fire({
-          title: "Signed In",
-          timer: 1500,
-          type: "success",
-          text: `Welcome, ${res.data.data.name}`
+    MySwal.fire({
+      title: "Please Wait",
+      timer: 2000,
+      toast: true,
+      onBeforeOpen: () => {
+        MySwal.showLoading();
+        return axios
+        .post(`${url}/mentor/sign-in`, {
+          email: email,
+          password: password
+        })
+        .then(res => {
+          MySwal.fire({
+            title: "Signed In",
+            timer: 1500,
+            type: "success",
+            text: `Welcome, ${res.data.data.name}`
+          });
+          dispatch({
+            type: "SIGN_IN",
+            email,
+            password,
+            response: res.data
+          });
+        })
+        .catch(err => {
+          MySwal.fire({
+            title: "Sign In Failed !",
+            text: err.response.data.message,
+            type: "error"
+          });
+          console.log(err.response);
         });
-        dispatch({
-          type: "SIGN_IN",
-          email,
-          password,
-          response: res.data
-        });
-      })
-      .catch(err => {
-        Swal.fire({
-          title: "Wrong Username or Password",
-          type: "error"
-        });
-        console.log(err.response);
-      });
+      }
+    });
+    
   };
 };
 

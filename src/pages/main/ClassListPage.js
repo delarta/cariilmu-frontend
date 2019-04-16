@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import {
   Container,
-  InputGroup,
-  Input,
-  InputGroupAddon,
-  Button
+  Input
 } from "reactstrap";
 import ClassItem from "./ClassItem";
 import { connect } from "react-redux";
 import { getClass } from "../../actions/mainActions";
+import Header from "../../layouts/Header";
 
 class ClassListPage extends Component {
   constructor(props) {
@@ -28,21 +26,27 @@ class ClassListPage extends Component {
   };
   render() {
     return (
-      <div className="class-page">
-        <div className="container">
-          <InputGroup size="lg">
-            <Input onChange={this.handleChange} placeholder="Search" />
-            <InputGroupAddon addonType="append">
-              <Button color="primary">
-                <i className="ti-search" /> Search{" "}
-              </Button>
-            </InputGroupAddon>
-          </InputGroup>
-          <Container className="class-page-content mt-2 mb-5">
-            <ClassItem searchItem={this.state.search} />
-          </Container>
+      <React.Fragment>
+        <Header />
+        <div className="class-page">
+          <div>
+            <div className="search">
+              <Container>
+                
+                <Input onChange={this.handleChange} placeholder="Search Class..." />
+                
+              </Container>
+              
+            </div>
+
+            <Container>
+              <Container className="class-page-content mb-5">
+                <ClassItem searchItem={this.state.search} />
+              </Container>
+            </Container>
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

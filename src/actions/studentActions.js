@@ -1,70 +1,110 @@
 import axios from "axios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const url = "https://cari-ilmu-test.herokuapp.com";
 
 export const signIn = (email, password) => {
   return dispatch => {
-    axios
-      .post(`${url}/student/sign-in`, {
-        email: email,
-        password: password
-      })
-      .then(res => {
-        dispatch({
-          type: "SIGN_IN",
-          email,
-          password,
-          response: res.data
-        });
-      })
-      .catch(err => {
-        console.log(err.response);
-      });
+    MySwal.fire({
+      title: "Please Wait",
+      timer: 2000,
+      toast: true,
+      onBeforeOpen: () => {
+        MySwal.showLoading();
+        return axios
+          .post(`${url}/student/sign-in`, {
+            email: email,
+            password: password
+          })
+          .then(res => {
+            MySwal.fire({
+              title: "You are Signed In!",
+              type: "success",
+              timer: 1500
+            });
+            dispatch({
+              type: "SIGN_IN",
+              email,
+              password,
+              response: res.data
+            });
+          })
+          .catch(err => {
+            console.log(err.response);
+            MySwal.fire({
+              title: "Sign In Failed",
+              text: err.response.data.message,
+              type: "error",
+              timer: 2000
+            });
+          });
+      }
+    });
   };
 };
 
-export const signUp = (name, username, email, password) => {
+export const signUp = (name, username, email, password, redirectOnSuccess) => {
   return dispatch => {
-    axios
-      .post(`${url}/student/sign-up`, {
-        name,
-        username,
-        email,
-        password
-      })
-      .then(res => {
-        dispatch({
-          type: "SIGN_UP",
-          name,
-          username,
-          email,
-          password
-        });
-      })
-      .catch(err => {
-        console.log(err.response);
-      });
+    MySwal.fire({
+      title: "Please Wait",
+      timer: 2000,
+      toast: true,
+      onBeforeOpen: () => {
+        MySwal.showLoading();
+        return axios
+          .post(`${url}/student/sign-up`, {
+            name,
+            username,
+            email,
+            password
+          })
+          .then(res => {
+            MySwal.fire({
+              title: "You Are Signed Up!",
+              type: "success",
+              timer: 1500
+            });
+            redirectOnSuccess();
+            dispatch({
+              type: "SIGN_UP",
+              name,
+              username,
+              email,
+              password
+            });
+          })
+          .catch(err => {
+            MySwal.fire({
+              title: "Sign Up Failed",
+              text: err.response.data.message,
+              type: "error"
+            });
+            console.log(err.response);
+          });
+      }
+    });
   };
 };
-
 
 export const getStudentData = () => {
   return dispatch => {
     axios({
-      method: 'get',
+      method: "get",
       url: `${url}/student`,
       headers: { Authorization: localStorage.getItem("token") }
     })
       .then(res => {
-        console.log(res)
+        console.log(res);
         dispatch({
           type: "FETCH_STUDENT_DATA",
           payload: res.data.data
-        })
+        });
       })
       .catch(err => {
         console.log(err.response);
       });
   };
 };
-

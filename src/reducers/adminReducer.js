@@ -53,6 +53,11 @@ const adminReducer = (state = initState, action) => {
         ...state,
         categories: action.payload
       };
+      case "ADD_CATEGORY_ADMIN":
+      return {
+        ...state,
+        categories: [...state.categories, action.payload]
+      };
     case "EDIT_CATEGORY_ADMIN":
       return {
         ...state,
