@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import { editProfile } from "../../actions/mentorActions";
+import DatePicker from "react-datepicker";
 
 import avatar from "../../assets/img/user.svg";
 
@@ -17,7 +18,7 @@ class EditProfile extends Component {
       username: mentor_profile.username,
       email: mentor_profile.email,
       bio: mentor_profile.bio,
-      birthday: mentor_profile.birthday,
+      birthday: new Date(mentor_profile.birthday),
       certificate: mentor_profile.certificate,
       ektpNumber: mentor_profile.ektpNumber,
       ektp: mentor_profile.ektp,
@@ -30,17 +31,31 @@ class EditProfile extends Component {
 
   onSubmit = e => {
     e.preventDefault();
+    let certificate = "";
+
+    if (this.state.certificate === this.props.mentor.certificate) {
+      certificate = null;
+    } else {
+      certificate = this.state.certificate;
+    }
     this.props.editProfile(
       this.state.id,
       this.state.name,
       this.state.bio,
-      this.state.birthday,
+      this.state.birthday.toString(),
       this.state.photo,
       this.state.ektp,
       this.state.ektpNumber,
-      this.state.certificate
+      certificate
     );
   };
+  handleDate = date => {
+    this.setState({ birthday: date });
+  };
+
+  componentDidMount() {
+    console.log(this.props.mentor);
+  }
 
   getPhoto = e => {
     e.preventDefault();
@@ -100,13 +115,19 @@ class EditProfile extends Component {
 
             <FormGroup>
               <Label for="birthday">Birthdate</Label>
-              <Input
-                onChange={this.onChange}
-                value={this.state.birthday}
-                type="date"
-                name="birthday"
-                id="birthday"
-              />
+              <div>
+                <DatePicker
+                  selected={this.state.birthday}
+                  onChange={this.handleDate}
+                  showMonthDropdown
+                  showYearDropdown
+                  dropdownMode="select"
+                  maxDate={new Date()}
+                  id="birthday"
+                  name="birthday"
+                  className="form-control"
+                />
+              </div>
             </FormGroup>
             <FormGroup>
               <Label for="ektpNumber">E-Ktp Number</Label>
@@ -140,15 +161,18 @@ class EditProfile extends Component {
 
             <FormGroup>
               <Label for="certificateimg">Certificate</Label>
-              {this.props.mentor !== undefined && (
-                <div id="certificateimg">
-                  <img
-                    src={this.props.mentor.certificate[0]}
-                    alt={this.props.mentor.certificate[0]}
-                    style={{ width: "50%" }}
-                  />
-                </div>
-              )}
+              <div id="certificateimg">
+                {this.props.mentor !== undefined &&
+                  this.props.mentor.certificate.map((item, index) => (
+                    <img
+                      key={index}
+                      src={item}
+                      alt={item}
+                      style={{ width: "50%" }}
+                    />
+                  ))}
+              </div>
+
               <input
                 type="file"
                 onChange={this.getPhoto}
@@ -204,7 +228,18 @@ const mapDispatchToProps = dispatch => {
       ektpNumber,
       certificate
     ) =>
-      dispatch(editProfile(id, name, bio, birthday, photo, ektp, ektpNumber, certificate))
+      dispatch(
+        editProfile(
+          id,
+          name,
+          bio,
+          birthday,
+          photo,
+          ektp,
+          ektpNumber,
+          certificate
+        )
+      )
   };
 };
 

@@ -27,6 +27,9 @@ const mentorReducer = (state = initState, action) => {
               item.info = action.payload.info;
               item.schedule = action.payload.schedule;
               item.category = action.payload.category;
+              item.image = action.payload.image;
+              item.startTime = action.payload.startTime;
+              item.endTime = action.payload.endTime;
             }
             return item;
           })

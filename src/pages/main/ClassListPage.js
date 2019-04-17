@@ -29,7 +29,7 @@ class ClassListPage extends Component {
       <React.Fragment>
         <Header />
         <div className="class-page">
-          <div>
+          <div className="class-container">
             <div className="search">
               <Container>
                 

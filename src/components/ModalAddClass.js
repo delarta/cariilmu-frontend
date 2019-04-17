@@ -12,10 +12,10 @@ import {
 } from "reactstrap";
 import { addClass } from "../actions/mentorActions";
 import { getCategories } from "../actions/mainActions";
-
 import { connect } from "react-redux";
-
 import DatePicker from "react-datepicker";
+import setMinutes from "date-fns/set_minutes";
+import setHours from "date-fns/set_hours";
 
 class ModalAddClass extends React.Component {
   constructor(props) {
@@ -25,9 +25,12 @@ class ModalAddClass extends React.Component {
       name: "",
       info: "",
       schedule: new Date(),
+      startTime: new Date(),
+      endTime: new Date(),
       fee: "",
       category: "",
-      image: ""
+      image: null,
+      imageURI: null
     };
 
     this.toggle = this.toggle.bind(this);
@@ -41,6 +44,19 @@ class ModalAddClass extends React.Component {
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
+  }
+
+  handleDate = date => {
+    this.setState({ schedule: date });
+  };
+
+  handleStartTime = time => {
+    console.log(time.getTime())
+    this.setState({ startTime: time });
+  }
+  handleEndTime = time => {
+    console.log(time.getTime())
+    this.setState({ endTime: time });
   }
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -57,25 +73,39 @@ class ModalAddClass extends React.Component {
       this.state.schedule,
       this.state.fee,
       categoryObj,
-      this.state.image
+      this.state.image,
+      this.state.startTime.getTime(),
+      this.state.endTime.getTime()
     );
 
     this.setState({
       name: "",
       info: "",
-      schedule: "",
+      schedule: new Date(),
+      startTime: new Date(),
+      endTime: new Date(),
       fee: "",
       category: "",
-      image: ""
+      image: null,
+      imageURI: null
     });
     this.toggle();
   };
 
   getPhoto = e => {
     e.preventDefault();
+
     this.setState({
       [e.target.name]: e.target.files[0]
     });
+
+    if (e.target.files && e.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = ev => {
+        this.setState({ imageURI: ev.target.result });
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
   };
 
   render() {
@@ -110,7 +140,7 @@ class ModalAddClass extends React.Component {
                 <Input
                   onChange={this.onChange}
                   value={this.state.info}
-                  type="text"
+                  type="textarea"
                   name="info"
                   id="info"
                   placeholder="Class description"
@@ -122,7 +152,6 @@ class ModalAddClass extends React.Component {
                 <div>
                   <DatePicker
                     selected={this.state.schedule}
-                    dateFormat="yyyy/MM/dd"
                     onChange={this.handleDate}
                     showMonthDropdown
                     showYearDropdown
@@ -130,6 +159,40 @@ class ModalAddClass extends React.Component {
                     dropdownMode="select"
                     id="schedule"
                     name="schedule"
+                    className="form-control"
+                  />
+                </div>
+              </FormGroup>
+              <FormGroup>
+                <Label for="time">Start and End Time</Label>
+                <div className="grid-2">
+                  <DatePicker
+                    id="time"
+                    selected={this.state.startTime}
+                    onChange={this.handleStartTime}
+                    showTimeSelect
+                    showTimeSelectOnly
+                    timeIntervals={15}
+                    minTime={setHours(setMinutes(new Date(), 0), 7)}
+                    maxTime={setHours(setMinutes(new Date(), 0), 20)}
+                    timeFormat="HH:mm"
+                    dateFormat="h:mm aa"
+                    timeCaption="Time"
+                    placeholderText="Start"
+                    className="form-control"
+                  />
+                  <DatePicker
+                    selected={this.state.endTime}
+                    onChange={this.handleEndTime}
+                    showTimeSelect
+                    showTimeSelectOnly
+                    timeIntervals={15}
+                    minTime={this.state.startTime}
+                    maxTime={setHours(setMinutes(new Date(), 0), 20)}
+                    timeFormat="HH:mm"
+                    dateFormat="h:mm aa"
+                    timeCaption="Time"
+                    placeholderText="End"
                     className="form-control"
                   />
                 </div>
@@ -156,6 +219,7 @@ class ModalAddClass extends React.Component {
                   name="category"
                   id="category"
                 >
+                  <option value="">-- Select Category --</option>
                   {this.props.categories.map((category, index) => (
                     <option key={index} value={category._id}>
                       {category.name}
@@ -165,14 +229,13 @@ class ModalAddClass extends React.Component {
               </FormGroup>
               <FormGroup>
                 <Label for="image">Class Image</Label>
-                <br />
-                {/* <div id="photoimg">
+                <div className="pt-3">
                   <img
-                    src={this.state.image}
+                    className="img-preview"
+                    src={this.state.imageURI}
                     alt={this.state.image}
-                    style={{ width: "50%" }}
                   />
-                </div> */}
+                </div>
                 <input
                   type="file"
                   onChange={this.getPhoto}
@@ -203,8 +266,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addClass: (name, info, schedule, fee, category, image) =>
-      dispatch(addClass(name, info, schedule, fee, category, image)),
+    addClass: (name, info, schedule, fee, category, image, startTime, endTime) =>
+      dispatch(addClass(name, info, schedule, fee, category, image, startTime, endTime)),
     getCategories: () => dispatch(getCategories())
   };
 };
