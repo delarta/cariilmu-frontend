@@ -7,6 +7,7 @@ import Footer from "./layouts/Footer";
 import MainPage from "./pages/main";
 import AdminPage from "./pages/admin";
 import CategoryPage from "./pages/main/CategoryPage";
+import HomepageMentor from "./pages/mentor/HomepageMentor"
 
 import SignInAdmin from "./pages/admin/SignInAdmin";
 import SignInMentor from "./pages/mentor/SignInPage";
@@ -30,6 +31,7 @@ class App extends Component {
         <Route exact path="/signin-mentor" component={SignInMentor} />
         <Route exact path="/signup-mentor" component={SignUpMentor} />
         <Route exact path="/mentor" component={MentorPage} />
+        <Route exact path="/homepage-mentor" component={HomepageMentor}/>
 
         <Route exact path="/signin" component={SignInPage} />
         <Route exact path="/signup" component={SignUpPage} />
