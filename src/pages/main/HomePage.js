@@ -23,7 +23,7 @@ class HomePage extends Component {
             </Container>
           ) : (
             <Container className="home-banner-text text-center">
-              <h1>Welcome, {this.props.role}</h1>
+              <h1>Welcome, {this.props.student.name}</h1>
               <p>Enjoy your class</p>
             </Container>
           )}
@@ -53,7 +53,8 @@ class HomePage extends Component {
 
 const mapStateToProps = state => {
   return {
-    role: state.auth.role
+    role: state.auth.role,
+    student: state.student.student
   };
 };
 

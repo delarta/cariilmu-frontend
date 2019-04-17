@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { Container, Button } from "reactstrap";
 import phone from "../../assets/img/ipad.svg";
-import presentation from "../../assets/img/presentation.svg";
-import gift from "../../assets/img/gift.svg";
-import thinking from "../../assets/img/thinking.svg";
 import { Link } from "react-router-dom";
 
 class Landing extends Component {
@@ -14,7 +11,7 @@ class Landing extends Component {
           <Container className="banner-grid">
             <div className="banner-text">
               <h2>
-                Yuk Cari dan Bagi Ilmumu <br /> bersama Cariilmu
+                Let's Share and Search Knowledge <br /> with Cariilmu
               </h2>
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum
@@ -28,7 +25,11 @@ class Landing extends Component {
                 <Link className="btn btn-primary" to="/home">
                   Get Started
                 </Link>
+<<<<<<< HEAD
                 <Link className="btn btn-primary" to="/homepage-mentor">
+=======
+                <Link className="btn btn-outline-primary" to="/signin-mentor">
+>>>>>>> b3474c83d06d6c96a3e07d364e0b0ec3ab88065b
                   Become A Mentor 
                 </Link>
               </div>
@@ -38,21 +39,33 @@ class Landing extends Component {
             </div>
           </Container>
         </section>
+        <section id="about-us">
+          <Container className="text-center content">
+            <div>
+              <h2>What is Cariilmu ?</h2>
+            </div>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita fugit, accusantium reiciendis ipsa repellendus maxime. Alias adipisci rerum soluta dolor voluptate nemo qui harum saepe suscipit aliquid! Voluptate alias accusamus atque exercitationem ullam vero nesciunt illo, consectetur reiciendis asperiores, deserunt maiores saepe ratione accusantium itaque. Perferendis beatae amet esse suscipit?
+              </p>
+            </div>
+          </Container>
+        </section>
         <section id="keunggulan">
           <h2 className="text-center">the excellence</h2>
           <Container className="keunggulan-grid">
             <div>
-              <img src={presentation} alt={presentation} />
+              <i className="ti-palette"></i>
               <h3>Classes are varied</h3>
               <p>Find your passion in the various classes</p>
             </div>
             <div>
-              <img src={thinking} alt={thinking} />
+              <i className="ti-user"></i>
               <h3>Skilled mentor</h3>
               <p>Currated mentor from the best campus</p>
             </div>
             <div>
-              <img src={gift} alt={gift} />
+              <i className="ti-crown"></i>
               <h3>Awesome Reward</h3>
               <p>Get the awesome reward if you earn enough poin</p>
             </div>

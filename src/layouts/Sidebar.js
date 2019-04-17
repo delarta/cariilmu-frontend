@@ -1,10 +1,11 @@
 import React from "react";
-import { ListGroup } from "reactstrap";
-import { Link, withRouter } from "react-router-dom";
+import { ListGroup, Badge } from "reactstrap";
+import { NavLink, Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { signOut } from "../actions/mainActions";
 
-import avatar from "../assets/img/thinking.svg";
-import logo from "../assets/img/logo_light_inline.png";
+import avatar from "../assets/img/user.svg";
+import logo from "../assets/img/logo_dark_inline.png";
 
 class SideBar extends React.Component {
   handleLogout = () => {
@@ -13,6 +14,7 @@ class SideBar extends React.Component {
   };
   render() {
     const { role, mentor } = this.props;
+    console.log(mentor)
     let sidebarStyle =
       localStorage.getItem("role") === "mentor" ? "sidebar-mentor" : "sidebar";
     return (
@@ -28,69 +30,82 @@ class SideBar extends React.Component {
             tag="a"
             href="#"
           >
-            {localStorage.getItem("role") === "mentor" ? (
-              <img src={mentor.photo} alt="avatar" />
+            {localStorage.getItem("role") === "mentor" && mentor.photo? (
+              <img src={mentor.photo} alt={mentor.photo} />
             ) : (
               <img src={avatar} alt={avatar} />
             )}
           </Link>
-          <Link
-            className="list-group-item disabled"
-            id="avatar-name"
-            to={`/${localStorage.getItem("role")}`}
-          >
-            {mentor.name}
-          </Link>
-          <Link
+          {localStorage.getItem("role") === "mentor" && (
+            <Link
+              className="list-group-item disabled"
+              id="avatar-name"
+              to={`/${localStorage.getItem("role")}`}
+            >
+              {mentor.name}
+              <p>
+                {mentor.verified ? (
+                  <Badge color="success">verified</Badge>
+                ) : (
+                  <Badge color="danger">Unverified</Badge>
+                )}
+              </p>
+            </Link>
+          )}
+          <NavLink
             className="list-group-item"
+            activeClassName="active-sidebar"
+            exact
             to={`/${localStorage.getItem("role")}`}
           >
             <i className="ti-dashboard" /> Dashboard
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             className="list-group-item"
+            activeClassName="active-sidebar"
             to={`/${localStorage.getItem("role")}/classes`}
           >
             <i className="ti-blackboard" /> Classes
-          </Link>
+          </NavLink>
           {localStorage.getItem("role") === "admin" && (
             <React.Fragment>
-              <Link
+              <NavLink
                 className="list-group-item"
                 to={`/${localStorage.getItem("role")}/students`}
               >
                 <i className="ti-medall" /> Students
-              </Link>
-              <Link className="list-group-item" to="/admin/mentors">
+              </NavLink>
+              <NavLink className="list-group-item" to="/admin/mentors">
                 <i className="ti-briefcase" /> Mentors
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 className="list-group-item"
                 to={`/${localStorage.getItem("role")}/categories`}
               >
                 <i className="ti-agenda" />
                 Categories
-              </Link>
+              </NavLink>
             </React.Fragment>
           )}
 
           {localStorage.getItem("role") === "mentor" && (
-            <Link
+            <NavLink
               className="list-group-item"
+              activeClassName="active-sidebar"
               to={`/${localStorage.getItem("role")}/profile`}
             >
               <i className="ti-settings" /> Profile
-            </Link>
+            </NavLink>
           )}
 
           <div className="mt-5">
-            <Link
+            <NavLink
               to={`signin-${role}`}
               className="list-group-item logout"
               onClick={this.handleLogout}
             >
               <i className="ti-power-off" /> Logout
-            </Link>
+            </NavLink>
           </div>
         </ListGroup>
       </div>
@@ -107,7 +122,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    signOut: () => dispatch({ type: "SIGN_OUT" })
+    signOut: () => dispatch(signOut())
   };
 };
 

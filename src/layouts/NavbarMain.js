@@ -30,7 +30,7 @@ class NavbarMain extends React.Component {
           ).style.minHeight = "5vh";
           document.querySelector(
             ".navbar.navbar-expand-md.navbar-dark"
-          ).style.backgroundColor = "#233142";
+          ).style.backgroundColor = "#4f9da6";
         } else {
           document.querySelector(
             ".navbar.navbar-expand-md.navbar-dark"

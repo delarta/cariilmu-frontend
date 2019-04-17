@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const url = "https://cari-ilmu-test.herokuapp.com";
 
@@ -10,6 +11,12 @@ export const signIn = (email, password) => {
         password: password
       })
       .then(res => {
+        Swal.fire({
+          title: "Signed In",
+          timer: 1500,
+          type: "success",
+          text: `Welcome, ${res.data.data.name}`
+        });
         dispatch({
           type: "SIGN_IN",
           email,
@@ -18,6 +25,10 @@ export const signIn = (email, password) => {
         });
       })
       .catch(err => {
+        Swal.fire({
+          title: "Wrong Username or Password",
+          type: "error"
+        });
         console.log(err.response);
       });
   };
@@ -33,11 +44,23 @@ export const signUp = (name, username, email, password) => {
         password
       })
       .then(res => {
+        Swal.fire({
+          title: "Signed Up",
+          timer: 1000,
+          text: "please sign in",
+          type: "success"
+        });
+        this.props.history.push("/signin-mentor");
         dispatch({
           type: "SIGN_UP"
         });
       })
       .catch(err => {
+        Swal.fire({
+          title: "Signed Up Failed",
+          text: err.response.data.data,
+          type: "error"
+        });
         console.log(err.response);
       });
   };
@@ -94,20 +117,28 @@ export const getClass = () => {
   };
 };
 
-export const addClass = (name, info, schedule, fee) => {
+export const addClass = (name, info, schedule, fee, category, image) => {
   return dispatch => {
+    let bodyFormData = new FormData();
+
+    bodyFormData.set("name", name);
+    bodyFormData.set("info", info);
+    bodyFormData.set("schedule", schedule);
+    bodyFormData.set("fee", fee);
+    bodyFormData.set("category", category._id);
+    bodyFormData.append("image", image);
+
     axios({
       method: "post",
       url: `${url}/mentor/class`,
-      headers: { Authorization: localStorage.getItem("token") },
-      data: {
-        name,
-        info,
-        schedule,
-        fee
-      }
+      headers: {
+        Authorization: localStorage.getItem("token"),
+        "Content-Type": "multipart/form-data"
+      },
+      data: bodyFormData
     })
       .then(res => {
+        console.log(res)
         dispatch({
           type: "ADD_CLASS_MENTOR",
           payload: res.data.data
@@ -117,27 +148,87 @@ export const addClass = (name, info, schedule, fee) => {
   };
 };
 
-export const editClass = (id, name, info, schedule) => {
+export const editClass = (id, name, info, schedule, category) => {
   return dispatch => {
+    let bodyFormData = new FormData();
+
+    bodyFormData.set("name", name);
+    bodyFormData.set("info", info);
+    bodyFormData.set("schedule", schedule);
+    bodyFormData.set("category", category._id);
+
     axios({
       method: "put",
       url: `${url}/mentor/class/${id}`,
-      headers: { Authorization: localStorage.getItem("token") },
-      data: {
-        name,
-        info,
-        schedule
-      }
+      headers: {
+        Authorization: localStorage.getItem("token"),
+        "Content-Type": "multipart/form-data"
+      },
+      data: bodyFormData
     })
       .then(res => {
+        Swal.fire({
+          title: "Class Edited!",
+          timer: 1000,
+          type: "success"
+        });
         dispatch({
           type: "EDIT_CLASS_MENTOR",
           payload: {
             id,
             name,
             info,
-            schedule
+            schedule,
+            category
           }
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
+export const editProfile = (
+  id,
+  name,
+  bio,
+  birthday,
+  photo,
+  eKtp,
+  ektpNumber,
+  certificate
+) => {
+  return dispatch => {
+    
+    let bodyFormData = new FormData();
+
+    bodyFormData.set("name", name);
+    bodyFormData.set("bio", bio);
+    bodyFormData.set("birthday", birthday);
+    bodyFormData.set("ektpNumber", ektpNumber);
+    bodyFormData.append("photo", photo);
+    bodyFormData.append("ektp", eKtp);
+    bodyFormData.append("certificate", certificate);
+
+    axios({
+      method: "put",
+      url: `${url}/mentor`,
+      headers: {
+        Authorization: localStorage.getItem("token"),
+        "Content-Type": "multipart/form-data"
+      },
+      data: bodyFormData
+    })
+      .then(res => {
+        console.log(res)
+        Swal.fire({
+          title: "Profile Edited!",
+          timer: 1000,
+          type: "success"
+        });
+        console.log(res);
+        dispatch({
+          type: "EDIT_MENTOR_PROFILE",
+          payload: res.data.data
         });
       })
       .catch(err => console.log(err.response));

@@ -71,14 +71,12 @@ class NavbarAdmin extends React.Component {
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  {this.props.user.name}
                 </DropdownToggle>
                 <DropdownMenu right>
                   <Link to='/profile' className="dropdown-item">
                     <img src={avatar} alt={avatar}/>
                   </Link>
                   <Link to='/profile' className="dropdown-item disabled">
-                    {this.props.user.name}
                   </Link>
                   <DropdownItem divider />
                   <Link to='/schedule' className="dropdown-item">
