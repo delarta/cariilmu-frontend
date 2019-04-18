@@ -9,13 +9,15 @@ import money from "../../assets/img/money.png";
 import sharing from "../../assets/img/sharing.png";
 import rating from "../../assets/img/star.png";
 import { create } from "domain";
-
+import Header from "../../layouts/Header"
 import "./HomepageMentor.scss";
 
 
 class HomepageMentor extends Component {
   render() {
     return (
+      <React.Fragment>
+        <Header/>
       <div className="home-page">
         <div className="home-head">
         </div>
@@ -143,6 +145,7 @@ class HomepageMentor extends Component {
           </div>
         </section>
       </div>
+      </React.Fragment>
     );
   }
 }
