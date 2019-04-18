@@ -25,11 +25,7 @@ class Landing extends Component {
                 <Link className="btn btn-primary" to="/home">
                   Get Started
                 </Link>
-<<<<<<< HEAD
-                <Link className="btn btn-primary" to="/homepage-mentor">
-=======
-                <Link className="btn btn-outline-primary" to="/signin-mentor">
->>>>>>> b3474c83d06d6c96a3e07d364e0b0ec3ab88065b
+                <Link className="btn btn-outline-primary" to="/homepage-mentor">
                   Become A Mentor 
                 </Link>
               </div>

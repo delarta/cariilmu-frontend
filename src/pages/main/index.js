@@ -10,8 +10,7 @@ import CategoryPage from "./CategoryPage";
 import ConfirmationPage from '../mentor/ConfirmationPage';
 import PaymentPage from '../mentor/PaymentPage';
 import SchedulePage from '../student/SchedulePage';
-import HomepageMentor from '../mentor/HomepageMentor';
-import CategoryListpage from './CategoryListpage';
+import HomepageMentor from '../mentor/HomepageMentor'
 
 export default class index extends Component {
   render() {
@@ -23,8 +22,6 @@ export default class index extends Component {
         <Route exact path="/class" component={ClassList} />
         <Route exact path="/category" component={CategoryPage}/>
         <Route exact path="/class/:classId" component={ClassDetail} />
-        <Route exact path="/homepage-mentor" component={HomepageMentor} />
-        <Route exact path="/category-search" component={CategoryListpage} />
 
         <Route exact path="/confirmation" component={ConfirmationPage} />
         <Route exact path="/payment" component={PaymentPage} />

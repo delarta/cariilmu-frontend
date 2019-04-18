@@ -42,6 +42,7 @@ h2 {
 // section - head
 #head {
     background-image: url("../../assets/img/teacher.jpg");
+    background-repeat: no-repeat;
     width: 100%;
     background-size: cover;
     background-attachment: fixed;
@@ -50,6 +51,7 @@ h2 {
     display: flex;
     text-align: center;
     justify-content: center;
+    
   }
 
 .head-grid {
@@ -95,6 +97,7 @@ h2 {
 // section-howto
 #howto {
     background-image: url("../../assets/img/class.jpg");
+    background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
     min-height: 50vh;
@@ -155,12 +158,18 @@ h2 {
 
 #SignUp {
   display: flex;
-  background-color: $blue;
+  background-color: $orange;
   min-height: 35vh;
   padding-top: 2em;
   text-align: center;
   margin: auto;
   align-items: center;
   justify-content: center;
+  h3{
+    color: $light;
+  }
+  p{
+    color: $dimlight;
+  }
+
 }
-  

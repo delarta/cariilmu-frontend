@@ -135,7 +135,7 @@ class HomepageMentor extends Component {
             <div>
               <h3>Ready to Start Teaching?</h3>
               <p>Create your class and share your skills with millions of students today.</p>
-                <Link className="btn btn-primary" to="/signin-mentor">
+                <Link className="btn btn-outline-primary" to="/signin-mentor">
                   Start a Class 
                 </Link>
             </div>
