@@ -6,6 +6,7 @@ import "./assets/css/themify-icons.css";
 import Footer from "./layouts/Footer";
 import AdminPage from "./pages/admin";
 import CategoryPage from "./pages/main/CategoryPage";
+import HomepageMentor from "./pages/mentor/HomepageMentor";
 
 import SignInAdmin from "./pages/admin/SignInAdmin";
 import SignInMentor from "./pages/mentor/SignInPage";
@@ -61,6 +62,7 @@ class App extends Component {
           <Route exact path="/class/:classId" component={ClassDetail} />
 
           <Route exact path="/confirmation" component={ConfirmationPage} />
+          <Route exact path="/homepage-mentor" component={HomepageMentor}/>
           <Route exact path="/payment" component={PaymentPage} />
           <Route exact path="/schedule" component={SchedulePage} />
           <Route path="/category" component={CategoryPage} />

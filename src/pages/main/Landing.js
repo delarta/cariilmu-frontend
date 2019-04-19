@@ -27,7 +27,7 @@ class Landing extends Component {
                   <Link className="btn btn-primary" to="/home">
                     Get Started
                   </Link>
-                  <Link className="btn btn-outline-primary" to="/signin-mentor">
+                  <Link className="btn btn-outline-primary" to="/homepage-mentor">
                     Become A Mentor
                   </Link>
                 </div>
@@ -57,26 +57,6 @@ class Landing extends Component {
               </div>
             </Container>
           </section>
-          {/* <section id="keunggulan">
-            <h2 className="text-center">the excellence</h2>
-            <Container className="keunggulan-grid">
-              <div>
-                <i className="ti-palette" />
-                <h3>Classes are varied</h3>
-                <p>Find your passion in the various classes</p>
-              </div>
-              <div>
-                <i className="ti-user" />
-                <h3>Skilled mentor</h3>
-                <p>Currated mentor from the best campus</p>
-              </div>
-              <div>
-                <i className="ti-crown" />
-                <h3>Awesome Reward</h3>
-                <p>Get the awesome reward if you earn enough poin</p>
-              </div>
-            </Container>
-          </section> */}
           <section className="fitur one">
             <Container className="fitur-grid">
               <div className="text-center">
