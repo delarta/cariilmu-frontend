@@ -94,7 +94,7 @@ export const getStudentData = () => {
     axios({
       method: "get",
       url: `${url}/student`,
-      headers: { Authorization: localStorage.getItem("token") }
+      headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
         console.log(res);

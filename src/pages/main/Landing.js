@@ -21,10 +21,7 @@ class Landing extends Component {
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                   Rerum aperiam iusto accusantium eum harum aliquid debitis!
                   Ratione nam quos neque officia labore! Reiciendis quibusdam
-                  minima maxime iste doloribus nobis dolore repellat? Obcaecati,
-                  ad dignissimos! Iure suscipit, repudiandae dolorum quae,
-                  molestiae ab maiores amet voluptas esse atque rem quo iusto
-                  sint?
+                  minima maxime 
                 </p>
                 <div className="banner-buttons">
                   <Link className="btn btn-primary" to="/home">
@@ -60,7 +57,7 @@ class Landing extends Component {
               </div>
             </Container>
           </section>
-          <section id="keunggulan">
+          {/* <section id="keunggulan">
             <h2 className="text-center">the excellence</h2>
             <Container className="keunggulan-grid">
               <div>
@@ -79,21 +76,21 @@ class Landing extends Component {
                 <p>Get the awesome reward if you earn enough poin</p>
               </div>
             </Container>
-          </section>
-          <section className="fitur">
+          </section> */}
+          <section className="fitur one">
             <Container className="fitur-grid">
               <div className="text-center">
                 <img src={phone} alt={phone} />
               </div>
-              <div>
+              <div className="text">
                 <h3>Find your desired class</h3>
                 <p>Find your dream class anywhere and whenever you need it</p>
               </div>
             </Container>
           </section>
-          <section className="fitur">
+          <section className="fitur two">
             <Container className="fitur-grid">
-              <div>
+              <div className="text">
                 <h3>Enroll to a quality class</h3>
                 <p>
                   Enroll to your desired class anywhere and whenever you need it
@@ -104,12 +101,12 @@ class Landing extends Component {
               </div>
             </Container>
           </section>
-          <section className="fitur">
+          <section className="fitur three">
             <Container className="fitur-grid">
               <div className="text-center">
                 <img src={phone} alt={phone} />
               </div>
-              <div>
+              <div className="text">
                 <h3>Choose your own schedule</h3>
                 <p>
                   Enroll to your desired class anywhere and whenever you need it

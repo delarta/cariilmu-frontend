@@ -39,7 +39,7 @@ export const getClass = () => {
     axios({
       method: "get",
       url: `${url}/admin/class`,
-      headers: { Authorization: localStorage.getItem("token") }
+      headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
         dispatch({
@@ -56,7 +56,7 @@ export const deleteClass = (id) => {
     axios({
       method: "delete",
       url: `${url}/admin/class/${id}`,
-      headers: { Authorization: localStorage.getItem("token") }
+      headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
         console.log(res)
@@ -74,11 +74,47 @@ export const getStudents = () => {
     axios({
       method: "get",
       url: `${url}/admin/student`,
-      headers: { Authorization: localStorage.getItem("token") }
+      headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
         dispatch({
           type: "FETCH_STUDENT_ADMIN",
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
+export const getPayments = () => {
+  return dispatch => {
+    axios({
+      method: "get",
+      url: `${url}/admin/payment`,
+      headers: { Authorization: sessionStorage.getItem("token") }
+    })
+      .then(res => {
+        console.log(res)
+        dispatch({
+          type: "FETCH_PAYMENT_ADMIN",
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
+export const verifyPayment = (id) => {
+  return dispatch => {
+    axios({
+      method: "put",
+      url: `${url}/admin/payment/${id}/verify`,
+      headers: { Authorization: sessionStorage.getItem("token") }
+    })
+      .then(res => {
+        console.log(res)
+        dispatch({
+          type: "VERIFY_PAYMENT_ADMIN",
           payload: res.data.data
         });
       })
@@ -91,7 +127,7 @@ export const getMentors = () => {
     axios({
       method: "get",
       url: `${url}/admin/mentor`,
-      headers: { Authorization: localStorage.getItem("token") }
+      headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
         dispatch({
@@ -108,7 +144,7 @@ export const getCategories = () => {
     axios({
       method: "get",
       url: `${url}/admin/category`,
-      headers: { Authorization: localStorage.getItem("token") }
+      headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
         dispatch({
@@ -131,7 +167,7 @@ export const editCategory = (id, name, photo) => {
       method: "put",
       url: `${url}/admin/category/${id}`,
       headers: {
-        Authorization: localStorage.getItem("token"),
+        Authorization: sessionStorage.getItem("token"),
         "Content-Type": "multipart/form-data"
       },
       data: bodyFormData
@@ -163,7 +199,7 @@ export const addCategory = (name) => {
       method: "post",
       url: `${url}/admin/category`,
       headers: {
-        Authorization: localStorage.getItem("token")
+        Authorization: sessionStorage.getItem("token")
       },
       data: {
         name
@@ -185,7 +221,7 @@ export const verifyMentor = (id) => {
     axios({
       method: "put",
       url: `${url}/admin/mentor/${id}/verify`,
-      headers: { Authorization: localStorage.getItem("token") }
+      headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
         console.log(res)
@@ -204,7 +240,7 @@ export const deleteMentor = id => {
     axios({
       method: "delete",
       url: `${url}/admin/mentor/${id}`,
-      headers: { Authorization: localStorage.getItem("token") }
+      headers: { Authorization: sessionStorage.getItem("token") }
     })
     .then(res => {
       console.log(res)

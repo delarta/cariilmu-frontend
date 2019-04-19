@@ -49,20 +49,26 @@ class ClassDetailPage extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
+  addZero(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
+  }
   render() {
+    console.log(this.props);
     const { classId } = this.props.match.params;
     const backgroundStyle = image => {
       return {
         backgroundImage: `url(${image})`,
         backgroundRepeat: "no-repeat",
-        backgroundSize: "105%",
-        backgroundPosition: "-5px"
+        backgroundSize: "cover"
       };
     };
     let classItem = this.props.classes
       .filter(item => item._id === classId)
       .map(item => (
-        <Container key={item._id} className="my-5">
+        <Container key={item._id} className="mb-5">
           <div
             className="class-detail-banner"
             style={backgroundStyle(item.image)}
@@ -80,10 +86,18 @@ class ClassDetailPage extends Component {
               </div>
               <div className="class-grid">
                 <p>
-                  <i className="ti-calendar" /> Kamis, 1 November 2019{" "}
+                  <i className="ti-calendar" />{" "}
+                  {new Date(item.schedule).toDateString()}{" "}
                 </p>
                 <p>
-                  <i className="ti-alarm-clock" /> 15.00 - 19.00{" "}
+                  <i className="ti-alarm-clock" />{" "}
+                  {`${this.addZero(
+                    new Date(item.startTime).getHours()
+                  )}:${this.addZero(
+                    new Date(item.startTime).getMinutes()
+                  )} - ${this.addZero(
+                    new Date(item.endTime).getHours()
+                  )}:${this.addZero(new Date(item.endTime).getMinutes())}`}
                 </p>
 
                 <Form inline onSubmit={e => e.preventDefault()}>

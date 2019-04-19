@@ -57,7 +57,7 @@ class NavbarSignIn extends React.Component {
   render() {
     console.log(this.props);
     return (
-      <Navbar dark expand="md">
+      <Navbar light expand="md">
         <Link className="navbar-brand" to="/">
           <img src={logo} alt={logo} />
         </Link>

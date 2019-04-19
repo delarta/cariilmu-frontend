@@ -15,7 +15,6 @@ class ClassItem extends Component {
     return i;
   }
   render() {
-    console.log(this.props);
     const { searchItem, classes } = this.props;
     let filteredClass = "";
     if (searchItem !== undefined) {
@@ -23,7 +22,6 @@ class ClassItem extends Component {
         return item.name.toLowerCase().indexOf(searchItem) !== -1;
       });
     } else if (this.props.match.path === "/mentor/:mentorId") {
-      console.log("im in mentor detail");
       filteredClass = classes.filter(
         item => item.mentor._id === this.props.match.params.mentorId
       );

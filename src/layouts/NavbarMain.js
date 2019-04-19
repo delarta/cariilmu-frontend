@@ -33,7 +33,7 @@ class NavbarMain extends React.Component {
   render() {
 
     return (
-      <Navbar dark expand="md">
+      <Navbar light expand="md">
         <Link className="navbar-brand" to="/">
           <img src={logo} alt={logo} />
         </Link>

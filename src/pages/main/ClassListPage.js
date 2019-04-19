@@ -1,11 +1,6 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Input
-} from "reactstrap";
+import { Container, Input } from "reactstrap";
 import ClassItem from "./ClassItem";
-import { connect } from "react-redux";
-import { getClass } from "../../actions/mainActions";
 import Header from "../../layouts/Header";
 
 class ClassListPage extends Component {
@@ -15,10 +10,6 @@ class ClassListPage extends Component {
     this.state = {
       search: ""
     };
-  }
-
-  componentDidMount() {
-    this.props.getClass();
   }
 
   handleChange = e => {
@@ -31,12 +22,15 @@ class ClassListPage extends Component {
         <div className="class-page">
           <div className="class-container">
             <div className="search">
+              <div className="text-center">
+                <h1>CLASSES</h1>
+              </div>
               <Container>
-                
-                <Input onChange={this.handleChange} placeholder="Search Class..." />
-                
+                <Input
+                  onChange={this.handleChange}
+                  placeholder="Search Class..."
+                />
               </Container>
-              
             </div>
 
             <Container>
@@ -51,17 +45,4 @@ class ClassListPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { classes: state.main.classes };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getClass: () => dispatch(getClass())
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ClassListPage);
+export default ClassListPage;
