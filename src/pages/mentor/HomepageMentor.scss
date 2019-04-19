@@ -19,7 +19,7 @@ h2 {
   font-weight: bold;
 }
 
-.h5 {
+.h4 {
     display: block;
     font-size: 2em;
     margin-top: 0.83em;
@@ -29,7 +29,7 @@ h2 {
     font-weight: bold;   
 }
 
-.h6 { 
+.h5 { 
     display: block;
     font-size: 1.5em;
     margin-top: 0.83em;
@@ -77,22 +77,22 @@ h2 {
 
 // section- benefit
 #benefit {
-  padding-top: 1.5em;
+  padding-top: 0.5em;
+  padding-bottom: 1.5em;
 }
 
 .benefit-grid {
-      padding-top: 0.5em;
       display: grid;
       grid-template-columns: 1fr 2fr 1fr;
       text-align: center;
     }
-
       img {
-        width: 50%;
+        width: 60%;
       }
 
-.benfit-text {
+.benefit-text {
       padding-top: 1.5em;
+      margin-top: 0.5em;
 }
 
 // section-howto
@@ -101,7 +101,7 @@ h2 {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    min-height: 50vh;
+    min-height: 80vh;
     background-size: cover;
     display: flex;
     align-items: center;
@@ -111,14 +111,14 @@ h2 {
   }
 
   .howto-grid {
-    padding-top: 0.25em;
+    padding-top: 0.5em;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     text-align: center;
   }
 
 .text-center{
-  padding-top:1.25em;
+  padding-top:0.5em;
 }
 
 .howto-text {
@@ -144,6 +144,9 @@ h2 {
 #FAQ {
       display: flex;
       font-family: 'nunito';
+      h2 {
+        padding-bottom: 0%;
+      }
 }
 
 .question {
@@ -153,15 +156,14 @@ h2 {
 }
 
 .faq-text {
-    padding-bottom: 1em;
+    padding-bottom: 0.25em;
 }
 
-
+// Sigup
 #SignUp {
   display: flex;
   background-color: $orange;
   min-height: 35vh;
-  padding-top: 2em;
   text-align: center;
   margin: auto;
   align-items: center;
@@ -171,6 +173,7 @@ h2 {
   }
   p{
     color: $dimlight;
+    font-size: 1.25rem;
   }
 
 }

@@ -29,8 +29,10 @@ class HomepageMentor extends Component {
               </h2>
               <br/>
               <h3>
-                Share your knowledge with many students around in your cities.
+                Share your knowledge with many students
               </h3>
+                <h3>   around in your cities.
+                </h3>
               <div className="head-buttons">
                 <Link className="btn btn-primary" to="/signin-mentor">
                   Start Your Class 
