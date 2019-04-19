@@ -3,9 +3,12 @@ import { Container, Button } from "reactstrap";
 import phone from "../../assets/img/ipad.svg";
 import { Link } from "react-router-dom";
 
+import Header from "../../layouts/Header";
+
 class Landing extends Component {
   render() {
     return (
+      <React.Fragment>
       <div className="home">
         <section id="banner">
           <Container className="banner-grid">
@@ -136,14 +139,15 @@ class Landing extends Component {
                 explicabo, qui odio. Quibusdam hic quae voluptas recusandae ex{" "}
               </p>
 
-              <Button color="primary">Unduh Sekarang</Button>
-            </div>
-            <div>
-              <img src={phone} alt={phone} />
-            </div>
-          </Container>
-        </section>
-      </div>
+                <Button color="primary">Unduh Sekarang</Button>
+              </div>
+              <div className="desktop-only">
+                <img src={phone} alt={phone} />
+              </div>
+            </Container>
+          </section>
+        </div>
+      </React.Fragment>
     );
   }
 }

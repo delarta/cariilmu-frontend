@@ -30,8 +30,6 @@ class SignInAdmin extends Component {
   render() {
     this.props.role === "admin" && this.props.history.push("/admin");
 
-    console.log(this.props)
-
     return (
       <div className="auth-container auth-admin">
         <div className="auth-banner" />

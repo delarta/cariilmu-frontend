@@ -33,7 +33,6 @@ class ClassListAdmin extends Component {
 
   render() {
     const data = this.props.classes.reverse();
-
     const columns = [
       {
         text: "Id",

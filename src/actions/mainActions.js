@@ -25,6 +25,23 @@ export const getClass = () => {
   };
 };
 
+export const getMentors = () => {
+  return dispatch => {
+    axios({
+      method: "get",
+      url: `${url}/public/mentor`
+    })
+      .then(res => {
+        console.log(res)
+        dispatch({
+          type: "FETCH_MENTOR_PUBLIC",
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
 export const getCategories = () => {
   return dispatch => {
     axios({
@@ -51,3 +68,5 @@ export const signOut = () => {
     type: "SIGN_OUT"
   };
 };
+
+

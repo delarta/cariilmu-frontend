@@ -2,16 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import ModalEditCategory from "../../components/ModalEditCategory";
+import ModalAddCategory from "../../components/ModalAddCategory"
 
 import BootstrapTable from "react-bootstrap-table-next";
 import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import paginationFactory from "react-bootstrap-table2-paginator";
 
 class CategoryList extends Component {
-  
-  componentDidMount() {
-    
-  }
 
   render() {
     const data = this.props.categories;
@@ -28,6 +25,14 @@ class CategoryList extends Component {
         filter: textFilter()
       },
       {
+        text: "Photo",
+        dataField: "photo",
+        formatter: (cell, row) => (
+          <img style={{width:"50%",maxHeight:"90px", objectFit:"cover"}} src={row.photo} alt={row.photo}/>
+        )
+
+      },
+      {
         text: "Actions",
         dataField: "actions",
         isDummyField: true,
@@ -39,6 +44,9 @@ class CategoryList extends Component {
       <div className="content-admin">
         <div className="content-header">
           <h1>Categories</h1>
+          <div>
+            <ModalAddCategory  />
+          </div>
         </div>
 
         <BootstrapTable
@@ -62,12 +70,6 @@ const mapStateToProps = state => {
     categories: state.admin.categories
   };
 };
-
-const mapDispatchToProps = dispatch => {
-  return {};
-};
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(CategoryList);

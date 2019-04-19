@@ -13,6 +13,8 @@ import {
 import { editClass, getClass } from "../actions/mentorActions";
 import { connect } from "react-redux";
 import DatePicker from "react-datepicker";
+import setMinutes from "date-fns/set_minutes";
+import setHours from "date-fns/set_hours";
 
 class ModalEditClass extends React.Component {
   constructor(props) {
@@ -27,7 +29,11 @@ class ModalEditClass extends React.Component {
       info: classItem.info,
       schedule: new Date(classItem.schedule),
       category: classItem.category._id,
-      fee: classItem.fee
+      fee: classItem.fee,
+      startTime: new Date(classItem.startTime),
+      endTime: new Date(classItem.endTime),
+      image: classItem.image,
+      imageURI: null
     };
     this.toggle = this.toggle.bind(this);
   }
@@ -39,9 +45,6 @@ class ModalEditClass extends React.Component {
   }
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
-  handleDate = date => {
-    this.setState({ schedule: date });
-  };
 
   onSubmit = e => {
     e.preventDefault();
@@ -53,7 +56,10 @@ class ModalEditClass extends React.Component {
       this.state.name,
       this.state.info,
       this.state.schedule.toString(),
-      categoryObj
+      categoryObj,
+      this.state.image,
+      this.state.startTime.getTime(),
+      this.state.endTime.getTime()
     );
     this.props.getClass();
 
@@ -62,9 +68,37 @@ class ModalEditClass extends React.Component {
       info: "",
       schedule: "",
       fee: "",
-      category: ""
+      category: "",
+      image: null,
+      imageURI: null
     });
     this.toggle();
+  };
+
+  getPhoto = e => {
+    e.preventDefault();
+    this.setState({
+      [e.target.name]: e.target.files[0]
+    });
+
+    if (e.target.files && e.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = ev => {
+        this.setState({ imageURI: ev.target.result });
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
+  handleDate = date => {
+    this.setState({ schedule: date });
+  };
+
+  handleStartTime = time => {
+    this.setState({ startTime: time });
+  };
+  handleEndTime = time => {
+    this.setState({ endTime: time });
   };
 
   render() {
@@ -108,7 +142,6 @@ class ModalEditClass extends React.Component {
                 <div>
                   <DatePicker
                     selected={this.state.schedule}
-                    dateFormat="yyyy/MM/dd"
                     onChange={this.handleDate}
                     showMonthDropdown
                     showYearDropdown
@@ -116,6 +149,40 @@ class ModalEditClass extends React.Component {
                     dropdownMode="select"
                     id="schedule"
                     name="schedule"
+                    className="form-control"
+                  />
+                </div>
+              </FormGroup>
+              <FormGroup>
+                <Label for="time">Start and End Time</Label>
+                <div className="grid-2">
+                  <DatePicker
+                    id="time"
+                    selected={this.state.startTime}
+                    onChange={this.handleStartTime}
+                    showTimeSelect
+                    showTimeSelectOnly
+                    timeIntervals={15}
+                    minTime={setHours(setMinutes(new Date(), 0), 7)}
+                    maxTime={setHours(setMinutes(new Date(), 0), 20)}
+                    timeFormat="HH:mm"
+                    dateFormat="h:mm aa"
+                    timeCaption="Time"
+                    placeholderText="Start"
+                    className="form-control"
+                  />
+                  <DatePicker
+                    selected={this.state.endTime}
+                    onChange={this.handleEndTime}
+                    showTimeSelect
+                    showTimeSelectOnly
+                    timeIntervals={15}
+                    minTime={setHours(setMinutes(new Date(), 0), 17)}
+                    maxTime={setHours(setMinutes(new Date(), 0), 20)}                    
+                    timeFormat="HH:mm"
+                    dateFormat="h:mm aa"
+                    timeCaption="Time"
+                    placeholderText="End"
                     className="form-control"
                   />
                 </div>
@@ -149,6 +216,31 @@ class ModalEditClass extends React.Component {
                   value={this.state.fee}
                 />
               </FormGroup>
+              <FormGroup>
+                <Label for="image">Class Image</Label>
+                <div className="pt-3">
+                  {this.state.imageURI !== null ? (
+                    <img
+                      className="img-preview"
+                      src={this.state.imageURI}
+                      alt={this.state.image}
+                    />
+                  ) : (
+                    <img
+                      className="img-preview"
+                      src={this.state.image}
+                      alt={this.state.image}
+                    />
+                  )}
+                </div>
+                <input
+                  type="file"
+                  onChange={this.getPhoto}
+                  name="image"
+                  id="image"
+                />
+                <label htmlFor="image">Upload Image</label>
+              </FormGroup>
             </ModalBody>
             <ModalFooter>
               <Button color="primary">Submit</Button>{" "}
@@ -172,8 +264,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    editClass: (id, name, info, schedule, category) =>
-      dispatch(editClass(id, name, info, schedule, category)),
+    editClass: (id, name, info, schedule, category,  image, startTime, endTime) =>
+      dispatch(editClass(id, name, info, schedule, category, image, startTime, endTime)),
     getClass: () => dispatch(getClass())
   };
 };

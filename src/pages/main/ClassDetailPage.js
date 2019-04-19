@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
+import Header from "../../layouts/Header";
+
 import {
   Container,
   Modal,
@@ -48,21 +50,23 @@ class ClassDetailPage extends Component {
     window.scrollTo(0, 0);
   }
   render() {
-    
     const { classId } = this.props.match.params;
-    const backgroundStyle = (image) =>{
+    const backgroundStyle = image => {
       return {
         backgroundImage: `url(${image})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "105%",
         backgroundPosition: "-5px"
-      }
-    }
+      };
+    };
     let classItem = this.props.classes
       .filter(item => item._id === classId)
       .map(item => (
         <Container key={item._id} className="my-5">
-          <div className="class-detail-banner" style={backgroundStyle(item.image)}>
+          <div
+            className="class-detail-banner"
+            style={backgroundStyle(item.image)}
+          >
             <Container className="detail-banner-text">
               <h2>{item.name}</h2>
               <p className="class-fee">Price : Rp {item.fee}</p>
@@ -207,7 +211,12 @@ class ClassDetailPage extends Component {
           </Container>
         </Container>
       ));
-    return <div className="class-page-detail">{classItem}</div>;
+    return (
+      <React.Fragment>
+        <Header />
+        <div className="class-page-detail">{classItem}</div>
+      </React.Fragment>
+    );
   }
 }
 

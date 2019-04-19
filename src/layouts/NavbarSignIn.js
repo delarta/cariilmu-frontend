@@ -15,9 +15,13 @@ import logo from "../assets/img/logo_light_inline.png";
 import avatar from "../assets/img/thinking.svg";
 
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-
+import { Link, withRouter } from "react-router-dom";
 import { getStudentData } from "../actions/studentActions";
+
+import Swal from 'sweetalert2'
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 class NavbarSignIn extends React.Component {
   constructor(props) {
@@ -37,34 +41,25 @@ class NavbarSignIn extends React.Component {
 
   componentDidMount() {
     this.props.getStudentData();
+  }
 
-    window.onscroll = () => {
-      if (window.innerWidth > 768) {
-        if (window.pageYOffset >= 60) {
-          document.querySelector(
-            ".navbar.navbar-expand-md.navbar-dark"
-          ).style.minHeight = "5vh";
-          document.querySelector(
-            ".navbar.navbar-expand-md.navbar-dark"
-          ).style.backgroundColor = "#233142";
-        } else {
-          document.querySelector(
-            ".navbar.navbar-expand-md.navbar-dark"
-          ).style.minHeight = "10vh";
-          document.querySelector(
-            ".navbar.navbar-expand-md.navbar-dark"
-          ).style.backgroundColor = "transparent";
-        }
-      }
-    };
+  handleSignOut = () => {
+    MySwal.fire({
+      title: <p>You are Signed Out</p>,
+      type: "success",
+      showConfirmButton: false,
+      timer: 1500
+    })
+    this.props.signOut();
+    this.props.history.push("/home");
   }
 
   render() {
-    console.log(this.props.student);
+    console.log(this.props);
     return (
       <Navbar dark expand="md">
         <Link className="navbar-brand" to="/">
-          <img style={{ width: "150px" }} src={logo} alt={logo} />
+          <img src={logo} alt={logo} />
         </Link>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
@@ -89,7 +84,7 @@ class NavbarSignIn extends React.Component {
                 <Link to="/schedule" className="dropdown-item">
                   Schedule
                 </Link>
-                <button onClick={this.props.signOut} className="dropdown-item">
+                <button onClick={this.handleSignOut} className="dropdown-item">
                   Logout
                 </button>
               </DropdownMenu>
@@ -114,7 +109,7 @@ const mapDispatchToProps = dispatch => {
     getStudentData: () => dispatch(getStudentData())
   };
 };
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(NavbarSignIn);
+)(NavbarSignIn));

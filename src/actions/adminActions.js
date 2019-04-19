@@ -152,6 +152,34 @@ export const editCategory = (id, name, photo) => {
   };
 };
 
+
+export const addCategory = (name) => {
+  return dispatch => {
+    // let bodyFormData = new FormData();
+
+    // bodyFormData.set("name", name);
+    
+    axios({
+      method: "post",
+      url: `${url}/admin/category`,
+      headers: {
+        Authorization: localStorage.getItem("token")
+      },
+      data: {
+        name
+      }
+    })
+      .then(res => {
+        console.log(res)
+        dispatch({
+          type: "ADD_CATEGORY_ADMIN",
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
 export const verifyMentor = (id) => {
   return dispatch => {
     axios({

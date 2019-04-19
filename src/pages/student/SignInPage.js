@@ -4,7 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { signIn } from "../../actions/studentActions";
 
-import logo from "../../assets/img/logo_dark.png"
+import logo from "../../assets/img/logo_dark.png";
 
 class SignInPage extends Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class SignInPage extends Component {
   };
 
   render() {
-    this.props.role === 'student' && this.props.history.push('/home')
+    this.props.role === "student" && this.props.history.push("/home");
 
     return (
       <div className="auth-container">
@@ -36,7 +36,11 @@ class SignInPage extends Component {
         <div className="container auth-page">
           <div className="auth-page-content">
             <div className="text-center">
-              <img src={logo} style={{width:'30%',opacity:'0.8'}} alt={logo}/>
+              <img
+                src={logo}
+                style={{ width: "30%", opacity: "0.8" }}
+                alt={logo}
+              />
             </div>
             <h1 className="text-center mb-3">Sign In | Student</h1>
             <Form onSubmit={this.onSubmit}>
@@ -78,12 +82,10 @@ class SignInPage extends Component {
   }
 }
 
-
 const mapStateToProps = state => {
   return {
-    role:  state.auth.role
-    }
-  
+    role: state.auth.role
+  };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -94,7 +96,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withRouter (connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SignInPage));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SignInPage)
+);

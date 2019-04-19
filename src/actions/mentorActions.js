@@ -1,36 +1,48 @@
 import axios from "axios";
 import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const url = "https://cari-ilmu-test.herokuapp.com";
 
 export const signIn = (email, password) => {
   return dispatch => {
-    axios
-      .post(`${url}/mentor/sign-in`, {
-        email: email,
-        password: password
-      })
-      .then(res => {
-        Swal.fire({
-          title: "Signed In",
-          timer: 1500,
-          type: "success",
-          text: `Welcome, ${res.data.data.name}`
-        });
-        dispatch({
-          type: "SIGN_IN",
-          email,
-          password,
-          response: res.data
-        });
-      })
-      .catch(err => {
-        Swal.fire({
-          title: "Wrong Username or Password",
-          type: "error"
-        });
-        console.log(err.response);
-      });
+    MySwal.fire({
+      title: "Please Wait",
+      timer: 2000,
+      toast: true,
+      onBeforeOpen: () => {
+        MySwal.showLoading();
+        return axios
+          .post(`${url}/mentor/sign-in`, {
+            email: email,
+            password: password
+          })
+          .then(res => {
+            MySwal.fire({
+              title: "Signed In",
+              timer: 1500,
+              type: "success",
+              text: `Welcome, ${res.data.data.name}`
+            });
+            dispatch({
+              type: "SIGN_IN",
+              email,
+              password,
+              response: res.data
+            });
+          })
+          .catch(err => {
+            MySwal.fire({
+              title: "Sign In Failed !",
+              text: err.response.data.message,
+              type: "error"
+            });
+            console.log(err.response);
+          });
+      }
+    });
   };
 };
 
@@ -117,7 +129,16 @@ export const getClass = () => {
   };
 };
 
-export const addClass = (name, info, schedule, fee, category, image) => {
+export const addClass = (
+  name,
+  info,
+  schedule,
+  fee,
+  category,
+  image,
+  startTime,
+  endTime
+) => {
   return dispatch => {
     let bodyFormData = new FormData();
 
@@ -126,29 +147,60 @@ export const addClass = (name, info, schedule, fee, category, image) => {
     bodyFormData.set("schedule", schedule);
     bodyFormData.set("fee", fee);
     bodyFormData.set("category", category._id);
+    bodyFormData.set("startTime", startTime);
+    bodyFormData.set("endTime", endTime);
     bodyFormData.append("image", image);
 
-    axios({
-      method: "post",
-      url: `${url}/mentor/class`,
-      headers: {
-        Authorization: localStorage.getItem("token"),
-        "Content-Type": "multipart/form-data"
-      },
-      data: bodyFormData
-    })
-      .then(res => {
-        console.log(res)
-        dispatch({
-          type: "ADD_CLASS_MENTOR",
-          payload: res.data.data
-        });
-      })
-      .catch(err => console.log(err.response));
+    MySwal.fire({
+      title: "Please Wait",
+      timer: 2000,
+      toast: true,
+      onBeforeOpen: () => {
+        MySwal.showLoading();
+        return axios({
+          method: "post",
+          url: `${url}/mentor/class`,
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            "Content-Type": "multipart/form-data"
+          },
+          data: bodyFormData
+        })
+          .then(res => {
+            console.log(res);
+            MySwal.fire({
+              title: "Class Created",
+              timer: 1500,
+              type: "success"
+            });
+            dispatch({
+              type: "ADD_CLASS_MENTOR",
+              payload: res.data.data
+            });
+          })
+          .catch(err => {
+            console.log(err.response);
+            MySwal.fire({
+              title: "Class Creation Failed !",
+              text: err.response.data.message,
+              type: "error"
+            });
+          });
+      }
+    });
   };
 };
 
-export const editClass = (id, name, info, schedule, category) => {
+export const editClass = (
+  id,
+  name,
+  info,
+  schedule,
+  category,
+  image,
+  startTime,
+  endTime
+) => {
   return dispatch => {
     let bodyFormData = new FormData();
 
@@ -156,6 +208,9 @@ export const editClass = (id, name, info, schedule, category) => {
     bodyFormData.set("info", info);
     bodyFormData.set("schedule", schedule);
     bodyFormData.set("category", category._id);
+    bodyFormData.set("startTime", startTime);
+    bodyFormData.set("endTime", endTime);
+    bodyFormData.append("image", image);
 
     axios({
       method: "put",
@@ -174,13 +229,7 @@ export const editClass = (id, name, info, schedule, category) => {
         });
         dispatch({
           type: "EDIT_CLASS_MENTOR",
-          payload: {
-            id,
-            name,
-            info,
-            schedule,
-            category
-          }
+          payload: res.data.data
         });
       })
       .catch(err => console.log(err.response));
@@ -198,7 +247,6 @@ export const editProfile = (
   certificate
 ) => {
   return dispatch => {
-    
     let bodyFormData = new FormData();
 
     bodyFormData.set("name", name);
@@ -207,7 +255,9 @@ export const editProfile = (
     bodyFormData.set("ektpNumber", ektpNumber);
     bodyFormData.append("photo", photo);
     bodyFormData.append("ektp", eKtp);
-    bodyFormData.append("certificate", certificate);
+    if (certificate !== null) {
+      bodyFormData.append("certificate", certificate);
+    }
 
     axios({
       method: "put",
@@ -219,7 +269,7 @@ export const editProfile = (
       data: bodyFormData
     })
       .then(res => {
-        console.log(res)
+        console.log(res);
         Swal.fire({
           title: "Profile Edited!",
           timer: 1000,

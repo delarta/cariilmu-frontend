@@ -14,7 +14,6 @@ class SideBar extends React.Component {
   };
   render() {
     const { role, mentor } = this.props;
-    console.log(mentor)
     let sidebarStyle =
       localStorage.getItem("role") === "mentor" ? "sidebar-mentor" : "sidebar";
     return (
