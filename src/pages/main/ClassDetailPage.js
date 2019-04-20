@@ -18,7 +18,6 @@ import {
   Col,
   Button
 } from "reactstrap";
-// import { link } from "fs";
 
 class ClassDetailPage extends Component {
   constructor(props) {
@@ -47,6 +46,12 @@ class ClassDetailPage extends Component {
       value = JSON.parse(value);
     }
     this.setState({ backdrop: value });
+  }
+  addZero(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
   }
 
   componentDidMount() {
@@ -95,7 +100,6 @@ class ClassDetailPage extends Component {
                   {new Date(item.schedule).toDateString()}{" "}
                 </p>
                 <p>
-                  <i className="ti-alarm-clock" />{" "}
                   {`${this.addZero(
                     new Date(item.startTime).getHours()
                   )}:${this.addZero(

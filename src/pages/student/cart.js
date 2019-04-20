@@ -4,6 +4,7 @@ import ModalConfirmation from "../../components/ModalConfirmation";
 import ModalInvoice from "../../components/ModalInvoice";
 import { getCart } from "../../actions/studentActions";
 import { connect } from "react-redux";
+import Header from "../../layouts/Header";
 
 class cart extends Component {
   constructor(props) {
@@ -20,7 +21,9 @@ class cart extends Component {
   render() {
     console.log(this.props.students);
     return (
-      <div className="sectio">
+      <React.Fragment>
+<Header/>
+<div className="sectio">
         <div className="box2">
           <h2 style={{ textShadow: "-1px -2px 2px #233142", color: "white" }}>
             Class Cart
@@ -56,6 +59,9 @@ class cart extends Component {
           </Table>
         </div>
       </div>
+    </React.Fragment>
+     
+    
     );
   }
 }

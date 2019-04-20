@@ -23,9 +23,6 @@ import HomePage from "./pages/main/HomePage";
 import ClassList from "./pages/main/ClassListPage";
 import ClassDetail from "./pages/main/ClassDetailPage";
 
-// iki nyapo nang mentor ??
-import ConfirmationPage from './pages/mentor/ConfirmationPage';
-import PaymentPage from './pages/mentor/PaymentPage';
 
 import SchedulePage from './pages/student/SchedulePage';
 
@@ -33,6 +30,7 @@ import { getRole } from "./actions/mainActions";
 import { connect } from "react-redux";
 import MentorDetail from "./pages/main/MentorDetail";
 import MentorListPage from "./pages/main/MentorListPage";
+import Cart from './pages/student/cart';
 
 class App extends Component {
   componentDidMount() {
@@ -61,11 +59,10 @@ class App extends Component {
           <Route exact path="/mentors" component={MentorListPage} />
           <Route exact path="/class/:classId" component={ClassDetail} />
 
-          <Route exact path="/confirmation" component={ConfirmationPage} />
           <Route exact path="/homepage-mentor" component={HomepageMentor}/>
-          <Route exact path="/payment" component={PaymentPage} />
           <Route exact path="/schedule" component={SchedulePage} />
           <Route path="/category" component={CategoryPage} />
+          <Route path="/cart" component={Cart} />
 
           <Route component={NotFound} />
         </Switch>

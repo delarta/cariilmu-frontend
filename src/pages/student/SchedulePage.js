@@ -3,7 +3,7 @@ import { Table } from "reactstrap";
 import { connect } from "react-redux";
 import { getClass } from "../../actions/mainActions";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Header from "../../layouts/Header";
 import "./SchedulePage.scss";
 
 class SchedulePage extends Component {
@@ -14,7 +14,9 @@ class SchedulePage extends Component {
   render() {
     console.log(this.props.classes);
     return (
-      <div className="sectio">
+      <React.Fragment> 
+<Header/>
+<div className="sectio">
         <div className="box2"> 
             <h2 style={{textShadow: "-1px -2px 2px #233142", color:"white"}}> My Schedule</h2>
         </div>
@@ -52,6 +54,8 @@ class SchedulePage extends Component {
           
         </div>
       </div>
+      </React.Fragment>
+      
     );
   }
 }
