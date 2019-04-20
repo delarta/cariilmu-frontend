@@ -1,14 +1,7 @@
 import React, { Component } from "react";
-import {
-  Container,
-  InputGroup,
-  Input,
-  InputGroupAddon,
-  Button
-} from "reactstrap";
+import { Container, Input } from "reactstrap";
 import ClassItem from "./ClassItem";
-import { connect } from "react-redux";
-import { getClass } from "../../actions/mainActions";
+import Header from "../../layouts/Header";
 
 class ClassListPage extends Component {
   constructor(props) {
@@ -19,45 +12,37 @@ class ClassListPage extends Component {
     };
   }
 
-  componentDidMount() {
-    this.props.getClass();
-  }
-
   handleChange = e => {
     this.setState({ search: e.target.value.substr(0, 20) });
   };
   render() {
     return (
-      <div className="class-page">
-        <div className="container">
-          <InputGroup size="lg">
-            <Input onChange={this.handleChange} placeholder="Search" />
-            <InputGroupAddon addonType="append">
-              <Button color="primary">
-                <i className="ti-search" /> Search{" "}
-              </Button>
-            </InputGroupAddon>
-          </InputGroup>
-          <Container className="class-page-content mt-2 mb-5">
-            <ClassItem searchItem={this.state.search} />
-          </Container>
+      <React.Fragment>
+        <Header />
+        <div className="class-page">
+          <div className="class-container">
+            <div className="search">
+              <div className="text-center">
+                <h1>CLASSES</h1>
+              </div>
+              <Container>
+                <Input
+                  onChange={this.handleChange}
+                  placeholder="Search Class..."
+                />
+              </Container>
+            </div>
+
+            <Container>
+              <Container className="class-page-content mb-5">
+                <ClassItem searchItem={this.state.search} />
+              </Container>
+            </Container>
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return { classes: state.main.classes };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getClass: () => dispatch(getClass())
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ClassListPage);
+export default ClassListPage;

@@ -6,9 +6,11 @@ import Landing from "./Landing";
 import HomePage from "./HomePage";
 import ClassList from "./ClassListPage";
 import ClassDetail from "./ClassDetailPage";
+import CategoryPage from "./CategoryPage";
 import ConfirmationPage from '../mentor/ConfirmationPage';
 import PaymentPage from '../mentor/PaymentPage';
 import SchedulePage from '../student/SchedulePage';
+import HomepageMentor from '../mentor/HomepageMentor'
 
 export default class index extends Component {
   render() {
@@ -18,6 +20,7 @@ export default class index extends Component {
         <Route exact path="/" component={Landing} />
         <Route exact path="/home" component={HomePage} />
         <Route exact path="/class" component={ClassList} />
+        <Route exact path="/category" component={CategoryPage}/>
         <Route exact path="/class/:classId" component={ClassDetail} />
 
         <Route exact path="/confirmation" component={ConfirmationPage} />

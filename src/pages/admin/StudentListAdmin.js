@@ -8,6 +8,7 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 class StudentListAdmin extends Component {
   render() {
     const data = this.props.students;
+    console.log(data)
     const columns = [
       {
         text: "Id",
@@ -21,8 +22,8 @@ class StudentListAdmin extends Component {
         filter: textFilter()
       },
       {
-        text: "Email",
-        dataField: "email",
+        text: "Class",
+        dataField: "class.length",
         sort: true,
         filter: textFilter()
       },
