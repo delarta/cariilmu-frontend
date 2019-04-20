@@ -1,6 +1,6 @@
+/* eslint-disable no-unused-expressions */
 import React, { Component } from "react";
-
-import { Link } from "react-router-dom";
+import { enroll } from "../../actions/studentActions";
 import { connect } from "react-redux";
 
 import {
@@ -16,6 +16,7 @@ import {
   Col,
   Button
 } from "reactstrap";
+// import { link } from "fs";
 
 class ClassDetailPage extends Component {
   constructor(props) {
@@ -23,7 +24,8 @@ class ClassDetailPage extends Component {
     this.state = {
       modal: false,
       backdrop: true,
-      loading: false
+      loading: false,
+    
     };
 
     this.toggle = this.toggle.bind(this);
@@ -34,6 +36,7 @@ class ClassDetailPage extends Component {
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
+
   }
 
   changeBackdrop(e) {
@@ -47,22 +50,32 @@ class ClassDetailPage extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
+
+  handleEnroll = classid => {
+    console.log("reloaad", classid);
+    classid.preventDefault();
+    this.props.enroll(this.props.match.params);
+    this.props.history.push("/cart");
+  };
+
   render() {
-    
     const { classId } = this.props.match.params;
-    const backgroundStyle = (image) =>{
+    const backgroundStyle = image => {
       return {
         backgroundImage: `url(${image})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "105%",
         backgroundPosition: "-5px"
-      }
-    }
+      };
+    };
     let classItem = this.props.classes
       .filter(item => item._id === classId)
       .map(item => (
         <Container key={item._id} className="my-5">
-          <div className="class-detail-banner" style={backgroundStyle(item.image)}>
+          <div
+            className="class-detail-banner"
+            style={backgroundStyle(item.image)}
+          >
             <Container className="detail-banner-text">
               <h2>{item.name}</h2>
               <p className="class-fee">Price : Rp {item.fee}</p>
@@ -94,113 +107,101 @@ class ClassDetailPage extends Component {
                   className={this.props.className}
                   backdrop={this.state.backdrop}
                 >
-                  <ModalHeader toggle={this.toggle}>
-                    {" "}
-                    Checkout Payment
-                  </ModalHeader>
-                  <ModalBody>
-                    <FormGroup row>
-                      <Label for="item" sm={3}>
-                        Item
-                      </Label>
-                      <Col sm={9}>
-                        <Input
-                          type="item"
-                          name="item"
-                          id="item"
-                          placeholder=""
-                        />
-                      </Col>
-                    </FormGroup>
+                  <Form onSubmit={this.handleEnroll}>
+                    <ModalHeader toggle={this.toggle}>
+                      {" "}
+                      Checkout Payment
+                    </ModalHeader>
+                    <ModalBody>
+                      <FormGroup row>
+                        <Label for="item" sm={3}>
+                          Item
+                        </Label>
+                        <Col sm={9}>
+                          <Input
+                            type="item"
+                            name="item"
+                            id="item"
+                            placeholder=""
+                            value={item.name}
+                            
+                          />
+                        </Col>
+                      </FormGroup>
 
-                    <FormGroup row>
-                      <Label for="name" sm={3}>
-                        Name
-                      </Label>
-                      <Col sm={9}>
-                        <Input
-                          type="name"
-                          name="name"
-                          id="name"
-                          placeholder=""
-                        />
-                      </Col>
-                    </FormGroup>
+                      <FormGroup row>
+                        <Label for="mentor" sm={3}>
+                          Mentor
+                        </Label>
+                        <Col sm={9}>
+                          <Input
+                            type="mentor"
+                            name="mentor"
+                            id="mentor"
+                            placeholder=""
+                            value={item.mentor.name}
+                            disabled
+                          />
+                        </Col>
+                      </FormGroup>
 
-                    <FormGroup row>
-                      <Label for="id" sm={3}>
-                        Id Tranaksi
-                      </Label>
-                      <Col sm={9}>
-                        <Input type="id" name="id" id="id" placeholder="" />
-                      </Col>
-                    </FormGroup>
+                      <FormGroup row>
+                        <Label for="id" sm={3}>
+                          Id Transaksi
+                        </Label>
+                        <Col sm={9}>
+                          <Input
+                            type="id"
+                            name="id"
+                            id="id"
+                            placeholder=""
+                            value={item._id}
+                            disabled
+                          />
+                        </Col>
+                      </FormGroup>
 
-                    <FormGroup row>
-                      <Label for="code" sm={3}>
-                        Code
-                      </Label>
-                      <Col sm={9}>
-                        <Input
-                          type="code"
-                          name="code"
-                          id="code"
-                          placeholder=""
-                        />
-                      </Col>
-                    </FormGroup>
+                      <FormGroup row>
+                        <Label for="price" sm={3}>
+                          Price
+                        </Label>
+                        <Col sm={9}>
+                          <Input
+                            type="price"
+                            name="price"
+                            id="price"
+                            placeholder=""
+                            value={item.fee}
+                            disabled
+                          />
+                        </Col>
+                      </FormGroup>
 
-                    <FormGroup row>
-                      <Label for="price" sm={3}>
-                        Price
-                      </Label>
-                      <Col sm={9}>
-                        <Input
-                          type="price"
-                          name="price"
-                          id="price"
-                          placeholder=""
-                        />
-                      </Col>
-                    </FormGroup>
+                      <FormGroup row>
+                        <Label for="backdrop" sm={3}>
+                          Bank
+                        </Label>{" "}
+                        <Col sm={9}>
+                          <Input
+                            type="select"
+                            name="backdrop"
+                            id="backdrop"
+                            onChange={this.changeBackdrop}
+                          >
+                            <option>BCA</option>
+                            <option>MANDIRI</option>
+                            <option>BRI</option>
+                          </Input>
+                        </Col>
+                      </FormGroup>
+                    </ModalBody>
 
-                    <FormGroup row>
-                      <Label for="total" sm={3}>
-                        Total
-                      </Label>
-                      <Col sm={9}>
-                        <Input
-                          type="total"
-                          name="total"
-                          id="total"
-                          placeholder=""
-                        />
-                      </Col>
-                    </FormGroup>
-
-                    <FormGroup row>
-                      <Label for="backdrop" sm={3}>
-                        Bank
-                      </Label>{" "}
-                      <Col sm={9}>
-                        <Input
-                          type="select"
-                          name="backdrop"
-                          id="backdrop"
-                          onChange={this.changeBackdrop}
-                        >
-                          <option>BCA</option>
-                          <option>MANDIRI</option>
-                          <option>BRI</option>
-                        </Input>
-                      </Col>
-                    </FormGroup>
-                  </ModalBody>
-                  <ModalFooter>
-                    <Link to="/schedule" className="btn btn-primary">
-                      Confirm <i className="ti-angle-double-right" />
-                    </Link>
-                  </ModalFooter>
+                    <ModalFooter>
+                      <Button type="submit" color="primary">
+                        Submit
+                      </Button>
+                    </ModalFooter>
+                  </Form>
                 </Modal>
               </div>
             </div>
@@ -217,4 +218,14 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(ClassDetailPage);
+//testing
+const mapDispatchToProps = dispatch => {
+  return {
+    enroll: classid => dispatch(enroll(classid))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ClassDetailPage);

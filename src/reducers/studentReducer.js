@@ -133,16 +133,42 @@ const initState = {
 
 const studentReducer = (state = initState, action) => {
   switch (action.type) {
-    case "FETCH_STUDENT_DATA":
+    case "FETCH_CLASS_STUDENT":
       return {
         ...state,
-        student: action.payload
+        classes: action.payload
+      };
+
+    case "CONFIRM_PAYMENT":
+      console.log(action.payload)
+      return {
+        ...state,
+        students: [
+          ...state.students.map(item => {
+            if (item.class._id === action.payload.classid){
+              item.photo = action.payload.photo;
+            }
+            return item
+          })
+        ]
+      };
+      case "ENROLL_CLASS":
+      console.log(action.payload)
+      return {
+        ...state,
+        students: [
+          ...state.students.map(item => {
+            if (item._id === action.payload.id){
+              item.name = action.payload.name;
+            }
+            return item
+          })
+        ]
       }
-    case "FETCH_CLASS_STUDENT":
-      return state.classes;
+
     default:
       return state;
   }
 };
-
+  
 export default studentReducer;
