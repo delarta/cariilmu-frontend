@@ -12,13 +12,23 @@ class EditProfile extends Component {
     super(props);
 
     let mentor_profile = this.props.mentor;
+    var birthdate = "";
+    if(!mentor_profile.hasOwnProperty("birthday") ){
+      birthdate = new Date();
+      console.log("birthday", birthdate)
+
+    }else{
+      console.log("no birthday")
+      birthdate = new Date(mentor_profile.birthday);
+    }
+
     this.state = {
       id: mentor_profile._id,
       name: mentor_profile.name,
       username: mentor_profile.username,
       email: mentor_profile.email,
       bio: mentor_profile.bio,
-      birthday: new Date(mentor_profile.birthday),
+      birthday: birthdate,
       certificate: mentor_profile.certificate,
       ektpNumber: mentor_profile.ektpNumber,
       ektp: mentor_profile.ektp,

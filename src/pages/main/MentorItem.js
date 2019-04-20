@@ -19,7 +19,6 @@ class MentorItem extends Component {
     } else {
       filteredMentor = mentors.reverse().slice(0, 3);
     }
-    console.log(filteredMentor);
     return filteredMentor.map(item => (
       <div className="mentor-item" key={item._id}>
         <div className="mentor-img">

@@ -31,7 +31,7 @@ class MentorListAdmin extends Component {
 
   handleVerify = id => {
     MySwal.fire({
-      title: <p>Verify mentor ?</p>,
+      title: <p>Verify Mentor ?</p>,
       type: "question",
       confirmButtonText: "Yes",
       showCancelButton: true

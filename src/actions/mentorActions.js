@@ -46,7 +46,7 @@ export const signIn = (email, password) => {
   };
 };
 
-export const signUp = (name, username, email, password) => {
+export const signUp = (name, username, email, password, redirectOnSuccess) => {
   return dispatch => {
     axios
       .post(`${url}/mentor/sign-up`, {
@@ -62,7 +62,7 @@ export const signUp = (name, username, email, password) => {
           text: "please sign in",
           type: "success"
         });
-        this.props.history.push("/signin-mentor");
+        redirectOnSuccess();
         dispatch({
           type: "SIGN_UP"
         });
@@ -70,7 +70,6 @@ export const signUp = (name, username, email, password) => {
       .catch(err => {
         Swal.fire({
           title: "Signed Up Failed",
-          text: err.response.data.data,
           type: "error"
         });
         console.log(err.response);
@@ -83,7 +82,7 @@ export const getMentor = () => {
     axios({
       method: "get",
       url: `${url}/mentor/`,
-      headers: { Authorization: localStorage.getItem("token") }
+      headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
         dispatch({
@@ -100,7 +99,7 @@ export const setFinishedClass = id => {
     axios({
       method: "put",
       url: `${url}/mentor/class/${id}/finish`,
-      headers: { Authorization: localStorage.getItem("token") }
+      headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
         dispatch({
@@ -117,7 +116,7 @@ export const getClass = () => {
     axios({
       method: "get",
       url: `${url}/mentor/class`,
-      headers: { Authorization: localStorage.getItem("token") }
+      headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
         dispatch({
@@ -161,7 +160,7 @@ export const addClass = (
           method: "post",
           url: `${url}/mentor/class`,
           headers: {
-            Authorization: localStorage.getItem("token"),
+            Authorization: sessionStorage.getItem("token"),
             "Content-Type": "multipart/form-data"
           },
           data: bodyFormData
@@ -216,7 +215,7 @@ export const editClass = (
       method: "put",
       url: `${url}/mentor/class/${id}`,
       headers: {
-        Authorization: localStorage.getItem("token"),
+        Authorization: sessionStorage.getItem("token"),
         "Content-Type": "multipart/form-data"
       },
       data: bodyFormData
@@ -263,7 +262,7 @@ export const editProfile = (
       method: "put",
       url: `${url}/mentor`,
       headers: {
-        Authorization: localStorage.getItem("token"),
+        Authorization: sessionStorage.getItem("token"),
         "Content-Type": "multipart/form-data"
       },
       data: bodyFormData

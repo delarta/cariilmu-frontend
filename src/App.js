@@ -32,6 +32,7 @@ import SchedulePage from './pages/student/SchedulePage';
 import { getRole } from "./actions/mainActions";
 import { connect } from "react-redux";
 import MentorDetail from "./pages/main/MentorDetail";
+import MentorListPage from "./pages/main/MentorListPage";
 
 class App extends Component {
   componentDidMount() {
@@ -40,7 +41,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-      <Switch>
+        <Switch>
           <Route exact path="/signin-mentor" component={SignInMentor} />
           <Route exact path="/signup-mentor" component={SignUpMentor} />
           <Route exact path="/mentor" component={MentorPage} />
@@ -57,12 +58,15 @@ class App extends Component {
           <Route exact path="/" component={Landing} />
           <Route exact path="/home" component={HomePage} />
           <Route exact path="/class" component={ClassList} />
+          <Route exact path="/mentors" component={MentorListPage} />
           <Route exact path="/class/:classId" component={ClassDetail} />
+          <Route exact path="/category/:categoryId" component={CategoryPage} />
+
 
           <Route exact path="/confirmation" component={ConfirmationPage} />
+          <Route exact path="/homepage-mentor" component={HomepageMentor}/>
           <Route exact path="/payment" component={PaymentPage} />
           <Route exact path="/schedule" component={SchedulePage} />
-          <Route path="/category" component={CategoryPage} />
 
           <Route component={NotFound} />
         </Switch>

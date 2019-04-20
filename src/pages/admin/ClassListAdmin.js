@@ -21,7 +21,7 @@ class ClassListAdmin extends Component {
       
       if (result.value) {
         MySwal.fire({
-          title: <p>Mentor Deleted</p>,
+          title: <p>Class Deleted</p>,
           type: 'success'
         })
         this.props.deleteClass(id)
