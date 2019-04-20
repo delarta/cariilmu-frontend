@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const url = "https://cari-ilmu-test.herokuapp.com";
 
@@ -23,3 +24,49 @@ export const getClass = () => {
       .catch(err => console.log(err.response));
   };
 };
+
+export const getMentors = () => {
+  return dispatch => {
+    axios({
+      method: "get",
+      url: `${url}/public/mentor`
+    })
+      .then(res => {
+        console.log(res)
+        dispatch({
+          type: "FETCH_MENTOR_PUBLIC",
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
+export const getCategories = () => {
+  return dispatch => {
+    axios({
+      method: "get",
+      url: `${url}/category`
+    })
+      .then(res => {
+        dispatch({
+          type: "FETCH_CATEGORY",
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
+export const signOut = () => {
+  Swal.fire({
+    title: "Successfully Signed Out",
+    timer: 1000,
+    type: "success"
+  });
+  return {
+    type: "SIGN_OUT"
+  };
+};
+
+

@@ -5,7 +5,7 @@ const url = "https://cari-ilmu-test.herokuapp.com";
 export const signIn = (email, password) => {
   return dispatch => {
     axios
-      .post("https://cari-ilmu-test.herokuapp.com/admin/sign-in", {
+      .post(`${url}/admin/sign-in`, {
         email: email,
         password: password
       })
@@ -38,11 +38,30 @@ export const getClass = () => {
   return dispatch => {
     axios({
       method: "get",
-      url: `${url}/class`
+      url: `${url}/admin/class`,
+      headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
         dispatch({
           type: "FETCH_CLASS_ADMIN",
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
+export const deleteClass = (id) => {
+  return dispatch => {
+    axios({
+      method: "delete",
+      url: `${url}/admin/class/${id}`,
+      headers: { Authorization: sessionStorage.getItem("token") }
+    })
+      .then(res => {
+        console.log(res)
+        dispatch({
+          type: "DELETE_CLASS_ADMIN",
           payload: res.data.data
         });
       })
@@ -55,11 +74,47 @@ export const getStudents = () => {
     axios({
       method: "get",
       url: `${url}/admin/student`,
-      headers: { Authorization: localStorage.getItem("token") }
+      headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
         dispatch({
           type: "FETCH_STUDENT_ADMIN",
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
+export const getPayments = () => {
+  return dispatch => {
+    axios({
+      method: "get",
+      url: `${url}/admin/payment`,
+      headers: { Authorization: sessionStorage.getItem("token") }
+    })
+      .then(res => {
+        console.log(res)
+        dispatch({
+          type: "FETCH_PAYMENT_ADMIN",
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
+export const verifyPayment = (id) => {
+  return dispatch => {
+    axios({
+      method: "put",
+      url: `${url}/admin/payment/${id}/verify`,
+      headers: { Authorization: sessionStorage.getItem("token") }
+    })
+      .then(res => {
+        console.log(res)
+        dispatch({
+          type: "VERIFY_PAYMENT_ADMIN",
           payload: res.data.data
         });
       })
@@ -72,7 +127,7 @@ export const getMentors = () => {
     axios({
       method: "get",
       url: `${url}/admin/mentor`,
-      headers: { Authorization: localStorage.getItem("token") }
+      headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
         dispatch({
@@ -89,7 +144,7 @@ export const getCategories = () => {
     axios({
       method: "get",
       url: `${url}/admin/category`,
-      headers: { Authorization: localStorage.getItem("token") }
+      headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
         dispatch({
@@ -101,9 +156,98 @@ export const getCategories = () => {
   };
 };
 
-export const delClass = id => {
-  return {
-    type: "DELETE_CLASS",
-    id
+export const editCategory = (id, name, photo) => {
+  return dispatch => {
+    let bodyFormData = new FormData();
+
+    bodyFormData.set("name", name);
+    bodyFormData.append("photo", photo);    
+
+    axios({
+      method: "put",
+      url: `${url}/admin/category/${id}`,
+      headers: {
+        Authorization: sessionStorage.getItem("token"),
+        "Content-Type": "multipart/form-data"
+      },
+      data: bodyFormData
+    })
+      .then(res => {
+        getMentors()
+        console.log(res)
+        dispatch({
+          type: "EDIT_CATEGORY_ADMIN",
+          payload: {
+            _id : id,
+            name,
+            photo
+          }
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
+
+export const addCategory = (name) => {
+  return dispatch => {
+    // let bodyFormData = new FormData();
+
+    // bodyFormData.set("name", name);
+    
+    axios({
+      method: "post",
+      url: `${url}/admin/category`,
+      headers: {
+        Authorization: sessionStorage.getItem("token")
+      },
+      data: {
+        name
+      }
+    })
+      .then(res => {
+        console.log(res)
+        dispatch({
+          type: "ADD_CATEGORY_ADMIN",
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
+export const verifyMentor = (id) => {
+  return dispatch => {
+    axios({
+      method: "put",
+      url: `${url}/admin/mentor/${id}/verify`,
+      headers: { Authorization: sessionStorage.getItem("token") }
+    })
+      .then(res => {
+        console.log(res)
+        dispatch({
+          type: "VERIFY_MENTOR",
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
+
+export const deleteMentor = id => {
+  return dispatch => {
+    axios({
+      method: "delete",
+      url: `${url}/admin/mentor/${id}`,
+      headers: { Authorization: sessionStorage.getItem("token") }
+    })
+    .then(res => {
+      console.log(res)
+      dispatch({
+        type: "DELETE_MENTOR",
+        payload: res.data.data
+      });
+    })
   };
 };

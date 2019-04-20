@@ -60,3 +60,13 @@ body {
     border: 1px solid gainsboro; 
     border-collapse: collapse; 
 }
+
+h2 {
+    padding-bottom: 2%;
+}
+
+.class-box:hover{
+  cursor: pointer;
+  filter: grayscale(50%) opacity(40%);
+}
+

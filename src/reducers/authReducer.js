@@ -7,17 +7,17 @@ const initState = {
 const authReducer = (state = initState, action) => {
   switch (action.type) {
     case "SIGN_IN":
-      localStorage.setItem("token", action.response.data.token);
-      localStorage.setItem("role", action.response.data.role);
+      sessionStorage.setItem("token", action.response.data.token);
+      sessionStorage.setItem("role", action.response.data.role);
       return {
         ...state,
-        role: localStorage.getItem("role")
+        role: sessionStorage.getItem("role")
       };
     case "SIGN_UP":
       return state;
     case "SIGN_OUT":
-      localStorage.removeItem("token");
-      localStorage.removeItem("role");
+      sessionStorage.removeItem("token");
+      sessionStorage.removeItem("role");
       return {
         ...state,
         role: ""
@@ -25,7 +25,7 @@ const authReducer = (state = initState, action) => {
     case "FETCH_ROLE":
       return {
         ...state,
-        role: localStorage.getItem("role")
+        role: sessionStorage.getItem("role")
       };
 
     default:

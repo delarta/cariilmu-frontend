@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
+import Header from "../../layouts/Header";
+
 import {
   Container,
   Modal,
@@ -47,30 +49,55 @@ class ClassDetailPage extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
+  addZero(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
+  }
   render() {
+    console.log(this.props);
     const { classId } = this.props.match.params;
+    const backgroundStyle = image => {
+      return {
+        backgroundImage: `url(${image})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover"
+      };
+    };
     let classItem = this.props.classes
-      .filter(item => item.id == classId)
+      .filter(item => item._id === classId)
       .map(item => (
-        <Container key={item.id} className="my-5">
-          <div className="class-detail-banner">
+        <Container key={item._id} className="mb-5">
+          <div
+            className="class-detail-banner"
+            style={backgroundStyle(item.image)}
+          >
             <Container className="detail-banner-text">
               <h2>{item.name}</h2>
               <p className="class-fee">Price : Rp {item.fee}</p>
-              <p className="class-mentor">By : {item.mentor}</p>
+              <p className="class-mentor">By : {item.mentor.name}</p>
             </Container>
           </div>
           <Container className="class-page-content">
             <div className="class-item">
               <div>
-                <p>{item.desc}</p>
+                <p>{item.info}</p>
               </div>
               <div className="class-grid">
                 <p>
-                  <i className="ti-calendar" /> Kamis, 1 November 2019{" "}
+                  <i className="ti-calendar" />{" "}
+                  {new Date(item.schedule).toDateString()}{" "}
                 </p>
                 <p>
-                  <i className="ti-alarm-clock" /> 15.00 - 19.00{" "}
+                  <i className="ti-alarm-clock" />{" "}
+                  {`${this.addZero(
+                    new Date(item.startTime).getHours()
+                  )}:${this.addZero(
+                    new Date(item.startTime).getMinutes()
+                  )} - ${this.addZero(
+                    new Date(item.endTime).getHours()
+                  )}:${this.addZero(new Date(item.endTime).getMinutes())}`}
                 </p>
 
                 <Form inline onSubmit={e => e.preventDefault()}>
@@ -184,13 +211,18 @@ class ClassDetailPage extends Component {
           </Container>
         </Container>
       ));
-    return <div className="class-page-detail">{classItem}</div>;
+    return (
+      <React.Fragment>
+        <Header />
+        <div className="class-page-detail">{classItem}</div>
+      </React.Fragment>
+    );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    classes: state.student.classes
+    classes: state.main.classes
   };
 };
 

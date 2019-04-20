@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import {
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-} from "reactstrap";
+import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { connect } from "react-redux";
 import { signUp } from "../../actions/mentorActions";
+import { withRouter } from "react-router-dom";
+import teach from '../../assets/img/teach.svg'
+
 
 class SignupUser extends Component {
   constructor(props) {
@@ -30,7 +27,8 @@ class SignupUser extends Component {
       this.state.name,
       this.state.username,
       this.state.email,
-      this.state.password
+      this.state.password,
+      this.handleRedirect
     );
     this.setState({
       email: "",
@@ -40,9 +38,21 @@ class SignupUser extends Component {
       password_confirm: ""
     });
   };
+
+  handleRedirect = () => {
+    this.props.history.push("/signin-mentor")
+  }
+
+  signInMentorStyle = () => {
+    return {
+      background: `url(${teach}) no-repeat`,
+      backgroundPosition: 'bottom right',
+      backgroundSize: '50%'
+    }
+  }
   render() {
     return (
-      <div className="auth-container">
+      <div className="auth-container" style={this.signInMentorStyle()}>
         <div className="auth-banner mentor" />
         <div className="container auth-page">
           <div className="auth-page-content">
@@ -116,13 +126,15 @@ class SignupUser extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    signUp: (name, username, email, password) => {
-      dispatch(signUp(name, username, email, password));
+    signUp: (name, username, email, password, handleRedirect) => {
+      dispatch(signUp(name, username, email, password, handleRedirect));
     }
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(SignupUser);
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(SignupUser)
+);

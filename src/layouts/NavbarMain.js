@@ -1,5 +1,14 @@
 import React from "react";
-import { Navbar, NavbarToggler, Collapse, Nav, NavItem } from "reactstrap";
+import {
+  Navbar,
+  NavbarToggler,
+  Collapse,
+  Nav,
+  NavItem,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu
+} from "reactstrap";
 
 import logo from "../assets/img/logo_light_inline.png";
 import { Link } from "react-router-dom";
@@ -22,59 +31,38 @@ class NavbarMain extends React.Component {
   }
 
   render() {
-    window.onscroll = () => {
-      if (window.innerWidth > 768) {
-        if (window.pageYOffset >= 60) {
-          document.querySelector(
-            ".navbar.navbar-expand-md.navbar-dark"
-          ).style.minHeight = "5vh";
-          document.querySelector(
-            ".navbar.navbar-expand-md.navbar-dark"
-          ).style.backgroundColor = "#233142";
-        } else {
-          document.querySelector(
-            ".navbar.navbar-expand-md.navbar-dark"
-          ).style.minHeight = "10vh";
-          document.querySelector(
-            ".navbar.navbar-expand-md.navbar-dark"
-          ).style.backgroundColor = "transparent";
-        }
-      }
-    };
 
     return (
-      <Navbar dark expand="md">
+      <Navbar light expand="md">
         <Link className="navbar-brand" to="/">
-          <img style={{ width: "150px" }} src={logo} alt={logo} />
+          <img src={logo} alt={logo} />
         </Link>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <a className="nav-link" href="#banner">
-                Home
-              </a>
-            </NavItem>
-            <NavItem>
-              <a className="nav-link" href="#keunggulan">
-                Feature
-              </a>
-            </NavItem>
-            <NavItem>
-              <a className="nav-link" href="#misi">
-                Mission
-              </a>
-            </NavItem>
-            <NavItem>
-              <a className="nav-link" href="#download">
-                Download
-              </a>
-            </NavItem>
-            <NavItem active>
-              <Link to="/signin" className="nav-link">
-                Sign In
+              <Link to="/mentors" className="nav-link">
+                Mentors
               </Link>
             </NavItem>
+            <NavItem>
+              <Link to="/class" className="nav-link">
+                Classes
+              </Link>
+            </NavItem>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Sign In
+              </DropdownToggle>
+              <DropdownMenu right>
+                <Link to="/signin" className="dropdown-item">
+                  Student
+                </Link>
+                <Link to="/signin-mentor" className="dropdown-item">
+                  Mentor
+                </Link>
+              </DropdownMenu>
+            </UncontrolledDropdown>
           </Nav>
         </Collapse>
       </Navbar>

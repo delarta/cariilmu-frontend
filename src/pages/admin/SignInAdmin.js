@@ -27,8 +27,6 @@ class SignInAdmin extends Component {
     });
   };
 
-  componentDidMount() {}
-
   render() {
     this.props.role === "admin" && this.props.history.push("/admin");
 

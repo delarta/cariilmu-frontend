@@ -24,7 +24,8 @@ class SignupUser extends Component {
       this.state.name,
       this.state.username,
       this.state.email,
-      this.state.password
+      this.state.password,
+      this.handleRedirect
     );
     this.setState({
       email: "",
@@ -33,6 +34,10 @@ class SignupUser extends Component {
       password: ""
     });
   };
+
+  handleRedirect = () => {
+    this.props.history.push("/signin")
+  }
   render() {
     return (
       <div className="auth-container">
@@ -114,8 +119,8 @@ class SignupUser extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    signUp: (name, username, email, password) => {
-      dispatch(signUp(name, username, email, password));
+    signUp: (name, username, email, password, handleRedirect) => {
+      dispatch(signUp(name, username, email, password, handleRedirect));
     }
   };
 };

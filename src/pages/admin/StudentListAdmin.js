@@ -1,39 +1,44 @@
 import React, { Component } from "react";
-import DataTable from "react-data-table-component";
 import { connect } from "react-redux";
+
+import BootstrapTable from "react-bootstrap-table-next";
+import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
+import paginationFactory from "react-bootstrap-table2-paginator";
 
 class StudentListAdmin extends Component {
   render() {
-    const tableStyle = {
-      title: {
-        fontSize: "2em"
-      },
-      header: {
-        fontSize: "1.5em"
-      },
-      rows: {
-        fontSize: "1em"
-      }
-    };
     const data = this.props.students;
+    console.log(data)
     const columns = [
       {
-        name: "Student Name",
-        selector: "name",
-        sortable: true
+        text: "Id",
+        dataField: "_id",
+        hidden: true
       },
       {
-        name: "Class",
-        selector: "class",
-        sortable: true,
-        right: true,
-        cell: row => {
-          return (
-            <button key={row._id} className="btn btn-info">
-              Show
-            </button>
-          );
-        }
+        text: "Student's Name",
+        dataField: "name",
+        sort: true,
+        filter: textFilter()
+      },
+      {
+        text: "Class",
+        dataField: "class.length",
+        sort: true,
+        filter: textFilter()
+      },
+      {
+        text: "Actions",
+        dataField: "actions",
+        isDummyData: true,
+        formatter: (cell, row) => (
+          <button
+            className="btn btn-danger"
+            onClick={() => this.handleDelete(row._id)}
+          >
+            Delete
+          </button>
+        )
       }
     ];
     return (
@@ -41,16 +46,17 @@ class StudentListAdmin extends Component {
         <div className="content-header">
           <h1>Student List</h1>
         </div>
-        <DataTable
-          noHeader={true}
-          style={{ height: "100%" }}
-          striped={true}
-          highlightOnHover={true}
-          customTheme={tableStyle}
-          columns={columns}
-          responsive={true}
+
+        <BootstrapTable
+          className="table-responsive"
+          keyField="_id"
           data={data}
-          pagination={true}
+          columns={columns}
+          striped
+          hover
+          filter={filterFactory()}
+          pagination={paginationFactory()}
+          bootstrap4={true}
         />
       </div>
     );

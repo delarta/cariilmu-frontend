@@ -1,35 +1,120 @@
 import React, { Component } from "react";
-import DataTable from "react-data-table-component";
 import { connect } from "react-redux";
 
+import BootstrapTable from "react-bootstrap-table-next";
+import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
+import paginationFactory from "react-bootstrap-table2-paginator";
+
+import { verifyMentor, deleteMentor } from "../../actions/adminActions";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+
 class MentorListAdmin extends Component {
-  componentDidMount() {}
+  handleDelete = id => {
+    MySwal.fire({
+      title: <p>Are You Sure ?</p>,
+      type: "question",
+      confirmButtonText: "Yes Delete It",
+      showCancelButton: true
+    }).then(result => {
+      if (result.value) {
+        this.props.deleteMentor(id);
+        MySwal.fire({
+          title: <p>Mentor Deleted</p>,
+          type: "success"
+        });
+      }
+    });
+  };
+
+  handleVerify = id => {
+    MySwal.fire({
+      title: <p>Verify Mentor ?</p>,
+      type: "question",
+      confirmButtonText: "Yes",
+      showCancelButton: true
+    }).then(result => {
+      if (result.value) {
+        this.props.verifyMentor(id);
+        MySwal.fire({
+          title: <p>Mentor Verified</p>,
+          type: "success"
+        });
+      }
+    });
+  };
 
   render() {
-    const tableStyle = {
-      title: {
-        fontSize: "2em"
-      },
-      header: {
-        fontSize: "1.5em"
-      },
-      rows: {
-        fontSize: "1em"
-      }
-    };
     const data = this.props.mentors;
     const columns = [
       {
-        name: "Mentor Name",
-        selector: "name",
-        sortable: true
+        text: "Id",
+        dataField: "_id",
+        hidden: true
       },
       {
-        name: "Status",
-        selector: "confirmed",
-        sortable: true,
-        right: true,
-        cell: row => (row.confirmed ? "Verified" : "Unverified")
+        text: "Mentor Name",
+        dataField: "name",
+        sort: true,
+        filter: textFilter()
+      },
+      {
+        text: "Email",
+        dataField: "email",
+        sort: true,
+        filter: textFilter()
+      },
+      {
+        text: "Classes",
+        dataField: "class.length",
+        sort: true,
+        filter: textFilter()
+      },
+      {
+        text: "Status",
+        dataField: "verified",
+        sort: true,
+        filter: textFilter(),
+        formatter: (cell, row) =>
+          row.verified ? (
+            <span style={{ color: "green" }}>Verified</span>
+          ) : (
+            <span style={{ color: "red" }}>Unverified</span>
+          )
+      },
+      {
+        text: "Actions",
+        dataField: "actions",
+        isDummyField: true,
+        formatter: (cell, row) =>
+          !row.verified ? (
+            <div className="action-buttons">
+              <button
+                className="btn btn-warning"
+                onClick={() => this.handleVerify(row._id)}
+              >
+                Verify
+              </button>
+              <button
+                className="btn btn-danger"
+                onClick={() => this.handleDelete(row._id)}
+              >
+                Delete
+              </button>
+            </div>
+          ) : (
+            <div className="action-buttons">
+              <button className="btn disabled">Verify</button>
+              <button
+                className="btn btn-danger"
+                onClick={() => this.handleDelete(row._id)}
+              >
+                Delete
+              </button>
+            </div>
+          )
       }
     ];
     return (
@@ -37,16 +122,17 @@ class MentorListAdmin extends Component {
         <div className="content-header">
           <h1>Mentor List</h1>
         </div>
-        <DataTable
-          noHeader={true}
-          style={{ height: "100%" }}
-          striped={true}
-          highlightOnHover={true}
-          customTheme={tableStyle}
-          columns={columns}
-          responsive={true}
+
+        <BootstrapTable
+          className="table-responsive"
+          keyField="_id"
           data={data}
-          pagination={true}
+          columns={columns}
+          striped
+          hover
+          filter={filterFactory()}
+          pagination={paginationFactory()}
+          bootstrap4={true}
         />
       </div>
     );
@@ -60,7 +146,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    verifyMentor: id => dispatch(verifyMentor(id)),
+    deleteMentor: id => dispatch(deleteMentor(id))
+  };
 };
 
 export default connect(

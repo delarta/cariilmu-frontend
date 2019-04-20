@@ -10,9 +10,11 @@ import {
   getMentors,
   getClass,
   getStudents,
-  getCategories
+  getCategories,
+  getPayments
 } from "../../actions/adminActions";
 import CategoryList from "./CategoryList";
+import PaymentsAdmin from "./PaymentsAdmin";
 
 class AdminPage extends Component {
   componentDidMount() {
@@ -20,13 +22,14 @@ class AdminPage extends Component {
     this.props.getClass();
     this.props.getStudents();
     this.props.getCategories();
+    this.props.getPayments();
   }
   render() {
+    this.props.role !== "admin" &&
+          this.props.history.push("/signin-admin")
+
     return (
       <Router>
-        {this.props.role !== "admin" &&
-          this.props.history.push("/signin-admin")}
-
         <div id="admin-page">
           <div className="admin-grid">
             <Sidebar />
@@ -35,6 +38,7 @@ class AdminPage extends Component {
             <Route path="/admin/students" component={StudentListAdmin} />
             <Route path="/admin/mentors" component={MentorListAdmin} />
             <Route path="/admin/categories" component={CategoryList} />
+            <Route path="/admin/payments" component={PaymentsAdmin} />
           </div>
         </div>
       </Router>
@@ -53,7 +57,8 @@ const mapDispatchToProps = dispatch => {
     getMentors: () => dispatch(getMentors()),
     getClass: () => dispatch(getClass()),
     getStudents: () => dispatch(getStudents()),
-    getCategories: () => dispatch(getCategories())
+    getCategories: () => dispatch(getCategories()),
+    getPayments: () => dispatch(getPayments())
   };
 };
 
