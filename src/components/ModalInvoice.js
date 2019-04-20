@@ -40,7 +40,7 @@ export default class ModalInvoice extends Component {
   render() {
     return (
       <div>
-        <Button color="success" onClick={this.toggle}>
+        <Button color="success" onClick={this.toggle} block>
           {" "}
           Paid
         </Button>

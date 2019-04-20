@@ -17,11 +17,11 @@ const mainReducer = (state = initState, action) => {
        ...state,
        categories : action.payload
      }
-    case "FETCH_MENTOR_PUBLIC": 
-    return {
-      ...state,
-      mentors: action.payload
-    }
+     case "FETCH_CART":
+     return {
+       ...state,
+       students : action.payload
+     }
     default:
       return state;
   }

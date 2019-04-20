@@ -38,7 +38,7 @@ class SchedulePage extends Component {
                           <tr>
                             <th scope="row"> </th>
                             <td>{item.name}</td>
-                            <td> </td>
+                            <td> {item.mentor.name}</td>
                             <td>{item.schedule}</td>
                             <td>{item.durationInMinutes}</td>
                             <td>{item.status}</td>
