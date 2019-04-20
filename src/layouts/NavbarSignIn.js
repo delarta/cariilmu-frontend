@@ -55,11 +55,10 @@ class NavbarSignIn extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <Navbar light expand="md">
         <Link className="navbar-brand" to="/">
-          <img src={logo} alt={logo} />
+          <img id="logo-navbar" src={logo} alt={logo} />
         </Link>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>

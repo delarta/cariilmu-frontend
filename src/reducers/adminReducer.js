@@ -3,7 +3,8 @@ const initState = {
   classes: [],
   students: [],
   categories: [],
-  payments: []
+  payments: [],
+  mentorPayments: []
 };
 const adminReducer = (state = initState, action) => {
   switch (action.type) {
@@ -81,19 +82,37 @@ const adminReducer = (state = initState, action) => {
         ...state,
         payments: action.payload
       };
-    case "VERIFY_PAYMENT_ADMIN": {
+    case "FETCH_MENTOR_PAYMENT_ADMIN":
+      return {
+        ...state,
+        mentorPayments: action.payload
+      };
+
+    case "VERIFY_PAYMENT_ADMIN":
       return {
         ...state,
         payments: [
           ...state.payments.map(item => {
-            if (item._id === action.payload.id) {
-              item.status = action.payload.status;
+            if (item._id === action.payload._id) {
+              item = action.payload;
             }
             return item;
           })
         ]
       };
-    }
+    case "VERIFY_MENTOR_PAYMENT_ADMIN":
+      return {
+        ...state,
+        mentorPayments: [
+          ...state.payments.map(item => {
+            if (item._id === action.payload._id) {
+              item = action.payload;
+            }
+            return item;
+          })
+        ]
+      };
+
     default:
       return state;
   }

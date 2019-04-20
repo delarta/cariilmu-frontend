@@ -104,6 +104,24 @@ export const getPayments = () => {
   };
 };
 
+export const getMentorPayments = () => {
+  return dispatch => {
+    axios({
+      method: "get",
+      url: `${url}/admin/mentor/payments/all`,
+      headers: { Authorization: sessionStorage.getItem("token") }
+    })
+      .then(res => {
+        console.log(res)
+        dispatch({
+          type: "FETCH_MENTOR_PAYMENT_ADMIN",
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
 export const verifyPayment = (id) => {
   return dispatch => {
     axios({
@@ -115,6 +133,24 @@ export const verifyPayment = (id) => {
         console.log(res)
         dispatch({
           type: "VERIFY_PAYMENT_ADMIN",
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
+export const verifyMentorPayment = (id) => {
+  return dispatch => {
+    axios({
+      method: "put",
+      url: `${url}/admin/class/${id}/pay`,
+      headers: { Authorization: sessionStorage.getItem("token") }
+    })
+      .then(res => {
+        console.log(res)
+        dispatch({
+          type: "VERIFY_MENTOR_PAYMENT_ADMIN",
           payload: res.data.data
         });
       })
@@ -191,9 +227,6 @@ export const editCategory = (id, name, photo) => {
 
 export const addCategory = (name) => {
   return dispatch => {
-    // let bodyFormData = new FormData();
-
-    // bodyFormData.set("name", name);
     
     axios({
       method: "post",

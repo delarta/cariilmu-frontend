@@ -16,9 +16,9 @@ class ClassItem extends Component {
   }
   render() {
     const { searchItem, classes } = this.props;
-    let filteredClass = "";
+    let filteredClass = classes.reverse();
     if (searchItem !== undefined) {
-      filteredClass = classes.filter(item => {
+      filteredClass = classes.reverse().filter(item => {
         return item.name.toLowerCase().indexOf(searchItem) !== -1;
       });
     } else if (this.props.match.path === "/mentor/:mentorId") {

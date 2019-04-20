@@ -221,6 +221,7 @@ export const editClass = (
       data: bodyFormData
     })
       .then(res => {
+        console.log(res.data.data)
         Swal.fire({
           title: "Class Edited!",
           timer: 1000,
@@ -277,6 +278,23 @@ export const editProfile = (
         console.log(res);
         dispatch({
           type: "EDIT_MENTOR_PROFILE",
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
+export const getPayment = () => {
+  return dispatch => {
+    axios({
+      method: "get",
+      url: `${url}/mentor/balance`,
+      headers: { Authorization: sessionStorage.getItem("token") }
+    })
+      .then(res => {
+        dispatch({
+          type: "FETCH_PAYMENT_MENTOR",
           payload: res.data.data
         });
       })

@@ -1,7 +1,8 @@
 const initState = {
   mentor: {},
   classes: [],
-  students: []
+  students: [],
+  payments: []
 };
 const mentorReducer = (state = initState, action) => {
   switch (action.type) {
@@ -22,14 +23,8 @@ const mentorReducer = (state = initState, action) => {
         ...state,
         classes: [
           ...state.classes.map(item => {
-            if (item._id === action.payload.id) {
-              item.name = action.payload.name;
-              item.info = action.payload.info;
-              item.schedule = action.payload.schedule;
-              item.category = action.payload.category;
-              item.image = action.payload.image;
-              item.startTime = action.payload.startTime;
-              item.endTime = action.payload.endTime;
+            if (item._id === action.payload._id) {
+              item = action.payload
             }
             return item;
           })
@@ -56,6 +51,11 @@ const mentorReducer = (state = initState, action) => {
         ...state,
         classes: action.payload
       };
+    case "FETCH_PAYMENT_MENTOR":
+    return{
+      ...state,
+      payments: action.payload
+    }
     case "EDIT_MENTOR_PROFILE":
       console.log(action.payload);
       return {

@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { Container, Button } from "reactstrap";
 import phone from "../../assets/img/ipad.svg";
+import mentor from "../../assets/img/mentor_landing.png";
+import classes from "../../assets/img/class_landing.png";
+import student from "../../assets/img/student_landing.png";
+
+
 import { Link } from "react-router-dom";
 
 import Header from "../../layouts/Header";
@@ -60,10 +65,10 @@ class Landing extends Component {
           <section className="fitur one">
             <Container className="fitur-grid">
               <div className="text-center">
-                <img src={phone} alt={phone} />
+                <img src={mentor} alt={mentor} />
               </div>
               <div className="text">
-                <h3>Find your desired class</h3>
+                <h3>Be A Mentor</h3>
                 <p>Find your dream class anywhere and whenever you need it</p>
               </div>
             </Container>
@@ -77,14 +82,14 @@ class Landing extends Component {
                 </p>
               </div>
               <div className="text-center">
-                <img src={phone} alt={phone} />
+                <img src={classes} alt={classes} />
               </div>
             </Container>
           </section>
           <section className="fitur three">
             <Container className="fitur-grid">
               <div className="text-center">
-                <img src={phone} alt={phone} />
+                <img src={student} alt={student} />
               </div>
               <div className="text">
                 <h3>Choose your own schedule</h3>

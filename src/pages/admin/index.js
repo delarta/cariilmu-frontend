@@ -11,10 +11,12 @@ import {
   getClass,
   getStudents,
   getCategories,
-  getPayments
+  getPayments,
+  getMentorPayments
 } from "../../actions/adminActions";
 import CategoryList from "./CategoryList";
 import PaymentsAdmin from "./PaymentsAdmin";
+import MentorPaymentsAdmin from "./MentorPaymentsAdmin";
 
 class AdminPage extends Component {
   componentDidMount() {
@@ -23,6 +25,7 @@ class AdminPage extends Component {
     this.props.getStudents();
     this.props.getCategories();
     this.props.getPayments();
+    this.props.getMentorPayments();
   }
   render() {
     this.props.role !== "admin" &&
@@ -39,6 +42,8 @@ class AdminPage extends Component {
             <Route path="/admin/mentors" component={MentorListAdmin} />
             <Route path="/admin/categories" component={CategoryList} />
             <Route path="/admin/payments" component={PaymentsAdmin} />
+            <Route path="/admin/mentor-payments" component={MentorPaymentsAdmin} />
+
           </div>
         </div>
       </Router>
@@ -58,7 +63,9 @@ const mapDispatchToProps = dispatch => {
     getClass: () => dispatch(getClass()),
     getStudents: () => dispatch(getStudents()),
     getCategories: () => dispatch(getCategories()),
-    getPayments: () => dispatch(getPayments())
+    getPayments: () => dispatch(getPayments()),
+    getMentorPayments: () => dispatch(getMentorPayments())
+
   };
 };
 

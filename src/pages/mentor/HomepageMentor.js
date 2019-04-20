@@ -8,7 +8,6 @@ import revenue from "../../assets/img/revenue.png";
 import money from "../../assets/img/money.png";
 import sharing from "../../assets/img/sharing.png";
 import rating from "../../assets/img/star.png";
-import { create } from "domain";
 import Header from "../../layouts/Header"
 import "./HomepageMentor.scss";
 
