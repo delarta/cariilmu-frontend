@@ -55,10 +55,11 @@ class App extends Component {
           <Route exact path="/class" component={ClassList} />
           <Route exact path="/mentors" component={MentorListPage} />
           <Route exact path="/class/:classId" component={ClassDetail} />
+          <Route exact path="/category/:categoryId" component={CategoryPage} />
+
 
           <Route exact path="/homepage-mentor" component={HomepageMentor}/>
           <Route exact path="/schedule" component={SchedulePage} />
-          <Route path="/category" component={CategoryPage} />
 
           <Route component={NotFound} />
         </Switch>

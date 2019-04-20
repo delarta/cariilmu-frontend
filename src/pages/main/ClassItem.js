@@ -21,12 +21,19 @@ class ClassItem extends Component {
       filteredClass = classes.reverse().filter(item => {
         return item.name.toLowerCase().indexOf(searchItem) !== -1;
       });
-    } else if (this.props.match.path === "/mentor/:mentorId") {
+  
+    } else if (this.props.match.params.categoryId !== undefined) {
+      console.log(this.props.match.params.categoryId)
+      filteredClass = classes.filter(item =>
+        item.category._id === this.props.match.params.categoryId
+        )
+    }
+     else if (this.props.match.path === "/mentor/:mentorId") {
       filteredClass = classes.filter(
         item => item.mentor._id === this.props.match.params.mentorId
       );
     } else {
-      filteredClass = classes.reverse().slice(0, 8);
+      filteredClass = classes.slice(0, 8);
     }
     return filteredClass.map(item => (
       <div className="class-item" key={item._id}>
