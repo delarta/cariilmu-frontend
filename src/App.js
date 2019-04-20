@@ -40,22 +40,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-<<<<<<< HEAD
-        <Route exact path="/signin-mentor" component={SignInMentor} />
-        <Route exact path="/signup-mentor" component={SignUpMentor} />
-        <Route exact path="/mentor" component={MentorPage} />
-        <Route exact path="/homepage-mentor" component={HomepageMentor}/>
-
-
-        <Route exact path="/signin" component={SignInPage} />
-        <Route exact path="/signup" component={SignUpPage} />
-        
-        <Route exact path="/signin-admin" component={SignInAdmin} />
-        <Route exact path="/admin" component={AdminPage} />
-        <Route path="/" component={MainPage} />
-        <Route path="/category" component={CategoryPage} />
-=======
-        <Switch>
+      <Switch>
           <Route exact path="/signin-mentor" component={SignInMentor} />
           <Route exact path="/signup-mentor" component={SignUpMentor} />
           <Route exact path="/mentor" component={MentorPage} />
@@ -81,7 +66,6 @@ class App extends Component {
 
           <Route component={NotFound} />
         </Switch>
->>>>>>> 2dae9f2ff16ac56748eda5f62495aabc1d6b5294
         <Footer />
       </Router>
     );
