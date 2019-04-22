@@ -524,7 +524,9 @@ section {
 
 .fitur {
   height: 55em;
-  padding-top: 8em;
+  // padding-top: 8em;
+  padding-top: 12em;
+
   .fitur-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -571,6 +573,7 @@ section {
     }
   }
   &.three {
+
     margin-top: -12em;
     background: $maingrad;
     -webkit-clip-path: polygon(0px 100%, 0px 15%, 100% 0px, 100% 100%);
@@ -1026,7 +1029,7 @@ footer {
       border-bottom: 2px solid $blue;
 
       h1 {
-        font-size: 10em;
+        font-size: 3em;
         font-weight: 600;
       }
     }
