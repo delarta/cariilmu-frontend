@@ -18,6 +18,7 @@ class Landing extends Component {
                   Let's Share and Search Knowledge <br /> with Cariilmu
                 </h2>
                 <p>
+                  CariIlmu is an platform to find a solution about your educational. 
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                   Rerum aperiam iusto accusantium eum harum aliquid debitis!
                   Ratione nam quos neque officia labore! Reiciendis quibusdam
@@ -45,13 +46,9 @@ class Landing extends Component {
                 </div>
                 <div>
                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Expedita fugit, accusantium reiciendis ipsa repellendus
-                    maxime. Alias adipisci rerum soluta dolor voluptate nemo qui
-                    harum saepe suscipit aliquid! Voluptate alias accusamus
-                    atque exercitationem ullam vero nesciunt illo, consectetur
-                    reiciendis asperiores, deserunt maiores saepe ratione
-                    accusantium itaque. Perferendis beatae amet esse suscipit?
+                  Take your career ladder faster than other people. 
+                  Learning can happen anywhere, anytime, and with evryone with CariIlmu paltform. 
+                  Take a leap of your career for lifetime with learning something new with a professional mentors. 
                   </p>
                 </div>
               </div>
