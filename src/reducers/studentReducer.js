@@ -165,6 +165,7 @@ const studentReducer = (state = initState, action) => {
           })
         ]
       }
+
     default:
       return state;
   }

@@ -13,10 +13,7 @@ class ModalConfirmation extends Component {
 			modal: false,
 			backdrop: true,
 			loading: false,
-			photo: ''
-
-
-		
+			photo: '',
 		};
 
 		this.toggle = this.toggle.bind(this);
@@ -40,19 +37,18 @@ class ModalConfirmation extends Component {
 	handlePayment = classid => {
 		classid.preventDefault();
 		this.props.confirmPayment(this.props.id_payment, this.state.photo);
-		
-		
 	};
 
 	getPhoto = e => {
 		e.preventDefault();
 		this.setState({
-		photo: e.target.files[0]
+			photo: e.target.files[0],
 		});
-	  };
+	};
 
 	render() {
-		const  classId  = this.props.id_payment;
+	
+		const classId = this.props.id_payment;
 		return (
 			<div>
 				<Button color="danger" onClick={this.toggle} block>
@@ -65,11 +61,10 @@ class ModalConfirmation extends Component {
 					className={this.props.className}
 					backdrop={this.state.backdrop}
 				>
-					{
-						this.props.students
-						.filter(item => item.class._id === classId)
+					{this.props.students
+						.filter(item => item._id === classId)
 						.map(item => (
-							<Form key={item.class._id} onSubmit={this.handlePayment}>
+							<Form onSubmit={this.handlePayment}>
 								<ModalHeader toggle={this.toggle}> CONFIRMATION</ModalHeader>
 								<ModalBody>
 									<Form>
@@ -78,13 +73,7 @@ class ModalConfirmation extends Component {
 												ID Transaksi
 											</Label>
 											<Col sm={9}>
-												<Input
-													type="id"
-													name="id"
-													id="id"
-													placeholder=""
-													value={item.class._id}
-												/>
+												<Input type="id" name="id" id="id" placeholder="" value={item._id} />
 											</Col>
 										</FormGroup>
 
@@ -98,7 +87,7 @@ class ModalConfirmation extends Component {
 													name="item"
 													id="item"
 													placeholder=""
-													value={item.class.name}
+													value={item.class !== null ? item.class.name : "No Name"}
 												/>
 											</Col>
 										</FormGroup>
@@ -113,7 +102,7 @@ class ModalConfirmation extends Component {
 													name="price"
 													id="price"
 													placeholder=""
-													value={item.class.fee}
+													value={item.class !== null ? item.class.fee : "No Fee"}
 												/>
 											</Col>
 										</FormGroup>
@@ -123,7 +112,13 @@ class ModalConfirmation extends Component {
 												Bank
 											</Label>
 											<Col sm={9}>
-												<Input type="bank" name="bank" id="bank" placeholder="" />
+												<Input
+													type="bank"
+													name="bank"
+													id="bank"
+													placeholder=""
+													value={item.bank + '  a/n   ' + item.beneficiaryBank}
+												/>
 											</Col>
 										</FormGroup>
 
@@ -132,7 +127,13 @@ class ModalConfirmation extends Component {
 												No Rek
 											</Label>
 											<Col sm={9}>
-												<Input type="rek" name="rek" id="rek" placeholder="" />
+												<Input
+													type="rek"
+													name="rek"
+													id="rek"
+													placeholder=""
+													value={item.accountNumber}
+												/>
 											</Col>
 										</FormGroup>
 
@@ -141,7 +142,12 @@ class ModalConfirmation extends Component {
 												File
 											</Label>
 											<Col sm={9}>
-												<Input type="file" name="file" id="exampleFile" onChange={this.getPhoto}/>
+												<Input
+													type="file"
+													name="file"
+													id="exampleFile"
+													onChange={this.getPhoto}
+												/>
 												<label htmlFor="exampleFile">upload</label>
 											</Col>
 										</FormGroup>

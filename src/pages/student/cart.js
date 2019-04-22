@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table } from "reactstrap";
+import { Table, Button } from "reactstrap";
 import ModalConfirmation from "../../components/ModalConfirmation";
 import ModalInvoice from "../../components/ModalInvoice";
 import { getCart } from "../../actions/studentActions";
@@ -19,7 +19,7 @@ class cart extends Component {
   }
 
   render() {
-    console.log(this.props.students);
+    console.log( "data",this.props.students);
     return (
       <React.Fragment>
 <Header/>
@@ -48,10 +48,13 @@ class cart extends Component {
                   <td>{item.class !== null ? item.class.fee : "No Fee"}</td>
                   <td>
                     {item.status === "unpaid" ? (
-                      <ModalConfirmation id_payment={item.class._id} InitialModalState={false} />
-                    ) : (
-                       <ModalInvoice id_payment={item.class._id} InitialModalState={false} />
-                    )}
+                      <ModalConfirmation id_payment={item._id} InitialModalState={false} />
+                    ) :item.status === "pending" ? (
+                       (<Button color="warning" onClick={this.toggle} block>
+                       Waiting on Confirmation
+                     </Button>)
+                    ) :( <ModalInvoice id_payment={item._id} InitialModalState={false} />)
+                    }
                   </td>
                 </tr>
               ))}

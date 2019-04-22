@@ -116,7 +116,7 @@ export const getCart = () => {
     axios({
       method: "get",
       url: `${url}/student/payment`,
-      headers: { Authorization: localStorage.getItem("token") }
+      headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
         dispatch({
@@ -134,7 +134,7 @@ export const enroll = (classid) => {
     axios({
       method: "put",
       url: `${url}/student/class/${classid.classId}/enroll`,
-      headers: { Authorization: localStorage.getItem("token") }
+      headers: { Authorization: sessionStorage.getItem("token") }
 
     })
       .then(res => {
@@ -160,8 +160,8 @@ export const confirmPayment = (classid, photo) => {
     axios({
       method: "put",
       url: `${url}/student/payment/${classid}/confirm`,
-      headers: { Authorization: localStorage.getItem("token"),
-      
+      headers: { Authorization: sessionStorage.getItem("token"),
+      "Content-Type": "multipart/form-data"
     },
 
       data: bodyFormData
@@ -179,3 +179,19 @@ export const confirmPayment = (classid, photo) => {
   };
 };
 
+export const getSchedule = () => {
+  return dispatch => {
+    axios({
+      method: "get",
+      url: `${url}/student/class`,
+      headers: { Authorization: sessionStorage.getItem("token") }
+    })
+      .then(res => {
+        dispatch({
+          type: "FETCH_SCHEDULE",
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
