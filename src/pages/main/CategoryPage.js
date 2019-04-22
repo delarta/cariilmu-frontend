@@ -1,31 +1,38 @@
 import React, { Component } from "react";
-import { Card, CardBody } from "reactstrap";
-import { Link } from "react-router-dom";
-
-import { connect } from "react-redux";
+import { Container, Input } from "reactstrap";
+import ClassItem from "./ClassItem";
+import Header from "../../layouts/Header";
 
 class CategoryPage extends Component {
+  constructor(props) {
+    super(props);
+
+  }
+
   render() {
-    const categories = this.props.categories;
+    console.log(this.props)
     return (
-      <div className="home-category text-center grid-4">
-        {categories.map((item, index) => (
-          <Card key={index} className="category-item">
-            <i className={item.image} />
-            <CardBody>
-              <Link to="/class">{item.name}</Link>
-            </CardBody>
-          </Card>
-        ))}
-      </div>
+      <React.Fragment>
+        <Header />
+        <div className="class-page">
+          <div className="class-container">
+            <div className="search">
+              <div className="text-center">
+                <h1>Category</h1>
+              </div>
+    
+            </div>
+
+            <Container>
+              <Container className="class-page-content mb-5">
+                <ClassItem />
+              </Container>
+            </Container>
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    categories: state.student.categories
-  };
-};
-
-export default connect(mapStateToProps)(CategoryPage);
+export default CategoryPage;

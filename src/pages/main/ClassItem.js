@@ -17,11 +17,20 @@ class ClassItem extends Component {
   render() {
     const { searchItem, classes } = this.props;
     let filteredClass = "";
+    console.log(this.props)
     if (searchItem !== undefined) {
+      
       filteredClass = classes.filter(item => {
         return item.name.toLowerCase().indexOf(searchItem) !== -1;
       });
-    } else if (this.props.match.path === "/mentor/:mentorId") {
+  
+    } else if (this.props.match.params.categoryId !== undefined) {
+      console.log(this.props.match.params.categoryId)
+      filteredClass = classes.filter(item =>
+        item.category._id === this.props.match.params.categoryId
+        )
+    }
+     else if (this.props.match.path === "/mentor/:mentorId") {
       filteredClass = classes.filter(
         item => item.mentor._id === this.props.match.params.mentorId
       );
