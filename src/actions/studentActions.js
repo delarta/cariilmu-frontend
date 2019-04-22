@@ -108,3 +108,90 @@ export const getStudentData = () => {
       });
   };
 };
+
+
+
+export const getCart = () => {
+  return dispatch => {
+    axios({
+      method: "get",
+      url: `${url}/student/payment`,
+      headers: { Authorization: sessionStorage.getItem("token") }
+    })
+      .then(res => {
+        dispatch({
+          type: "FETCH_CART",
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
+export const enroll = (classid) => {
+  console.log('from thunk',classid)
+  return dispatch => {
+    axios({
+      method: "put",
+      url: `${url}/student/class/${classid.classId}/enroll`,
+      headers: { Authorization: sessionStorage.getItem("token") }
+
+    })
+      .then(res => {
+        console.log("berhasil")
+        dispatch({
+          type: "ENROLL_CLASS",
+          payload: res.data.data
+          
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
+export const confirmPayment = (classid, photo) => { 
+  console.log('from thunk',classid)
+  console.log('photo', photo)
+  return dispatch => {
+    let bodyFormData = new FormData();
+
+    bodyFormData.append("photo", photo);
+
+    axios({
+      method: "put",
+      url: `${url}/student/payment/${classid}/confirm`,
+      headers: { Authorization: sessionStorage.getItem("token"),
+      "Content-Type": "multipart/form-data"
+    },
+
+      data: bodyFormData
+
+    })
+      .then(res => {
+        console.log("berhasil")
+        dispatch({
+          type: "CONFIRM_PAYMENT",
+          payload : res.data.data
+          
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
+
+export const getSchedule = () => {
+  return dispatch => {
+    axios({
+      method: "get",
+      url: `${url}/student/class`,
+      headers: { Authorization: sessionStorage.getItem("token") }
+    })
+      .then(res => {
+        dispatch({
+          type: "FETCH_SCHEDULE",
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+};
