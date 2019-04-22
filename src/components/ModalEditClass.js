@@ -66,7 +66,6 @@ class ModalEditClass extends React.Component {
     this.setState({
       name: "",
       info: "",
-      schedule: "",
       fee: "",
       category: "",
       image: null,

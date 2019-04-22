@@ -7,8 +7,11 @@ import NavbarMain from "./NavbarMain";
 import { connect } from "react-redux";
 import NavbarAdmin from "./NavbarAdmin";
 
+import logo from "../assets/img/logo_blue_inline.png";
+import logo_light from "../assets/img/logo_light_inline.png";
+
 class Header extends React.Component {
-  handleScroll = (event) => {
+  handleScroll = event => {
     if (
       // window.innerWidth > 768 &&
       this.props.location.pathname !== "/signin" &&
@@ -18,35 +21,24 @@ class Header extends React.Component {
       this.props.location.pathname !== "/signup-mentor"
     ) {
       if (window.pageYOffset >= 60) {
-        // document.querySelector(
-        //   ".navbar.navbar-expand-md.navbar-light"
-        // ).style.minHeight = "5vh";
-        // document.querySelector(
-        //   ".navbar.navbar-expand-md.navbar-light"
-        // ).style.backgroundColor = "#fafafa";
-        document.querySelector(
-          ".navbar.navbar-expand-md.navbar-light"
-        ).classList.add("navbar-scrolled")
+        document.getElementById("logo-navbar").src = logo;
+        document
+          .querySelector(".navbar.navbar-expand-md.navbar-light")
+          .classList.add("navbar-scrolled");
       } else {
-        // document.querySelector(
-        //   ".navbar.navbar-expand-md.navbar-light"
-        // ).style.minHeight = "10vh";
-        // document.querySelector(
-        //   ".navbar.navbar-expand-md.navbar-light"
-        // ).style.backgroundColor = "transparent";
-        document.querySelector(
-          ".navbar.navbar-expand-md.navbar-light"
-        ).classList.remove("navbar-scrolled")
+        document.getElementById("logo-navbar").src = logo_light;
+        document
+          .querySelector(".navbar.navbar-expand-md.navbar-light")
+          .classList.remove("navbar-scrolled");
       }
     }
-    
-  }
+  };
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener("scroll", this.handleScroll);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll)
+    window.removeEventListener("scroll", this.handleScroll);
   }
   render() {
     return (

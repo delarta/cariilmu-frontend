@@ -3,21 +3,23 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { getMentors } from "../../actions/mainActions";
+import StarRatings from "react-star-ratings";
 
 class MentorItem extends Component {
   componentDidMount() {
     this.props.getMentors();
   }
   render() {
-    const {mentors} = this.props;
+    const { mentors } = this.props;
+    console.log(mentors);
 
-    let filteredMentor = "";
+    let filteredMentor = mentors.reverse();
     if (this.props.searchItem !== undefined) {
       filteredMentor = mentors.filter(item => {
         return item.name.toLowerCase().indexOf(this.props.searchItem) !== -1;
       });
     } else {
-      filteredMentor = mentors.reverse().slice(0, 3);
+      filteredMentor = mentors.slice(0, 3);
     }
     return filteredMentor.map(item => (
       <div className="mentor-item" key={item._id}>
@@ -27,7 +29,15 @@ class MentorItem extends Component {
         <div className="mentor-right">
           <h3>{item.name}</h3>
           <p>{item.bio}</p>
-          
+          <div className="mb-4">
+            <StarRatings
+              rating={item.avgRating}
+              starDimension="20px"
+              starRatedColor="f3ae4b"
+              starSpacing="1px"
+            />
+          </div>
+
           <Link to={`/mentor/${item._id}`} className="btn btn-primary">
             See Detail <i className="ti-angle-double-right" />
           </Link>

@@ -23,10 +23,6 @@ import HomePage from "./pages/main/HomePage";
 import ClassList from "./pages/main/ClassListPage";
 import ClassDetail from "./pages/main/ClassDetailPage";
 
-// iki nyapo nang mentor ??
-import ConfirmationPage from './pages/mentor/ConfirmationPage';
-import PaymentPage from './pages/mentor/PaymentPage';
-
 import SchedulePage from './pages/student/SchedulePage';
 
 import { getRole } from "./actions/mainActions";
@@ -52,7 +48,6 @@ class App extends Component {
 
           <Route exact path="/signin-admin" component={SignInAdmin} />
           <Route exact path="/admin" component={AdminPage} />
-          {/* <Route path="/" component={MainPage} /> */}
           
           {/* Main */}
           <Route exact path="/" component={Landing} />
@@ -63,9 +58,7 @@ class App extends Component {
           <Route exact path="/category/:categoryId" component={CategoryPage} />
 
 
-          <Route exact path="/confirmation" component={ConfirmationPage} />
           <Route exact path="/homepage-mentor" component={HomepageMentor}/>
-          <Route exact path="/payment" component={PaymentPage} />
           <Route exact path="/schedule" component={SchedulePage} />
 
           <Route component={NotFound} />

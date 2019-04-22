@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { Container, Badge } from "reactstrap";
 import ClassItem from "./ClassItem";
 import Header from "../../layouts/Header";
+import StarRatings from "react-star-ratings";
+
 
 class MentorDetail extends Component {
   render() {
@@ -25,10 +27,17 @@ class MentorDetail extends Component {
                 ) : (
                   <Badge color="secondary">Unverified</Badge>
                 )}
+                {" "}
+                <StarRatings
+              rating={item.avgRating}
+              starDimension="20px"
+              starRatedColor="f3ae4b"
+              starSpacing="1px"
+            />
               </p>
               <hr />
               <div>
-                <h3>About Mentor</h3>
+                <h4>About Mentor</h4>
                 <p>{item.bio}</p>
               </div>
             </div>

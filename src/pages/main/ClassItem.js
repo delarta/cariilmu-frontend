@@ -16,11 +16,9 @@ class ClassItem extends Component {
   }
   render() {
     const { searchItem, classes } = this.props;
-    let filteredClass = "";
-    console.log(this.props)
+    let filteredClass = classes.reverse();
     if (searchItem !== undefined) {
-      
-      filteredClass = classes.filter(item => {
+      filteredClass = classes.reverse().filter(item => {
         return item.name.toLowerCase().indexOf(searchItem) !== -1;
       });
   
@@ -35,7 +33,7 @@ class ClassItem extends Component {
         item => item.mentor._id === this.props.match.params.mentorId
       );
     } else {
-      filteredClass = classes.reverse().slice(0, 8);
+      filteredClass = classes.slice(0, 8);
     }
     return filteredClass.map(item => (
       <div className="class-item" key={item._id}>

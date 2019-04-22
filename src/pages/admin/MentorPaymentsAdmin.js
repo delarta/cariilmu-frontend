@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { verifyPayment } from "../../actions/adminActions";
+import { deleteClass, verifyMentorPayment } from "../../actions/adminActions";
 
 import BootstrapTable from "react-bootstrap-table-next";
 import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
@@ -13,28 +13,35 @@ const MySwal = withReactContent(Swal);
 class PaymentsAdmin extends Component {
   handleVerify = id => {
     MySwal.fire({
-      title: <p>Verify Payment ?</p>,
+      title: <p>Forward Payment to Mentor ?</p>,
       type: "question",
       confirmButtonText: "Yes",
       showCancelButton: true
     }).then(result => {
       if (result.value) {
-        this.props.verifyPayment(id);
+        this.props.verifyMentorPayment(id);
         MySwal.fire({
-          title: <p>Payment Verified</p>,
+          title: <p>Payment Forwarded</p>,
           type: "success"
         });
       }
     });
   };
   render() {
-    const { payments } = this.props;
-    const data = payments;
+    const { mentorPayments } = this.props;
+   
+    const data = mentorPayments;
     const columns = [
       {
         text: "Id",
         dataField: "_id",
         hidden: true
+      },
+      {
+        text: "Mentor Name",
+        dataField: "mentor.name",
+        sort: true,
+        filter: textFilter()
       },
       {
         text: "Class Name",
@@ -43,17 +50,20 @@ class PaymentsAdmin extends Component {
         filter: textFilter()
       },
       {
-        text: "Created At",
-        dataField: "createdAt",
-        sort: true,
-        filter: textFilter(),
-        formatter: (cell, row) => new Date(row.createdAt).toDateString()
-      },
-      {
         text: "Status",
         dataField: "status",
         sort: true,
         filter: textFilter()
+      },
+      {
+        text: "Amount",
+        dataField: "amount",
+        sort: true
+      },
+      {
+        text: "Commission",
+        dataField: "commission",
+        sort: true
       },
       {
         text: "Actions",
@@ -65,7 +75,7 @@ class PaymentsAdmin extends Component {
               <div className="action-buttons">
                 <button
                   className="btn btn-warning"
-                  onClick={() => this.handleVerify(row._id)}
+                  onClick={() => this.handleVerify(row.class._id)}
                 >
                   Verify
                 </button>
@@ -90,7 +100,7 @@ class PaymentsAdmin extends Component {
     return (
       <div className="content-admin">
         <div className="content-header">
-          <h1>Payments</h1>
+          <h1>Mentor Payments</h1>
         </div>
         <BootstrapTable
           className="table-responsive"
@@ -110,13 +120,14 @@ class PaymentsAdmin extends Component {
 
 const mapStateToProps = state => {
   return {
-    payments: state.admin.payments
+    mentorPayments: state.admin.mentorPayments
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    verifyPayment: id => dispatch(verifyPayment(id))
+    deleteClass: id => dispatch(deleteClass(id)),
+    verifyMentorPayment: id => dispatch(verifyMentorPayment(id))
   };
 };
 

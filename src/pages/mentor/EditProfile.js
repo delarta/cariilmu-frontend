@@ -13,12 +13,9 @@ class EditProfile extends Component {
 
     let mentor_profile = this.props.mentor;
     var birthdate = "";
-    if(!mentor_profile.hasOwnProperty("birthday") ){
+    if (!mentor_profile.hasOwnProperty("birthday")) {
       birthdate = new Date();
-      console.log("birthday", birthdate)
-
-    }else{
-      console.log("no birthday")
+    } else {
       birthdate = new Date(mentor_profile.birthday);
     }
 
@@ -33,7 +30,8 @@ class EditProfile extends Component {
       ektpNumber: mentor_profile.ektpNumber,
       ektp: mentor_profile.ektp,
       photo: mentor_profile.photo,
-      file: ""
+      file: "",
+      imageURI: null
     };
   }
 
@@ -62,16 +60,19 @@ class EditProfile extends Component {
   handleDate = date => {
     this.setState({ birthday: date });
   };
-
-  componentDidMount() {
-    console.log(this.props.mentor);
-  }
-
   getPhoto = e => {
     e.preventDefault();
     this.setState({
       [e.target.name]: e.target.files[0]
     });
+
+    if (e.target.files && e.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = ev => {
+        this.setState({ imageURI: ev.target.result });
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
   };
   render() {
     return (
@@ -196,7 +197,13 @@ class EditProfile extends Component {
           </div>
           <div className="text-center">
             <div>
-              {this.props.mentor === undefined ? (
+              {this.state.imageURI !== null ? (
+                <img
+                  className="img-preview"
+                  src={this.state.imageURI}
+                  alt={this.state.image}
+                />
+              ) : this.props.mentor === undefined ? (
                 <img src={avatar} alt={avatar} style={{ width: "60%" }} />
               ) : (
                 <img
