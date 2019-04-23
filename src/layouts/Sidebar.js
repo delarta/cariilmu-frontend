@@ -15,7 +15,9 @@ class SideBar extends React.Component {
   render() {
     const { role, mentor } = this.props;
     let sidebarStyle =
-      sessionStorage.getItem("role") === "mentor" ? "sidebar-mentor" : "sidebar";
+      sessionStorage.getItem("role") === "mentor"
+        ? "sidebar-mentor"
+        : "sidebar";
     return (
       <div id={sidebarStyle}>
         <ListGroup flush>
@@ -86,13 +88,20 @@ class SideBar extends React.Component {
               </NavLink>
               <NavLink
                 className="list-group-item"
-                to={`/${sessionStorage.getItem("role")}/payments`}
+                activeClassName="active-sidebar"
+                to={`/${sessionStorage.getItem("role")}/mentor-payments`}
               >
-                <i className="ti-agenda" />
-                Payments
+                <i className="ti-wallet" /> Mentor Payments
               </NavLink>
             </React.Fragment>
           )}
+          <NavLink
+            className="list-group-item"
+            activeClassName="active-sidebar"
+            to={`/${sessionStorage.getItem("role")}/payments`}
+          >
+            <i className="ti-wallet" /> Payment
+          </NavLink>
 
           {sessionStorage.getItem("role") === "mentor" && (
             <NavLink

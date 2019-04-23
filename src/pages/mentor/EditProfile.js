@@ -13,12 +13,9 @@ class EditProfile extends Component {
 
     let mentor_profile = this.props.mentor;
     var birthdate = "";
-    if(!mentor_profile.hasOwnProperty("birthday") ){
+    if (!mentor_profile.hasOwnProperty("birthday")) {
       birthdate = new Date();
-      console.log("birthday", birthdate)
-
-    }else{
-      console.log("no birthday")
+    } else {
       birthdate = new Date(mentor_profile.birthday);
     }
 
@@ -33,7 +30,7 @@ class EditProfile extends Component {
       ektpNumber: mentor_profile.ektpNumber,
       ektp: mentor_profile.ektp,
       photo: mentor_profile.photo,
-      file: ""
+      file: "",
     };
   }
 
@@ -62,11 +59,6 @@ class EditProfile extends Component {
   handleDate = date => {
     this.setState({ birthday: date });
   };
-
-  componentDidMount() {
-    console.log(this.props.mentor);
-  }
-
   getPhoto = e => {
     e.preventDefault();
     this.setState({

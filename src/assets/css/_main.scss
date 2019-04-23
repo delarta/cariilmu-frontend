@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Lato|Noto+Serif|Slabo+27px|Nunito");
 
-$orange: #f07b3f;
+$orange: #f0783c;
 $yellow: #f3ae4b;
 $blue: #4f9da6;
-$darkblue: #233142;
+$darkblue: rgb(35, 49, 66);
 $light: #fafafa;
 $red: #ff5959;
 $dimlight: rgba(
@@ -361,7 +361,7 @@ nav.navbar.navbar-light {
 
   .home-class-item {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 1em;
   }
 
@@ -375,6 +375,7 @@ nav.navbar.navbar-light {
 // Category Item
 
 .category-item {
+  height: 200px;
   background-image: linear-gradient(
       rgba($color: $darkblue, $alpha: 0.7),
       rgba($color: $darkblue, $alpha: 0.7)
@@ -384,31 +385,44 @@ nav.navbar.navbar-light {
   background-size: cover;
   background-color: $light;
   box-shadow: 0 2px 8px rgba($color: #141414, $alpha: 0.1);
-  transition: 250ms ease-out;
+  
   i {
     padding-top: 2rem;
     font-size: 3em;
     color: $light;
     transition: 200ms ease-out;
   }
-  .card-title {
-    font-size: 1.2em;
-    font-weight: 600;
-    color: $light;
-    text-transform: uppercase;
+  .card-body {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+
+    .title {
+  transition: 250ms ease-out;
+
+      font-size: 1.2em;
+      font-weight: 600;
+      height: auto;
+      align-self: center;
+      color: $light;
+      text-transform: uppercase;
+    }
   }
 }
 
 .category-item:hover {
   cursor: pointer;
-  i {
-    transform: scale(1.2);
-    color: $light;
-  }
-  .card-title {
-    font-weight: 500;
-    color: $light;
-    text-transform: uppercase;
+  .card-body {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+
+    .title {
+      transform: scale(1.2);
+      font-weight: 500;
+      color: $light;
+      text-transform: uppercase;
+    }
   }
 }
 
@@ -422,11 +436,11 @@ section {
   background: rgb(180, 243, 207);
   background: linear-gradient(
       322deg,
-      rgba(180, 243, 207, 1) 0%,
-      rgba(130, 200, 187, 0.8) 24%,
-      rgba(79, 157, 166, 1) 70%
+      rgba(79, 157, 166, 0.7) 0%,
+      rgba(79, 157, 166, 0.6) 70%
     ),
-    url("../img/banner.jpg");
+    url("../img/Liquid-Cheese.svg");
+  // background-color: $blue;
 
   background-size: cover;
   min-height: 100vh;
@@ -471,6 +485,9 @@ section {
 }
 
 #about-us {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   .content {
     padding: 5em 0;
     div {
@@ -521,22 +538,23 @@ section {
 
 .fitur {
   height: 55em;
-  padding-top: 8em;
+  // padding-top: 8em;
+  padding-top: 12em;
+
   .fitur-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     div {
       align-self: center;
       img {
-        width: 90%;
-        transform: translateY(40%);
+        width: 100%;
+        transform: translateY(20%);
       }
       h3 {
         text-transform: uppercase;
-        margin-top: 1em;
+        margin: 1em 0;
         color: $light;
-        font-weight: 600
-
+        font-weight: 600;
       }
 
       p {
@@ -569,7 +587,6 @@ section {
     }
   }
   &.three {
-    
     margin-top: -12em;
     background: $maingrad;
     -webkit-clip-path: polygon(0px 100%, 0px 15%, 100% 0px, 100% 100%);
@@ -689,6 +706,26 @@ footer {
       filter: grayscale(90%);
     }
   }
+  .class-right {
+    text-align: left;
+    margin-top: 5px;
+    padding: 0 1em;
+    .btn {
+      width: 100%;
+    }
+    .grid-2 {
+      text-align: left;
+
+      h4 {
+        font-size: 0.75em;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+    }
+    .class-mentor {
+      margin-top: 1em;
+    }
+  }
 }
 
 .class-item:hover {
@@ -714,7 +751,7 @@ footer {
   .class-container {
     width: 100vw;
     .search {
-      padding-top: calc(20vh + 60px);
+      padding-top: calc(10vh + 60px);
       padding-bottom: 3em;
       background: $maingrad;
       h1 {
@@ -849,11 +886,14 @@ footer {
     color: rgba($color: $darkblue, $alpha: 0.8);
   }
   .mentor-img {
+    padding: 1em;
     border-radius: 3px;
-    // background-color: $blue;
     max-height: 200px;
     margin-bottom: 1em;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     img {
       transition: 200ms ease-out;
       width: 150px;
@@ -888,7 +928,7 @@ footer {
   .mentor-container {
     width: 100vw;
     .search {
-      padding-top: calc(20vh + 60px);
+      padding-top: calc(10vh + 60px);
       padding-bottom: 3em;
       background: $orangegrad;
       h1 {
@@ -1022,7 +1062,7 @@ footer {
       border-bottom: 2px solid $blue;
 
       h1 {
-        font-size: 10em;
+        font-size: 3em;
         font-weight: 600;
       }
     }
@@ -1216,17 +1256,6 @@ footer {
         width: 120px;
       }
     }
-
-    // &.navbar-scrolled {
-    //   min-height: 5vh;
-    //   background-color: #fafafa;
-    //   box-shadow: 0 0 10px -2px rgba($color: #141414, $alpha: 0.5);
-    //   .navbar-nav {
-    //     .nav-link {
-    //       color: $darkblue;
-    //     }
-    //   }
-    // }
   }
 
   #banner {
@@ -1338,17 +1367,16 @@ footer {
     padding: 2em 0;
     overflow: hidden;
     .fitur-grid {
-      div{
-        img{
+      div {
+        img {
           transform: translateY(40%);
         }
 
-        &.text{
+        &.text {
           text-align: center;
           padding-top: 5em;
         }
       }
-      
     }
     &.one {
       height: 35em;
@@ -1373,7 +1401,6 @@ footer {
         div:nth-child(2) {
           grid-row: 1/2;
         }
-        
       }
     }
     .fitur-grid {
@@ -1467,13 +1494,6 @@ footer {
       margin: 0;
       img {
         height: 100%;
-      }
-    }
-    .class-right {
-      margin-top: 5px;
-      padding-right: 1em;
-      .btn {
-        width: 100%;
       }
     }
   }

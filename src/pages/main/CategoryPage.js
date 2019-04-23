@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-import { Container, Input } from "reactstrap";
+import { Container } from "reactstrap";
 import ClassItem from "./ClassItem";
 import Header from "../../layouts/Header";
 
 class CategoryPage extends Component {
-  constructor(props) {
-    super(props);
-
-  }
 
   render() {
     console.log(this.props)

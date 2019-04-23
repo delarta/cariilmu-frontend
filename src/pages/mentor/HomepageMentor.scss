@@ -87,7 +87,8 @@ h2 {
       text-align: center;
     }
       img {
-        width: 60%;
+        width: 70%;
+        border-radius: 15%;
       }
 
 .benefit-text {
@@ -127,7 +128,7 @@ h2 {
 }
   .howteaching {
     box-shadow: -3px -3px 2px rgba(0,0,0,0.4);
-    border: 1px $light;
+    border: 1px $dimlight;
     border-radius: 1%;
     background-color: rgba(220,220,220,0.6);
   }
@@ -159,6 +160,28 @@ h2 {
     padding-bottom: 0.25em;
 }
 
+// Picture
+#picture {
+    background-image: url("../../assets/img/businessman.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 90vh;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    h3{
+      color: $light;
+      text-align: center;
+      font-family: 'nunito';
+      font-size: 2.5rem;
+      margin-top: 45%;
+    }
+}
+
 // Sigup
 #SignUp {
   display: flex;
@@ -166,7 +189,7 @@ h2 {
   min-height: 35vh;
   text-align: center;
   margin: auto;
-  align-items: center;
+  align-items: bottom;
   justify-content: center;
   h3{
     color: $light;

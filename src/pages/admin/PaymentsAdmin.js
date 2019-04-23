@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { deleteClass, verifyPayment } from "../../actions/adminActions";
+import { verifyPayment } from "../../actions/adminActions";
 
 import BootstrapTable from "react-bootstrap-table-next";
 import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
@@ -28,16 +28,8 @@ class PaymentsAdmin extends Component {
     });
   };
   render() {
-    const { classes, payments } = this.props;
-    let paymentClass = payments.map(item => {
-      item.class = classes.filter(classitem => classitem._id === item.class)[0];
-      return item;
-    });
-    console.log(classes);
-
-    console.log(paymentClass);
-
-    const data = paymentClass;
+    const { payments } = this.props;
+    const data = payments;
     const columns = [
       {
         text: "Id",
@@ -118,14 +110,12 @@ class PaymentsAdmin extends Component {
 
 const mapStateToProps = state => {
   return {
-    classes: state.admin.classes,
     payments: state.admin.payments
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteClass: id => dispatch(deleteClass(id)),
     verifyPayment: id => dispatch(verifyPayment(id))
   };
 };
