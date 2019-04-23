@@ -4,8 +4,6 @@ import phone from "../../assets/img/ipad.svg";
 import mentor from "../../assets/img/mentor_landing.png";
 import classes from "../../assets/img/class_landing.png";
 import student from "../../assets/img/student_landing.png";
-
-
 import { Link } from "react-router-dom";
 
 import Header from "../../layouts/Header";
@@ -23,15 +21,25 @@ class Landing extends Component {
                   Let's Share and Search Knowledge <br /> with Cariilmu
                 </h2>
                 <p>
+<<<<<<< HEAD
                   CariIlmu is an on demand online educational for your needs. 
                   <br />
                   It allows anyone to search and register for offline vocational classes published by expertise.
+=======
+                  Find the knowledge across multiple platform with CariIlmu.
+                  CariIlmu is an on demand online educational for your needs. It
+                  allows anyone to search and register for offline vocational
+                  knowledge published by expertise.
+>>>>>>> d115013c52f15d6b1467a2fa18755f1aeed6d65c
                 </p>
                 <div className="banner-buttons">
                   <Link className="btn btn-primary" to="/home">
                     Get Started
                   </Link>
-                  <Link className="btn btn-outline-primary" to="/homepage-mentor">
+                  <Link
+                    className="btn btn-outline-primary"
+                    to="/homepage-mentor"
+                  >
                     Become A Mentor
                   </Link>
                 </div>
@@ -49,6 +57,7 @@ class Landing extends Component {
                 </div>
                 <div>
                   <p>
+<<<<<<< HEAD
                   CariIlmu is an online learning community with thousands of classes in design, business, tech, and more.
                   <br/> 
                   Anyone can join the millions of members in our community to learn cutting-edge knowledge, network with peers and discover new opportunities.
@@ -56,6 +65,14 @@ class Landing extends Component {
                   Take your career ladder faster than other people. Learning can happen anywhere, anytime, and with evryone with CariIlmu paltform. 
                   <br/>
                   Take a leap of your career for lifetime with learning something new with a professional mentors.
+=======
+                    CariIlmu is an online learning community with many of
+                    topics, such as : Anyone can join with the community to
+                    learn cutting-edge knowledge, network with peers and
+                    discover new opportunities. With our currated mentor’s
+                    database, you will learn a rich knowledge from any
+                    backgrounds experts.
+>>>>>>> d115013c52f15d6b1467a2fa18755f1aeed6d65c
                   </p>
                 </div>
               </div>
@@ -68,7 +85,10 @@ class Landing extends Component {
               </div>
               <div className="text">
                 <h3>Be A Mentor</h3>
-                <p>Find your dream class anywhere and whenever you need it</p>
+                <p>
+                  Share your knowledge, help the community and get new income
+                  stream while teaching on
+                </p>
               </div>
             </Container>
           </section>
@@ -77,7 +97,10 @@ class Landing extends Component {
               <div className="text">
                 <h3>Enroll to a quality class</h3>
                 <p>
-                  Enroll to your desired class anywhere and whenever you need it
+                  Take your career ladder faster than other people. Learning can
+                  happen anywhere, anytime, and with everyone with CariIlmu.
+                  Take a leap of your career for lifetime with learning
+                  something new with a professional mentors.
                 </p>
               </div>
               <div className="text-center">
@@ -93,7 +116,8 @@ class Landing extends Component {
               <div className="text">
                 <h3>Choose your own schedule</h3>
                 <p>
-                  Enroll to your desired class anywhere and whenever you need it
+                  Get your class based on viability of the schedule from
+                  cross-device/ cross-platfrom integrated one with another.
                 </p>
               </div>
             </Container>
@@ -137,5 +161,6 @@ class Landing extends Component {
     );
   }
 }
+
 
 export default Landing;

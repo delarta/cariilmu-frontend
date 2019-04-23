@@ -14,7 +14,7 @@ class Dashboard extends Component {
             <h2>Class</h2>
           </div>
           <div>
-            <h1> {this.props.payments.summary !== undefined ? this.props.payments.summary.paid : "0" } </h1>
+            <h1> {this.props.payments.summary !== undefined ? this.props.payments.summary.paid.toLocaleString('id-ID') : "0" } </h1>
             <h2>Wallet (Rp)</h2>
           </div>
           <div>
