@@ -31,7 +31,6 @@ class EditProfile extends Component {
       ektp: mentor_profile.ektp,
       photo: mentor_profile.photo,
       file: "",
-      imageURI: null
     };
   }
 
@@ -65,14 +64,6 @@ class EditProfile extends Component {
     this.setState({
       [e.target.name]: e.target.files[0]
     });
-
-    if (e.target.files && e.target.files[0]) {
-      let reader = new FileReader();
-      reader.onload = ev => {
-        this.setState({ imageURI: ev.target.result });
-      };
-      reader.readAsDataURL(e.target.files[0]);
-    }
   };
   render() {
     return (
@@ -197,13 +188,7 @@ class EditProfile extends Component {
           </div>
           <div className="text-center">
             <div>
-              {this.state.imageURI !== null ? (
-                <img
-                  className="img-preview"
-                  src={this.state.imageURI}
-                  alt={this.state.image}
-                />
-              ) : this.props.mentor === undefined ? (
+              {this.props.mentor === undefined ? (
                 <img src={avatar} alt={avatar} style={{ width: "60%" }} />
               ) : (
                 <img

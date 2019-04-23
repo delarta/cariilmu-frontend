@@ -3,7 +3,7 @@
 $orange: #f0783c;
 $yellow: #f3ae4b;
 $blue: #4f9da6;
-$darkblue: #233142;
+$darkblue: rgb(35, 49, 66);
 $light: #fafafa;
 $red: #ff5959;
 $dimlight: rgba(
@@ -361,7 +361,7 @@ nav.navbar.navbar-light {
 
   .home-class-item {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 1em;
   }
 
@@ -375,6 +375,7 @@ nav.navbar.navbar-light {
 // Category Item
 
 .category-item {
+  height: 200px;
   background-image: linear-gradient(
       rgba($color: $darkblue, $alpha: 0.7),
       rgba($color: $darkblue, $alpha: 0.7)
@@ -384,31 +385,44 @@ nav.navbar.navbar-light {
   background-size: cover;
   background-color: $light;
   box-shadow: 0 2px 8px rgba($color: #141414, $alpha: 0.1);
-  transition: 250ms ease-out;
+  
   i {
     padding-top: 2rem;
     font-size: 3em;
     color: $light;
     transition: 200ms ease-out;
   }
-  .card-title {
-    font-size: 1.2em;
-    font-weight: 600;
-    color: $light;
-    text-transform: uppercase;
+  .card-body {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+
+    .title {
+  transition: 250ms ease-out;
+
+      font-size: 1.2em;
+      font-weight: 600;
+      height: auto;
+      align-self: center;
+      color: $light;
+      text-transform: uppercase;
+    }
   }
 }
 
 .category-item:hover {
   cursor: pointer;
-  i {
-    transform: scale(1.2);
-    color: $light;
-  }
-  .card-title {
-    font-weight: 500;
-    color: $light;
-    text-transform: uppercase;
+  .card-body {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+
+    .title {
+      transform: scale(1.2);
+      font-weight: 500;
+      color: $light;
+      text-transform: uppercase;
+    }
   }
 }
 
@@ -538,7 +552,7 @@ section {
       }
       h3 {
         text-transform: uppercase;
-        margin-top: 1em;
+        margin: 1em 0;
         color: $light;
         font-weight: 600;
       }
@@ -573,7 +587,6 @@ section {
     }
   }
   &.three {
-
     margin-top: -12em;
     background: $maingrad;
     -webkit-clip-path: polygon(0px 100%, 0px 15%, 100% 0px, 100% 100%);
@@ -691,6 +704,26 @@ footer {
       object-fit: cover;
       height: 150px;
       filter: grayscale(90%);
+    }
+  }
+  .class-right {
+    text-align: left;
+    margin-top: 5px;
+    padding: 0 1em;
+    .btn {
+      width: 100%;
+    }
+    .grid-2 {
+      text-align: left;
+
+      h4 {
+        font-size: 0.75em;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+    }
+    .class-mentor {
+      margin-top: 1em;
     }
   }
 }
@@ -1461,13 +1494,6 @@ footer {
       margin: 0;
       img {
         height: 100%;
-      }
-    }
-    .class-right {
-      margin-top: 5px;
-      padding-right: 1em;
-      .btn {
-        width: 100%;
       }
     }
   }
