@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, ModalHeader, ModalBody, Button, Form } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, Button, Form, FormGroup, Label, ListGroup, ListGroupItem } from 'reactstrap';
 import { connect } from 'react-redux';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -33,7 +33,7 @@ class ModalInvoice extends Component {
 	}
 
 	render() {
-    const classId = this.props.id_payment;
+		const classId = this.props.id_payment;
 		return (
 			<div>
 				<Button color="success" onClick={this.toggle} block>
@@ -52,9 +52,70 @@ class ModalInvoice extends Component {
 							<Form>
 								<ModalHeader toggle={this.toggle}> INVOICE</ModalHeader>
 								<ModalBody>
-                    <p> {" ID TRANSAKSI  :  " + item._id}</p>
-                    <p> {" BANK  :  " + item.bank}</p>
-                </ModalBody>
+									<Label style={{ fontWeight: 'bold', textDecoration: 'underline' }}>
+										{' '}
+										PT CARI ILMU
+									</Label>
+									<p style={{ marginBottom: '7%' }}> Transaction Succes</p>
+									<ListGroup>
+										<ListGroupItem>
+											<FormGroup row>
+												<Label for="id" sm={3} style={{ fontWeight: 'bold' }}>
+													ID
+												</Label>
+
+												<Label for="id" sm={7}>
+													{':' + item._id}
+												</Label>
+											</FormGroup>
+										</ListGroupItem>
+										<ListGroupItem>
+											<FormGroup row>
+												<Label for="id" sm={3} style={{ fontWeight: 'bold' }}>
+													Bank
+												</Label>
+
+												<Label for="id" sm={7}>
+													{':' + item.bank}
+												</Label>
+											</FormGroup>
+										</ListGroupItem>
+										<ListGroupItem>
+											<FormGroup row>
+												<Label for="id" sm={3} style={{ fontWeight: 'bold' }}>
+													No Rek
+												</Label>
+
+												<Label for="id" sm={7}>
+													{': ' + item.accountNumber}
+												</Label>
+											</FormGroup>
+										</ListGroupItem>
+										<ListGroupItem>
+											<FormGroup row>
+												<Label for="id" sm={3} style={{ fontWeight: 'bold' }}>
+													Item
+												</Label>
+
+												<Label for="id" sm={7}>
+													{':   ' + item.class.name}
+												</Label>
+											</FormGroup>
+										</ListGroupItem>
+										<ListGroupItem>
+											<FormGroup row>
+												<Label for="id" sm={3} style={{ fontWeight: 'bold' }}>
+													Price
+												</Label>
+
+												<Label for="id" sm={7}>
+													{':Rp.  ' + item.class.fee}
+												</Label>
+											</FormGroup>
+										</ListGroupItem>
+									</ListGroup>
+									<Form />
+								</ModalBody>
 							</Form>
 						))}
 				</Modal>
