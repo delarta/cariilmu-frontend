@@ -6,12 +6,13 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
-import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
+import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
 import "./assets/css/_main.scss";
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers";
+import { initializeFirebase, askPermission } from "./config/push-notification";
 
 const store = createStore(
   rootReducer,
@@ -29,5 +30,7 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
+initializeFirebase();
+askPermission();
 
 serviceWorker.unregister();

@@ -6,9 +6,9 @@ import teaching from "../../assets/img/teaching.png";
 import audience from "../../assets/img/audience.png";
 import revenue from "../../assets/img/revenue.png";
 import money from "../../assets/img/money.png";
-import sharing from "../../assets/img/sharing.png";
+// import sharing from "../../assets/img/sharing.png";
+import collab from "../../assets/img/collab.jpg";
 import rating from "../../assets/img/star.png";
-import { create } from "domain";
 import Header from "../../layouts/Header"
 import "./HomepageMentor.scss";
 
@@ -53,7 +53,8 @@ class HomepageMentor extends Component {
               </div>
             </div>
               <div>
-                <img src={sharing} alt={sharing} />
+                {/* <img src={sharing} alt={sharing} /> */}
+                <img src={collab} alt={collab} />
               <div className="benefit-text">
                 <h4>Share the Ideas</h4>
                 <p>Updating your knowledge and your capabilities to know more about your expertise with many students with various backgrounds.</p>
@@ -108,29 +109,67 @@ class HomepageMentor extends Component {
               <div className="text-center">
                 <h3>Who can be a mentor on CariIlmu?</h3>
                 <p>
-                  Anyone can teach a class. As long as your class adheres to our category. It can be published on Cariilmu. There is no cost to publishing a class at all.
+                  Anyone can teach a class. As long as your class adheres to our category. It can be published on Cariilmu.
+                  <br/>
+                  There is no cost to publishing a class at all.
                 </p>
+                <hr/>
               </div>
               <div className="text-center">
               <h3>What's included in a Cariilmu class?</h3>
                 <p>
-                  Cariilmu classes is a platform to helps students meets their mentor one-by-one. The class it will be held on places as replace a classes and the students can ask whatever they want to you.
+                  Cariilmu classes is a platform to helps students meets their mentor one-by-one. 
+                  <br/>
+                  The class it will be held on places as replace a classes and the students can ask whatever they want to you.
                 </p>
+                <hr/>
               </div>
               <div className="text-center">
               <h3>What should I teach?</h3>
                 <p>
-                  Cariilmu classes are for expertise who want to share their knowledge to others, and fall into a variety of categories, including art, music, sport, programming, business, design, language, and mathematic.
+                  Cariilmu classes are for expertise who want to share their knowledge to others, and fall into a variety of categories, including : 
+                  <br/>
+                  art, music, sport, programming, business, design, language, and mathematic.
                 </p>
               </div>
+              <hr/>
               <div className="text-center">
               <h3>Do I need to promote my classes?</h3>
                 <p>
-                Cariilmu operates on a membership model, so your class will have a built-in audience from the start. We also have tons of tips to help you promote your class to your own community to help you maximize your success.
+                Cariilmu operates on a membership model, so your class will have a built-in audience from the start. 
+                <br/>
+                We also have tons of tips to help you promote your class to your own community to help you maximize your success.
+                </p>
+                <hr/>
+              </div>
+              <div className="text-center">
+              <h3>Why I must included picture in my post?</h3>
+                <p>
+                Sometimes it's easier or more interesting to describe something using picture. 
+                <br/>
+                Human is an visual type, so to attract more student, give your best photo for every class.
+                </p>
+                <hr/>
+              </div>
+              <div className="text-center">
+              <h3>How a mentor got an rating?</h3>
+                <p>
+                Be the best mentor on CariIlmu!
+                After the classes ended, every students will giving you a feedback into stars rating.
                 </p>
               </div>
             </div>
           </Container>
+        </section>
+
+        <section id="picture">
+        <div className="picture">
+          <Container className="picture-grid">
+            <div>
+              <h3 className="picture-text">"Teaching on CariIlmu has changed my life..."</h3>
+            </div>
+          </Container>
+          </div>
         </section>
         
         <section id="SignUp">
