@@ -138,6 +138,11 @@ export const enroll = (classid) => {
 
     })
       .then(res => {
+        MySwal.fire({
+          title: "Succes Enroll!",
+          type: "success",
+          timer: 1500
+        });
         console.log("berhasil")
         dispatch({
           type: "ENROLL_CLASS",
@@ -145,13 +150,21 @@ export const enroll = (classid) => {
           
         });
       })
-      .catch(err => console.log(err.response));
+      .catch(err => {
+        MySwal.fire({
+          title: "Failed Eroll",
+          text: err.response.data.message,
+          type: "error"
+        });
+        console.log(err.response)
+      });
   };
 };
 
 export const confirmPayment = (classid, photo) => { 
   console.log('from thunk',classid)
   console.log('photo', photo)
+  
   return dispatch => {
     let bodyFormData = new FormData();
 
@@ -168,6 +181,11 @@ export const confirmPayment = (classid, photo) => {
 
     })
       .then(res => {
+        MySwal.fire({
+          title: "Succes, Please Waiting Admin Confirm Your Transaction!",
+          type: "success",
+          timer: 3000
+        });
         console.log("berhasil")
         dispatch({
           type: "CONFIRM_PAYMENT",
@@ -175,7 +193,14 @@ export const confirmPayment = (classid, photo) => {
           
         });
       })
-      .catch(err => console.log(err.response));
+      .catch(err => {
+        MySwal.fire({
+          title: "Failed Transaction",
+          text: err.response.data.message,
+          type: "error"
+        });
+        console.log(err.response)
+      });
   };
 };
 

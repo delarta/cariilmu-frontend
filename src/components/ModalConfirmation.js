@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import { confirmPayment } from '../actions/studentActions';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
 
 class ModalConfirmation extends Component {
 	constructor(props) {
@@ -36,7 +40,15 @@ class ModalConfirmation extends Component {
 
 	handlePayment = classid => {
 		classid.preventDefault();
-		this.props.confirmPayment(this.props.id_payment, this.state.photo);
+		if (this.state.photo === '') {
+			MySwal.fire({
+				title: 'Failed Transaction',
+				text: 'Please Provide Photo!',
+				type: 'error',
+			});
+		} else {
+			this.props.confirmPayment(this.props.id_payment, this.state.photo);
+		}
 	};
 
 	getPhoto = e => {
@@ -47,7 +59,6 @@ class ModalConfirmation extends Component {
 	};
 
 	render() {
-	
 		const classId = this.props.id_payment;
 		return (
 			<div>
@@ -87,7 +98,7 @@ class ModalConfirmation extends Component {
 													name="item"
 													id="item"
 													placeholder=""
-													value={item.class !== null ? item.class.name : "No Name"}
+													value={item.class !== null ? item.class.name : 'No Name'}
 												/>
 											</Col>
 										</FormGroup>
@@ -102,7 +113,7 @@ class ModalConfirmation extends Component {
 													name="price"
 													id="price"
 													placeholder=""
-													value={item.class !== null ? item.class.fee : "No Fee"}
+													value={item.class !== null ? item.class.fee : 'No Fee'}
 												/>
 											</Col>
 										</FormGroup>
@@ -147,6 +158,7 @@ class ModalConfirmation extends Component {
 													name="file"
 													id="exampleFile"
 													onChange={this.getPhoto}
+													required
 												/>
 												<label htmlFor="exampleFile">upload</label>
 											</Col>

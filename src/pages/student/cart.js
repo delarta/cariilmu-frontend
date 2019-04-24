@@ -45,15 +45,16 @@ class cart extends Component {
                 <tr key={index}>
                   <th> {index +1} </th>
                   <td>{item.class !== null ? item.class.name : "No Name"}</td>
-                  <td>{item.class !== null ? item.class.fee : "No Fee"}</td>
+                  <td>Rp. {item.class !== null ? item.class.fee : ""}</td>
                   <td>
-                    {item.status === "unpaid" ? (
-                      <ModalConfirmation id_payment={item._id} InitialModalState={false} />
+                    {item.status === "paid" ? (
+                       <ModalInvoice id_payment={item._id} InitialModalState={false} /> 
                     ) :item.status === "pending" ? (
                        (<Button color="warning" onClick={this.toggle} block>
-                       Waiting on Confirmation
+                       Pending
                      </Button>)
-                    ) :( <ModalInvoice id_payment={item._id} InitialModalState={false} />)
+                    ) :(   <ModalConfirmation id_payment={item._id} InitialModalState={false} />
+                   )
                     }
                   </td>
                 </tr>

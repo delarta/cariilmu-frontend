@@ -21,16 +21,13 @@ class Landing extends Component {
                   Let's Share and Search Knowledge <br /> with Cariilmu
                 </h2>
                 <p>
-<<<<<<< HEAD
                   CariIlmu is an on demand online educational for your needs. 
                   <br />
                   It allows anyone to search and register for offline vocational classes published by expertise.
-=======
                   Find the knowledge across multiple platform with CariIlmu.
                   CariIlmu is an on demand online educational for your needs. It
                   allows anyone to search and register for offline vocational
                   knowledge published by expertise.
->>>>>>> d115013c52f15d6b1467a2fa18755f1aeed6d65c
                 </p>
                 <div className="banner-buttons">
                   <Link className="btn btn-primary" to="/home">
@@ -57,7 +54,6 @@ class Landing extends Component {
                 </div>
                 <div>
                   <p>
-<<<<<<< HEAD
                   CariIlmu is an online learning community with thousands of classes in design, business, tech, and more.
                   <br/> 
                   Anyone can join the millions of members in our community to learn cutting-edge knowledge, network with peers and discover new opportunities.
@@ -65,14 +61,6 @@ class Landing extends Component {
                   Take your career ladder faster than other people. Learning can happen anywhere, anytime, and with evryone with CariIlmu paltform. 
                   <br/>
                   Take a leap of your career for lifetime with learning something new with a professional mentors.
-=======
-                    CariIlmu is an online learning community with many of
-                    topics, such as : Anyone can join with the community to
-                    learn cutting-edge knowledge, network with peers and
-                    discover new opportunities. With our currated mentor’s
-                    database, you will learn a rich knowledge from any
-                    backgrounds experts.
->>>>>>> d115013c52f15d6b1467a2fa18755f1aeed6d65c
                   </p>
                 </div>
               </div>
@@ -134,7 +122,7 @@ class Landing extends Component {
                 where the skills and expertise needed to succeed are available for anyone willing to learn them.
                 </p>
                 <p>
-                Let's make learning and sharing lifestyle inspiring and available to anyone!!
+                Let's make learning and sharing lifestyle inspiring and avasilable to anyone!!
                 </p>
               </div>
             </Container>
