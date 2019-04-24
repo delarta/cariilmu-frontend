@@ -33,4 +33,4 @@ ReactDOM.render(
 initializeFirebase();
 askPermission();
 
-serviceWorker.unregister();
+serviceWorker.register();
