@@ -21,10 +21,16 @@ class Landing extends Component {
                   Let's Share and Search Knowledge <br /> with Cariilmu
                 </h2>
                 <p>
+<<<<<<< HEAD
+                  CariIlmu is an on demand online educational for your needs. 
+                  <br />
+                  It allows anyone to search and register for offline vocational classes published by expertise.
+=======
                   Find the knowledge across multiple platform with CariIlmu.
                   CariIlmu is an on demand online educational for your needs. It
                   allows anyone to search and register for offline vocational
                   knowledge published by expertise.
+>>>>>>> d115013c52f15d6b1467a2fa18755f1aeed6d65c
                 </p>
                 <div className="banner-buttons">
                   <Link className="btn btn-primary" to="/home">
@@ -51,12 +57,22 @@ class Landing extends Component {
                 </div>
                 <div>
                   <p>
+<<<<<<< HEAD
+                  CariIlmu is an online learning community with thousands of classes in design, business, tech, and more.
+                  <br/> 
+                  Anyone can join the millions of members in our community to learn cutting-edge knowledge, network with peers and discover new opportunities.
+                  <br/>
+                  Take your career ladder faster than other people. Learning can happen anywhere, anytime, and with evryone with CariIlmu paltform. 
+                  <br/>
+                  Take a leap of your career for lifetime with learning something new with a professional mentors.
+=======
                     CariIlmu is an online learning community with many of
                     topics, such as : Anyone can join with the community to
                     learn cutting-edge knowledge, network with peers and
                     discover new opportunities. With our currated mentor’s
                     database, you will learn a rich knowledge from any
                     backgrounds experts.
+>>>>>>> d115013c52f15d6b1467a2fa18755f1aeed6d65c
                   </p>
                 </div>
               </div>
@@ -113,16 +129,12 @@ class Landing extends Component {
               </div>
               <div className="text-center">
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptates neque labore obcaecati, nulla quae magnam placeat
-                  voluptatum dolorum vel recusandae molestiae ore aliquid
-                  asperiores libero, iste aperiam veniam, impedit quae quibusdam
-                  voluptates deserunt repellendus ab dolorum maxime fuga iusto
-                  consectetur.
+                Our mission is to make the new economy an open meritocracy, 
+                <br/> 
+                where the skills and expertise needed to succeed are available for anyone willing to learn them.
                 </p>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Consequatur, culpa!
+                Let's make learning and sharing lifestyle inspiring and available to anyone!!
                 </p>
               </div>
             </Container>
@@ -131,12 +143,11 @@ class Landing extends Component {
             <Container className="download-grid">
               <div>
                 <h2>Download our FREE app now!</h2>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Accusamus beatae quas dolores laudantium praesentium ducimus
-                  doloremque itaque cum neque. Aperasperiores repellendus ut
-                  explicabo, qui odio. Quibusdam hic quae voluptas recusandae ex{" "}
-                </p>
+                <h6>
+                Learn From Anywhere
+                <br/>
+                Enroll classes on the go with the CariIlmu-app them on the plane, the subway or wherever you learn best.
+                </h6>
 
                 <Button color="primary">Unduh Sekarang</Button>
               </div>

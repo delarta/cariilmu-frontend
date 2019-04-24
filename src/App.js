@@ -29,6 +29,7 @@ import { getRole } from "./actions/mainActions";
 import { connect } from "react-redux";
 import MentorDetail from "./pages/main/MentorDetail";
 import MentorListPage from "./pages/main/MentorListPage";
+import Cart from './pages/student/cart';
 
 class App extends Component {
   componentDidMount() {
@@ -60,6 +61,8 @@ class App extends Component {
 
           <Route exact path="/homepage-mentor" component={HomepageMentor}/>
           <Route exact path="/schedule" component={SchedulePage} />
+          <Route path="/category" component={CategoryPage} />
+          <Route path="/cart" component={Cart} />
 
           <Route component={NotFound} />
         </Switch>
