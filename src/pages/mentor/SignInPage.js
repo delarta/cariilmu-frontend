@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { signIn } from '../../actions/mentorActions';
 import teach from '../../assets/img/teach.svg'
+import Header from "../../layouts/Header";
 
 class SignInPage extends Component {
   constructor(props) {
@@ -38,7 +39,9 @@ class SignInPage extends Component {
     this.props.role === 'mentor' && this.props.history.push('/mentor');
 
     return (
-      <div className="auth-container" style={this.signInMentorStyle()}>
+      <React.Fragment>
+        <Header />
+<div className="auth-container" style={this.signInMentorStyle()}>
         <div className="auth-banner mentor" />
         <div className="container auth-page">
           <div className="auth-page-content">
@@ -81,6 +84,9 @@ class SignInPage extends Component {
           </div>
         </div>
       </div>
+    
+      </React.Fragment>
+      
     );
   }
 }

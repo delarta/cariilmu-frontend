@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { signIn } from "../../actions/studentActions";
 
 import logo from "../../assets/img/logo_dark.png";
+import Header from "../../layouts/Header";
 
 class SignInPage extends Component {
   constructor(props) {
@@ -31,7 +32,9 @@ class SignInPage extends Component {
     this.props.role === "student" && this.props.history.push("/home");
 
     return (
-      <div className="auth-container">
+      <React.Fragment>
+        <Header />
+ <div className="auth-container">
         <div className="auth-banner" />
         <div className="container auth-page">
           <div className="auth-page-content">
@@ -78,6 +81,9 @@ class SignInPage extends Component {
           </div>
         </div>
       </div>
+    
+      </React.Fragment>
+     
     );
   }
 }

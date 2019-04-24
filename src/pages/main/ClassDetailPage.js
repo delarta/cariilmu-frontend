@@ -4,6 +4,7 @@ import { enroll } from "../../actions/studentActions";
 import { connect } from "react-redux";
 
 import Header from "../../layouts/Header";
+import { Link } from "react-router-dom";
 
 import {
   Container,
@@ -25,8 +26,7 @@ class ClassDetailPage extends Component {
     this.state = {
       modal: false,
       backdrop: true,
-      loading: false,
-    
+      loading: false
     };
 
     this.toggle = this.toggle.bind(this);
@@ -37,7 +37,6 @@ class ClassDetailPage extends Component {
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
-
   }
 
   changeBackdrop(e) {
@@ -110,9 +109,15 @@ class ClassDetailPage extends Component {
                 </p>
 
                 <Form inline onSubmit={e => e.preventDefault()}>
-                  <Button className="btn btn-primary" onClick={this.toggle}>
-                    {this.props.buttonLabel} Enroll Now
-                  </Button>
+                  {sessionStorage.getItem("role") !== "student" ? (
+                    <Link className="btn btn-primary" to="/signin">
+                      Enroll now
+                    </Link>
+                  ) : (
+                    <Button className="btn btn-primary" onClick={this.toggle}>
+                      {this.props.buttonLabel} Enroll Now
+                    </Button>
+                  )}
                 </Form>
 
                 <Modal
@@ -138,7 +143,6 @@ class ClassDetailPage extends Component {
                             id="item"
                             placeholder=""
                             value={item.name}
-                            
                           />
                         </Col>
                       </FormGroup>

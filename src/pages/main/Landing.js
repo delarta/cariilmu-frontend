@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Container, Button } from "reactstrap";
-import phone from "../../assets/img/ipad.svg";
+import phone from "../../assets/img/study.svg";
+import logo from "../../assets/img/logo_light_color.png";
+
 import mentor from "../../assets/img/mentor_landing.png";
 import classes from "../../assets/img/class_landing.png";
 import student from "../../assets/img/student_landing.png";
@@ -21,16 +23,10 @@ class Landing extends Component {
                   Let's Share and Search Knowledge <br /> with Cariilmu
                 </h2>
                 <p>
-<<<<<<< HEAD
-                  CariIlmu is an on demand online educational for your needs. 
+                  CariIlmu is an on demand online educational for your needs.
                   <br />
-                  It allows anyone to search and register for offline vocational classes published by expertise.
-=======
-                  Find the knowledge across multiple platform with CariIlmu.
-                  CariIlmu is an on demand online educational for your needs. It
-                  allows anyone to search and register for offline vocational
-                  knowledge published by expertise.
->>>>>>> d115013c52f15d6b1467a2fa18755f1aeed6d65c
+                  It allows anyone to search and register for offline vocational
+                  classes published by expertise.
                 </p>
                 <div className="banner-buttons">
                   <Link className="btn btn-primary" to="/home">
@@ -53,26 +49,28 @@ class Landing extends Component {
             <Container>
               <div className="text-center content">
                 <div>
+                  <img style={{ width: "200px" }} src={logo} alt={logo} />
+                </div>
+
+                <div>
                   <h2>What is Cariilmu ?</h2>
                 </div>
+
                 <div>
                   <p>
-<<<<<<< HEAD
-                  CariIlmu is an online learning community with thousands of classes in design, business, tech, and more.
-                  <br/> 
-                  Anyone can join the millions of members in our community to learn cutting-edge knowledge, network with peers and discover new opportunities.
-                  <br/>
-                  Take your career ladder faster than other people. Learning can happen anywhere, anytime, and with evryone with CariIlmu paltform. 
-                  <br/>
-                  Take a leap of your career for lifetime with learning something new with a professional mentors.
-=======
-                    CariIlmu is an online learning community with many of
-                    topics, such as : Anyone can join with the community to
+                    CariIlmu is an online learning community with thousands of
+                    classes in design, business, tech, and more.
+                    <br />
+                    Anyone can join the millions of members in our community to
                     learn cutting-edge knowledge, network with peers and
-                    discover new opportunities. With our currated mentor’s
-                    database, you will learn a rich knowledge from any
-                    backgrounds experts.
->>>>>>> d115013c52f15d6b1467a2fa18755f1aeed6d65c
+                    discover new opportunities.
+                    <br />
+                    Take your career ladder faster than other people. Learning
+                    can happen anywhere, anytime, and with evryone with CariIlmu
+                    paltform.
+                    <br />
+                    Take a leap of your career for lifetime with learning
+                    something new with a professional mentors.
                   </p>
                 </div>
               </div>
@@ -129,12 +127,14 @@ class Landing extends Component {
               </div>
               <div className="text-center">
                 <p>
-                Our mission is to make the new economy an open meritocracy, 
-                <br/> 
-                where the skills and expertise needed to succeed are available for anyone willing to learn them.
+                  Our mission is to make the new economy an open meritocracy,
+                  <br />
+                  where the skills and expertise needed to succeed are available
+                  for anyone willing to learn them.
                 </p>
                 <p>
-                Let's make learning and sharing lifestyle inspiring and available to anyone!!
+                  Let's make learning and sharing lifestyle inspiring and
+                  available to anyone!!
                 </p>
               </div>
             </Container>
@@ -144,9 +144,10 @@ class Landing extends Component {
               <div>
                 <h2>Download our FREE app now!</h2>
                 <h6>
-                Learn From Anywhere
-                <br/>
-                Enroll classes on the go with the CariIlmu-app them on the plane, the subway or wherever you learn best.
+                  Learn From Anywhere
+                  <br />
+                  Enroll classes on the go with the CariIlmu-app them on the
+                  plane, the subway or wherever you learn best.
                 </h6>
 
                 <Button color="primary">Unduh Sekarang</Button>
@@ -161,6 +162,5 @@ class Landing extends Component {
     );
   }
 }
-
 
 export default Landing;
