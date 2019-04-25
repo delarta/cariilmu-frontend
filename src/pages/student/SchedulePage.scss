@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Noto+Serif|Slabo+27px|Nunito');
+
+$orange: #f07b3f;
+$blue: #4f9da6;
+$darkblue: #233142;
+$light: #fafafa;
+$red: #ff5959;
+$dimlight: rgba(
+  $color: #ffffff,
+  $alpha: 0.8
+);
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #f4f4f4;
+}
+
+.sectio{
+    background-color: $blue;
+    min-height: 130vh;
+    padding-top: 12%;
+    padding-bottom: 1em;
+}
+
+.box1 {
+    border-radius: 3px;
+    width : 1100px;
+    min-height : 600px;
+    background-color: $light;
+    margin: auto;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba($color: #141414, $alpha: 0.1);    
+}
+
+.box2 {
+  border-radius: 3px;
+
+  width : 1100px;
+  min-height: 50px;
+  background-color: $darkblue;
+  margin: auto;
+  text-align: center;
+  padding-bottom: 0%;
+  box-shadow: 0 2px 8px rgba($color: #141414, $alpha: 0.1);  
+  border-radius: 1%;
+}
+
+.class-box{
+    width : 250px;
+    height: 350px;
+    background-color: $light;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 3%;
+    box-shadow: 0 4px 12px rgba($color: #1d1c1c, $alpha: 12);
+
+}
+
+.table{
+  border-radius: 10px; 
+    border: 1px solid gainsboro; 
+    border-collapse: collapse; 
+}
+
+h2 {
+    padding: 1em 0;
+    text-transform: uppercase;
+}
+
+.class-box:hover{
+  cursor: pointer;
+  filter: grayscale(50%) opacity(40%);
+}
+

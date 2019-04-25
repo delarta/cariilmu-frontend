@@ -1,0 +1,34 @@
+.section{
+    background-color: #2b8aaa;
+    height: 120vh;
+    padding-top: 12%;
+}
+
+.box{
+    height: 550px;
+    width: 450px;
+    margin:auto;
+    display: flex;
+    justify-content: center;
+}
+.Header{
+    display: flex;
+    justify-content: space-between;
+    height: 70px;
+    width: 67vh;
+    background-color: #2b8aaa;
+    margin:auto;
+    font-weight: bold;
+
+
+}
+.footer{
+    display: flex;
+    justify-content: space-between;
+
+}
+.Body{
+    
+    height: 50%;
+    margin:auto;
+}
