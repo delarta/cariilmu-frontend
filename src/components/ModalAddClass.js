@@ -51,13 +51,11 @@ class ModalAddClass extends React.Component {
   };
 
   handleStartTime = time => {
-    console.log(time.getTime())
     this.setState({ startTime: time });
-  }
+  };
   handleEndTime = time => {
-    console.log(time.getTime())
     this.setState({ endTime: time });
-  }
+  };
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
@@ -65,7 +63,6 @@ class ModalAddClass extends React.Component {
     let categoryObj = this.props.categories.filter(
       item => item._id === this.state.category
     )[0];
-    console.log(categoryObj);
     e.preventDefault();
     this.props.addClass(
       this.state.name,
@@ -266,8 +263,19 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addClass: (name, info, schedule, fee, category, image, startTime, endTime) =>
-      dispatch(addClass(name, info, schedule, fee, category, image, startTime, endTime)),
+    addClass: (
+      name,
+      info,
+      schedule,
+      fee,
+      category,
+      image,
+      startTime,
+      endTime
+    ) =>
+      dispatch(
+        addClass(name, info, schedule, fee, category, image, startTime, endTime)
+      ),
     getCategories: () => dispatch(getCategories())
   };
 };

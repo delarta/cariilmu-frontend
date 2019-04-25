@@ -8,7 +8,6 @@ class PaymentPage extends Component {
 
   render() {
     const data = this.props.payments.payment;
-    console.log(this.props.payments);
     const columns = [
       {
         text: "Id",

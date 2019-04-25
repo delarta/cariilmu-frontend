@@ -48,6 +48,8 @@ class ModalConfirmation extends Component {
 			});
 		} else {
 			this.props.confirmPayment(this.props.id_payment, this.state.photo);
+			this.toggle()
+		
 		}
 	};
 

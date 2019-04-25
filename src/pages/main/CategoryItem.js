@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { CardBody } from "reactstrap";
-import {Link} from 'react-router-dom';
-import { getCategories } from '../../actions/mainActions'
+import { CardBody, Spinner } from "reactstrap";
+import { Link } from "react-router-dom";
+import { getCategories } from "../../actions/mainActions";
 
 class CategoryItem extends Component {
-
-  componentDidMount(){
+  componentDidMount() {
     this.props.getCategories();
   }
 
-  bgStyle = (image) =>{
+  bgStyle = image => {
     return {
       background: `linear-gradient(
         rgba(35, 49, 66, 0.7),
@@ -21,18 +20,26 @@ class CategoryItem extends Component {
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover"
     };
-  }
+  };
 
   render() {
     const categories = this.props.categories.slice(0, 8);
-    return categories.map((item, index) => (
-      <Link  key={index} className="card category-item" style={this.bgStyle(item.photo)} to={`/category/${item._id}`}>
-        <CardBody>
-          <div className="title">{item.name}</div>
-        </CardBody>
-      </Link>
-
-    ));
+    return categories.length === 0 ? (
+      <Spinner color="info" />
+    ) : (
+      categories.map((item, index) => (
+        <Link
+          key={index}
+          className="card category-item"
+          style={this.bgStyle(item.photo)}
+          to={`/category/${item._id}`}
+        >
+          <CardBody>
+            <div className="title">{item.name}</div>
+          </CardBody>
+        </Link>
+      ))
+    );
   }
 }
 
@@ -48,5 +55,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryItem);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CategoryItem);

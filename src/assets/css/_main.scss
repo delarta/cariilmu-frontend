@@ -385,7 +385,7 @@ nav.navbar.navbar-light {
   background-size: cover;
   background-color: $light;
   box-shadow: 0 2px 8px rgba($color: #141414, $alpha: 0.1);
-  
+
   i {
     padding-top: 2rem;
     font-size: 3em;
@@ -398,7 +398,7 @@ nav.navbar.navbar-light {
     justify-content: center;
 
     .title {
-  transition: 250ms ease-out;
+      transition: 250ms ease-out;
 
       font-size: 1.2em;
       font-weight: 600;
@@ -626,13 +626,12 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 80vh;
-
+  min-height: 30vh;
+  overflow: hidden;
   .download-grid {
     display: grid;
-    grid-template-columns: 1fr 3fr;
-    min-height: 50vh;
-    overflow: hidden;
+    grid-template-columns: 1fr 1fr;
+    // height: 50vh;
     div {
       h2 {
         color: $darkblue;

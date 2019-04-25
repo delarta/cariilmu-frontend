@@ -4,9 +4,7 @@ import ClassItem from "./ClassItem";
 import Header from "../../layouts/Header";
 
 class CategoryPage extends Component {
-
   render() {
-    console.log(this.props)
     return (
       <React.Fragment>
         <Header />
@@ -16,7 +14,6 @@ class CategoryPage extends Component {
               <div className="text-center">
                 <h1>Category</h1>
               </div>
-    
             </div>
 
             <Container>

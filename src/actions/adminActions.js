@@ -10,7 +10,6 @@ export const signIn = (email, password) => {
         password: password
       })
       .then(res => {
-        console.log(res);
         dispatch({
           type: "SIGN_IN",
           email,
@@ -59,7 +58,6 @@ export const deleteClass = (id) => {
       headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
-        console.log(res)
         dispatch({
           type: "DELETE_CLASS_ADMIN",
           payload: res.data.data
@@ -94,7 +92,6 @@ export const getPayments = () => {
       headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
-        console.log(res)
         dispatch({
           type: "FETCH_PAYMENT_ADMIN",
           payload: res.data.data
@@ -112,7 +109,6 @@ export const getMentorPayments = () => {
       headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
-        console.log(res)
         dispatch({
           type: "FETCH_MENTOR_PAYMENT_ADMIN",
           payload: res.data.data
@@ -130,7 +126,6 @@ export const verifyPayment = (id) => {
       headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
-        console.log(res)
         dispatch({
           type: "VERIFY_PAYMENT_ADMIN",
           payload: res.data.data
@@ -148,7 +143,6 @@ export const verifyMentorPayment = (id) => {
       headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
-        console.log(res)
         dispatch({
           type: "VERIFY_MENTOR_PAYMENT_ADMIN",
           payload: res.data.data
@@ -210,7 +204,6 @@ export const editCategory = (id, name, photo) => {
     })
       .then(res => {
         getMentors()
-        console.log(res)
         dispatch({
           type: "EDIT_CATEGORY_ADMIN",
           payload: {
@@ -239,7 +232,6 @@ export const addCategory = (name) => {
       }
     })
       .then(res => {
-        console.log(res)
         dispatch({
           type: "ADD_CATEGORY_ADMIN",
           payload: res.data.data
@@ -257,7 +249,6 @@ export const verifyMentor = (id) => {
       headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
-        console.log(res)
         dispatch({
           type: "VERIFY_MENTOR",
           payload: res.data.data
@@ -276,7 +267,6 @@ export const deleteMentor = id => {
       headers: { Authorization: sessionStorage.getItem("token") }
     })
     .then(res => {
-      console.log(res)
       dispatch({
         type: "DELETE_MENTOR",
         payload: res.data.data
@@ -284,3 +274,20 @@ export const deleteMentor = id => {
     })
   };
 };
+
+export const deleteStudent = id => {
+  return dispatch => {
+    axios({
+      method: "delete",
+      url: `${url}/admin/student/${id}`,
+      headers: { Authorization: sessionStorage.getItem("token") }
+    })
+    .then(res => {
+      dispatch({
+        type: "DELETE_STUDENT",
+        payload: res.data.data
+      });
+    })
+  };
+};
+

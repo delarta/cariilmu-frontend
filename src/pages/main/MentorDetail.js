@@ -8,7 +8,6 @@ import StarRatings from "react-star-ratings";
 
 class MentorDetail extends Component {
   render() {
-    console.log(this.props.mentors);
     const { mentorId } = this.props.match.params;
 
     let mentorItem = this.props.mentors

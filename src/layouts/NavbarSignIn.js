@@ -18,7 +18,7 @@ import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import { getStudentData } from "../actions/studentActions";
 
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
@@ -49,10 +49,10 @@ class NavbarSignIn extends React.Component {
       type: "success",
       showConfirmButton: false,
       timer: 1500
-    })
+    });
     this.props.signOut();
     this.props.history.push("/home");
-  }
+  };
 
   render() {
     return (
@@ -64,22 +64,30 @@ class NavbarSignIn extends React.Component {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
+              <Link to="/mentors" className="nav-link">
+                Mentors
+              </Link>
+            </NavItem>
+            <NavItem>
               <Link to="/class" className="nav-link">
                 Classes
               </Link>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                {this.props.role}
+                {this.props.student.name}
               </DropdownToggle>
               <DropdownMenu right>
                 <Link to="/profile" className="dropdown-item">
                   <img src={avatar} alt={avatar} />
                 </Link>
                 <Link to="/profile" className="dropdown-item disabled">
-                  {this.props.role.name}
+                  {this.props.student.name}
                 </Link>
                 <DropdownItem divider />
+                <Link to="/cart" className="dropdown-item">
+                  Cart
+                </Link>
                 <Link to="/schedule" className="dropdown-item">
                   Schedule
                 </Link>
@@ -108,7 +116,9 @@ const mapDispatchToProps = dispatch => {
     getStudentData: () => dispatch(getStudentData())
   };
 };
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NavbarSignIn));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(NavbarSignIn)
+);

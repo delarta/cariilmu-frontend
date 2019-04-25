@@ -48,8 +48,8 @@ class ModalInvoice extends Component {
 				>
 					{this.props.students
 						.filter(item => item._id === classId)
-						.map(item => (
-							<Form>
+						.map((item, index) => (
+							<Form key={index}>
 								<ModalHeader toggle={this.toggle}> INVOICE</ModalHeader>
 								<ModalBody>
 									<Label style={{ fontWeight: 'bold', textDecoration: 'underline' }}>
@@ -114,7 +114,6 @@ class ModalInvoice extends Component {
 											</FormGroup>
 										</ListGroupItem>
 									</ListGroup>
-									<Form />
 								</ModalBody>
 							</Form>
 						))}

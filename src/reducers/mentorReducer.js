@@ -12,13 +12,11 @@ const mentorReducer = (state = initState, action) => {
         mentor: action.payload
       };
     case "ADD_CLASS_MENTOR":
-      console.log(action.payload);
       return {
         ...state,
         classes: [...state.classes, action.payload]
       };
     case "EDIT_CLASS_MENTOR":
-      console.log(action.payload);
       return {
         ...state,
         classes: [
@@ -57,7 +55,6 @@ const mentorReducer = (state = initState, action) => {
       payments: action.payload
     }
     case "EDIT_MENTOR_PROFILE":
-      console.log(action.payload);
       return {
         ...state,
         mentor: action.payload
