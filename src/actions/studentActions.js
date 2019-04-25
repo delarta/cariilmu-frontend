@@ -97,7 +97,6 @@ export const getStudentData = () => {
       headers: { Authorization: sessionStorage.getItem("token") }
     })
       .then(res => {
-        console.log(res);
         dispatch({
           type: "FETCH_STUDENT_DATA",
           payload: res.data.data
@@ -108,8 +107,6 @@ export const getStudentData = () => {
       });
   };
 };
-
-
 
 export const getCart = () => {
   return dispatch => {
@@ -128,14 +125,12 @@ export const getCart = () => {
   };
 };
 
-export const enroll = (classid) => {
-  console.log('from thunk',classid)
+export const enroll = classid => {
   return dispatch => {
     axios({
       method: "put",
       url: `${url}/student/class/${classid.classId}/enroll`,
       headers: { Authorization: sessionStorage.getItem("token") }
-
     })
       .then(res => {
         MySwal.fire({
@@ -143,11 +138,9 @@ export const enroll = (classid) => {
           type: "success",
           timer: 1500
         });
-        console.log("berhasil")
         dispatch({
           type: "ENROLL_CLASS",
           payload: res.data.data
-          
         });
       })
       .catch(err => {
@@ -156,15 +149,12 @@ export const enroll = (classid) => {
           text: err.response.data.message,
           type: "error"
         });
-        console.log(err.response)
+        console.log(err.response);
       });
   };
 };
 
-export const confirmPayment = (classid, photo) => { 
-  console.log('from thunk',classid)
-  console.log('photo', photo)
-  
+export const confirmPayment = (classid, photo) => {
   return dispatch => {
     let bodyFormData = new FormData();
 
@@ -173,12 +163,12 @@ export const confirmPayment = (classid, photo) => {
     axios({
       method: "put",
       url: `${url}/student/payment/${classid}/confirm`,
-      headers: { Authorization: sessionStorage.getItem("token"),
-      "Content-Type": "multipart/form-data"
-    },
+      headers: {
+        Authorization: sessionStorage.getItem("token"),
+        "Content-Type": "multipart/form-data"
+      },
 
       data: bodyFormData
-
     })
       .then(res => {
         MySwal.fire({
@@ -186,11 +176,9 @@ export const confirmPayment = (classid, photo) => {
           type: "success",
           timer: 3000
         });
-        console.log("berhasil")
         dispatch({
           type: "CONFIRM_PAYMENT",
-          payload : res.data.data
-          
+          payload: res.data.data
         });
       })
       .catch(err => {
@@ -199,7 +187,7 @@ export const confirmPayment = (classid, photo) => {
           text: err.response.data.message,
           type: "error"
         });
-        console.log(err.response)
+        console.log(err.response);
       });
   };
 };

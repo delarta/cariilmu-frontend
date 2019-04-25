@@ -1,72 +1,102 @@
-import React, { Component } from 'react';
-import { Table } from 'reactstrap';
-import { connect } from 'react-redux';
-import { getSchedule } from '../../actions/studentActions';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from '../../layouts/Header';
-import './SchedulePage.scss';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getSchedule } from "../../actions/studentActions";
+import Header from "../../layouts/Header";
+import "./SchedulePage.scss";
+import BootstrapTable from "react-bootstrap-table-next";
+import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
+import paginationFactory from "react-bootstrap-table2-paginator";
 
 class SchedulePage extends Component {
-	componentDidMount() {
-		this.props.getSchedule();
-	}
+  componentWillMount() {
+    this.props.getSchedule();
+  }
 
-	render() {
-		console.log('this.props.students.class', this.props.students.class);
+  render() {
+    const data =
+      this.props.students.class !== undefined ? this.props.students.class : [];
+    const columns = [
+      {
+        text: "Id",
+        dataField: "_id",
+        hidden: true
+      },
+      {
+        text: "Class Name",
+        dataField: "name",
+        sort: true,
+        filter: textFilter()
+      },
+      {
+        text: "Mentor",
+        dataField: "mentor.name",
+        sort: true,
+        filter: textFilter()
+      },
+      {
+        text: "Schedule",
+        dataField: "schedule",
+        sort: true,
+        formatter: (cell, row) => (
+          <span>{new Date(row.schedule).toDateString()}</span>
+        )
+      },
+      {
+        text: "Status",
+        dataField: "status",
+        sort: true,
+        formatter: (cell, row) =>
+          row.status === "finished" ? (
+            <span style={{ color: "red" }}>{row.status}</span>
+          ) : (
+            <span style={{ color: "green" }}>{row.status}</span>
+          )
+      }
+    ];
+    return (
+      <React.Fragment>
+        <Header />
+        <div className="sectio">
+          <div className="box2">
+            <h2 style={{ textShadow: "-1px -2px 2px #233142", color: "white" }}>
+              {" "}
+              My Schedule
+            </h2>
+          </div>
 
-		return (
-			<React.Fragment>
-				<Header />
-				<div className="sectio">
-					<div className="box2">
-						<h2 style={{ textShadow: '-1px -2px 2px #233142', color: 'white' }}> My Schedule</h2>
-					</div>
-
-					<div className="box1">
-						<Table bordered className="table">
-							<thead style={{ backgroundColor: '#4f9da6', borderRadius: '3%' }}>
-								<th>NO</th>
-								<th>CLASS NAME</th>
-								<th>MENTOR</th>
-								<th>SCHEDULE</th>
-								<th>STATUS</th>
-							</thead>
-							<tbody style={{ backgroundColor: 'white' }}>
-								{this.props.students.class &&
-									this.props.students.class.map((item, index) => (
-										<tr key={index}>
-											<td>{index + 1}</td>
-											<td>{item.name}</td>
-											<td>{item.mentor.name}</td>
-											<td>{new Date(item.schedule).toDateString() }</td>
-											<td>{item.status === "finished"? (
-												 <span style={{ color: "red" }}>Finished</span>
-											) :(
-												<span style={{ color: "green" }}>Opened</span>
-											) }</td>
-										</tr>
-									))}
-							</tbody>
-						</Table>
-					</div>
-				</div>
-			</React.Fragment>
-		);
-	}
+          <div className="box1">
+            <div className="container">
+              <BootstrapTable
+                className="table-responsive"
+                keyField="_id"
+                data={data}
+                columns={columns}
+                striped
+                hover
+                filter={filterFactory()}
+                pagination={paginationFactory()}
+                bootstrap4={true}
+              />
+            </div>
+          </div>
+        </div>
+      </React.Fragment>
+    );
+  }
 }
 const mapStateToProps = state => {
-	return {
-		students: state.main.students,
-	};
+  return {
+    students: state.main.students
+  };
 };
 
 const mapDispatchToProps = dispatch => {
-	return {
-		getSchedule: () => dispatch(getSchedule()),
-	};
+  return {
+    getSchedule: () => dispatch(getSchedule())
+  };
 };
 
 export default connect(
-	mapStateToProps,
-	mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(SchedulePage);

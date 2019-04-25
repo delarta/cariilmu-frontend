@@ -1,10 +1,13 @@
 import React, { Component } from "react";
-import { Table, Button } from "reactstrap";
+import { Button } from "reactstrap";
 import ModalConfirmation from "../../components/ModalConfirmation";
 import ModalInvoice from "../../components/ModalInvoice";
 import { getCart } from "../../actions/studentActions";
 import { connect } from "react-redux";
 import Header from "../../layouts/Header";
+import BootstrapTable from "react-bootstrap-table-next";
+import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
+import paginationFactory from "react-bootstrap-table2-paginator";
 
 class cart extends Component {
   constructor(props) {
@@ -19,7 +22,41 @@ class cart extends Component {
   }
 
   render() {
-    console.log("data", this.props.students);
+    const data = this.props.students !== undefined ? this.props.students : [];
+    const columns = [
+      {
+        text: "Id",
+        dataField: "_id",
+        hidden: true
+      },
+      {
+        text: "Class Name",
+        dataField: "class.name",
+        sort: true,
+        filter: textFilter()
+      },
+      {
+        text: "Fee",
+        dataField: "class.fee",
+        sort: true,
+        filter: textFilter()
+      },
+      {
+        text: "Status",
+        dataField: "status",
+        sort: true,
+        formatter: (cell, row) =>
+          row.status === "paid" ? (
+            <ModalInvoice id_payment={row._id} InitialModalState={false} />
+          ) : row.status === "pending" ? (
+            <Button color="warning" onClick={this.toggle} block>
+              Pending
+            </Button>
+          ) : (
+            <ModalConfirmation id_payment={row._id} InitialModalState={false} />
+          )
+      }
+    ];
     return (
       <React.Fragment>
         <Header />
@@ -31,42 +68,19 @@ class cart extends Component {
           </div>
 
           <div className="box1">
-            <Table bordered className="table">
-              <thead style={{ backgroundColor: "#4f9da6", borderRadius: "3%" }}>
-                <tr>
-                  <th>NO</th>
-                  <th>CLASS NAME</th>
-                  <th>PRICE</th>
-                  <th>PAYMENT</th>
-                </tr>
-              </thead>
-              <tbody style={{ backgroundColor: "white" }}>
-                {this.props.students.map((item, index) => (
-                  <tr key={index}>
-                    <th> {index + 1} </th>
-                    <td>{item.class !== null ? item.class.name : "No Name"}</td>
-                    <td>Rp. {item.class !== null ? item.class.fee : ""}</td>
-                    <td>
-                      {item.status === "paid" ? (
-                        <ModalInvoice
-                          id_payment={item._id}
-                          InitialModalState={false}
-                        />
-                      ) : item.status === "pending" ? (
-                        <Button color="warning" onClick={this.toggle} block>
-                          Pending
-                        </Button>
-                      ) : (
-                        <ModalConfirmation
-                          id_payment={item._id}
-                          InitialModalState={false}
-                        />
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
+            <div className="container">
+              <BootstrapTable
+                className="table-responsive"
+                keyField="_id"
+                data={data}
+                columns={columns}
+                striped
+                hover
+                filter={filterFactory()}
+                pagination={paginationFactory()}
+                bootstrap4={true}
+              />
+            </div>
           </div>
         </div>
       </React.Fragment>

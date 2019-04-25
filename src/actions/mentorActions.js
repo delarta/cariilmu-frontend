@@ -166,7 +166,6 @@ export const addClass = (
           data: bodyFormData
         })
           .then(res => {
-            console.log(res);
             MySwal.fire({
               title: "Class Created",
               timer: 1500,
@@ -221,7 +220,6 @@ export const editClass = (
       data: bodyFormData
     })
       .then(res => {
-        console.log(res.data.data)
         Swal.fire({
           title: "Class Edited!",
           timer: 1000,
@@ -269,13 +267,11 @@ export const editProfile = (
       data: bodyFormData
     })
       .then(res => {
-        console.log(res);
         Swal.fire({
           title: "Profile Edited!",
           timer: 1000,
           type: "success"
         });
-        console.log(res);
         dispatch({
           type: "EDIT_MENTOR_PROFILE",
           payload: res.data.data

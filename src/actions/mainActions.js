@@ -32,7 +32,6 @@ export const getMentors = () => {
       url: `${url}/public/mentor`
     })
       .then(res => {
-        console.log(res)
         dispatch({
           type: "FETCH_MENTOR_PUBLIC",
           payload: res.data.data

@@ -37,6 +37,14 @@ class PaymentsAdmin extends Component {
         hidden: true
       },
       {
+        text: "Student Name",
+        dataField: "student.name",
+        sort: true,
+        filter: textFilter(),
+        formatter: (cell, row) => 
+          row.student !== null ? row.student.name : null
+      },
+      {
         text: "Class Name",
         dataField: "class.name",
         sort: true,

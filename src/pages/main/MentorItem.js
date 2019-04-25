@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-
+import { Spinner } from "reactstrap"
 import { getMentors } from "../../actions/mainActions";
 import StarRatings from "react-star-ratings";
 
@@ -11,7 +11,6 @@ class MentorItem extends Component {
   }
   render() {
     const { mentors } = this.props;
-    console.log(mentors);
 
     let filteredMentor = mentors.reverse();
     if (this.props.searchItem !== undefined) {
@@ -21,7 +20,10 @@ class MentorItem extends Component {
     } else {
       filteredMentor = mentors.slice(0, 3);
     }
-    return filteredMentor.map(item => (
+    return filteredMentor.length === 0 ?
+    <Spinner color="info"/>
+    :
+    filteredMentor.map(item => (
       <div className="mentor-item" key={item._id}>
         <div className="mentor-img">
           <img src={item.photo} alt={item.photo} />

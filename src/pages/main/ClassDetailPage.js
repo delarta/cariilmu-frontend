@@ -58,7 +58,6 @@ class ClassDetailPage extends Component {
   }
 
   handleEnroll = classid => {
-    console.log("reloaad", classid);
     classid.preventDefault();
     this.props.enroll(this.props.match.params);
     this.props.history.push("/cart");
@@ -143,6 +142,7 @@ class ClassDetailPage extends Component {
                             id="item"
                             placeholder=""
                             value={item.name}
+                            disabled
                           />
                         </Col>
                       </FormGroup>

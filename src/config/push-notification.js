@@ -1,4 +1,5 @@
-import firebase from "firebase";
+import * as firebase from "firebase/app";
+import "firebase/messaging"
 import axios from "axios";
 // Initialize Firebase
 var config = {
@@ -22,31 +23,15 @@ export const askPermission = async () => {
     const messaging = firebase.messaging();
     await messaging.requestPermission();
     const token = await messaging.getToken();
-    console.log("Token FCM : ", token);
-    messaging.onTokenRefresh(() => {
-      messaging.getToken().then(token => {
-        axios({
-          method: "post",
-          url: `https://iid.googleapis.com/iid/v1/${token}/rel/topics/alldevices`,
-          headers: {
-            Authorization: `key=${serverKey}`
-          }
-        }).then(res => console.log("Subscribed to topic "));
-      });
+    messaging.getToken().then(token => {
+      axios({
+        method: "post",
+        url: `https://iid.googleapis.com/iid/v1/${token}/rel/topics/alldevices`,
+        headers: {
+          Authorization: `key=${serverKey}`
+        }
+      }).then(res => console.log("Subscribed to topic "));
     });
-
-    // messaging.setBackgroundMessageHandler(function(payload) {
-    //   console.log('[firebase-messaging-sw.js] Received background message ', payload);
-    //   // Customize notification here
-    //   var notificationTitle = 'Background Message Title';
-    //   var notificationOptions = {
-    //     body: 'Background Message body.',
-    //     icon: '/firebase-logo.png'
-    //   };
-    
-    //   return self.registration.showNotification(notificationTitle,
-    //     notificationOptions);
-    // });
 
     return token;
   } catch (err) {

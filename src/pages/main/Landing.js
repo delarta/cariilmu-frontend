@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Container, Button } from "reactstrap";
 import phone from "../../assets/img/study.svg";
+import phone_download from "../../assets/img/cariilmu_images.png";
 import logo from "../../assets/img/logo_light_color.png";
 
 import mentor from "../../assets/img/mentor_landing.png";
@@ -153,7 +154,7 @@ class Landing extends Component {
                 <Button color="primary">Unduh Sekarang</Button>
               </div>
               <div className="desktop-only">
-                <img src={phone} alt={phone} />
+                <img src={phone_download} alt={phone_download} />
               </div>
             </Container>
           </section>

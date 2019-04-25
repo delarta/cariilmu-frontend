@@ -14,7 +14,6 @@ const adminReducer = (state = initState, action) => {
         mentors: action.payload
       };
     case "VERIFY_MENTOR":
-      console.log(action.payload);
       return {
         ...state,
         mentors: [
@@ -27,11 +26,17 @@ const adminReducer = (state = initState, action) => {
         ]
       };
     case "DELETE_MENTOR":
-      console.log(action.payload);
       return {
         ...state,
         mentors: [
           ...state.mentors.filter(item => item._id !== action.payload._id)
+        ]
+      };
+    case "DELETE_STUDENT":
+      return {
+        ...state,
+        students: [
+          ...state.students.filter(item => item._id !== action.payload._id)
         ]
       };
 

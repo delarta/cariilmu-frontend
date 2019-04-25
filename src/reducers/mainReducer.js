@@ -18,13 +18,11 @@ const mainReducer = (state = initState, action) => {
         categories: action.payload
       };
     case "FETCH_CART":
-      console.log(action.payload);
       return {
         ...state,
         students: action.payload
       };
     case "FETCH_SCHEDULE":
-      console.log(action.payload);
       return {
         ...state,
         students: action.payload
