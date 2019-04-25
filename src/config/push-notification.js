@@ -1,5 +1,5 @@
 import * as firebase from "firebase/app";
-import "firebase/messaging"
+import "firebase/messaging";
 import axios from "axios";
 // Initialize Firebase
 var config = {
