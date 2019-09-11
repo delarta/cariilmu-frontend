@@ -216,7 +216,7 @@ class ModalAddClass extends React.Component {
                   name="category"
                   id="category"
                 >
-                  <option value="">-- Select Category --</option>
+                  <option value=''>-- Select Category --</option>
                   {this.props.categories.map((category, index) => (
                     <option key={index} value={category._id}>
                       {category.name}
